@@ -3,7 +3,6 @@ from cliente2 import *
 import csv
 from Guardar_pizza import *
 
-
 director = Director()
 builder = ConcreteBuilder1()
 director.builder = builder

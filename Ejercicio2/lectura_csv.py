@@ -3,6 +3,8 @@ from cliente2 import *
 import csv
 from Guardar_pizza import *
 from interfaz import *
+from pedido import *
+
 
 def lectura(nombre_usuario, nombre_usuario2, contrasenia):
             with open('pedidosnuevos.csv', mode='r', newline='') as file:
@@ -33,29 +35,12 @@ def lectura(nombre_usuario, nombre_usuario2, contrasenia):
                                 respuesta = input("Sí/No: ")
                                 if respuesta.lower() == "si":
                                     print("Repetimos el pedido anterior.")
-                                    pedido = row[3:]
                                     break
                                 else:
                                     print("Comencemos el proceso de creación de la pizza.")
-                                    usuario = Usuario()
-                                    builder = ConcreteBuilder1()
-                                    usuario.builder = builder
-                                    usuario.pedir_nombre()
-                                    usuario.pedir_usuario()
-                                    usuario.pedir_contraseña()
-                                    usuario.pedir_pedido()
-                                    usuario.pedir_pizza()
-                                    builder.product_pizza.list_parts()
+                                    pedido()
                                     break
 
                 if not encontrado:
                     print("No encontramos tu usuario o la contraseña es incorrecta. Continúa con el proceso de creación de la pizza.")
-                    usuario = Usuario()
-                    builder = ConcreteBuilder1()
-                    usuario.builder = builder
-                    usuario.pedir_nombre()
-                    usuario.pedir_usuario()
-                    usuario.pedir_contraseña()
-                    usuario.pedir_pedido()
-                    usuario.pedir_pizza()
-                    builder.product_pizza.list_parts()
+                    pedido()

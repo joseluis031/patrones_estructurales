@@ -79,6 +79,4 @@ def interfaz(pedido_anterior):
             builder.product_pizza.list_parts()
             
         
-pedido_anterior = input("¿Has realizado un pedido anteriormente? (si/no): ")
 
-interfaz(pedido_anterior)

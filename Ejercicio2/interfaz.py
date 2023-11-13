@@ -18,7 +18,7 @@ def interfaz(pedido_anterior):
 
     else:
         print("Comencemos el proceso de creación de la pizza.")
-        pedido()
+        pedido_usuario()
             
         
 

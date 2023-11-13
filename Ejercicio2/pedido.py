@@ -5,7 +5,7 @@ from Guardar_pizza import *
 from lectura_csv import *
 from interfaz import *
 
-def pedido():
+def pedido_usuario():
     usuario = Usuario()
     builder = ConcreteBuilder1()
     usuario.builder = builder

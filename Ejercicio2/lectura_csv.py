@@ -38,9 +38,9 @@ def lectura(nombre_usuario, nombre_usuario2, contrasenia):
                                     break
                                 else:
                                     print("Comencemos el proceso de creación de la pizza.")
-                                    pedido()
+                                    pedido_usuario()
                                     break
 
                 if not encontrado:
                     print("No encontramos tu usuario o la contraseña es incorrecta. Continúa con el proceso de creación de la pizza.")
-                    pedido()
+                    pedido_usuario()

@@ -2,6 +2,8 @@ from builder import *
 from cliente2 import *
 import csv
 from Guardar_pizza import *
+from composite import *
+
 
 director = Director()
 builder = ConcreteBuilder1()
@@ -67,9 +69,8 @@ class Usuario:
         self.builder.extras()
 
         # para guardar el pedido en un csv
-        detalles_pizza = self.builder.product_pizza.parts
+        detalles_pizza = self.builder.product_pizza.get_parts_pizza()
         guardar_pedido_en_csv(self._nombre, self._usuario, self._contrasenia, detalles_pizza)
 
-        # Esta función toma los detalles de la pizza y guarda solo las elecciones en un archivo CSV
 
 

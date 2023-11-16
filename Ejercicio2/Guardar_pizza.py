@@ -1,9 +1,7 @@
-from builder import *
-from cliente2 import *
 import csv
-from composite import *
+import json
 
-def guardar_pedido_en_csv(nombre, usuario, contrasenia, product):
+def guardar_pedido_en_csv(nombre, usuario, contrasenia, detalles):
     with open('pedidosnuevos.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
 
@@ -11,7 +9,7 @@ def guardar_pedido_en_csv(nombre, usuario, contrasenia, product):
         row = [nombre, usuario, contrasenia]
 
         # Agrega cada detalle de la pizza como una columna separada
-        for detalle in product.get_parts_pizza():
+        for detalle in detalles:
             if ":" in detalle:
                 key, value = detalle.split(": ", 1)
                 row.append(value)

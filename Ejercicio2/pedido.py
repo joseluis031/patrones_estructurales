@@ -14,4 +14,10 @@ def pedido_usuario():
     usuario.pedir_contraseña()
     usuario.pedir_pedido()
     usuario.pedir_pizza()
-    builder.product_pizza.list_parts()
+    # Accede directamente a los elementos del Composite
+    detalles_pizza = builder.product_pizza.operation()
+    detalles_pizza = detalles_pizza.replace("Branch(", "").replace(")", "").replace("+", ",").replace(" ", "")
+    detalles_pizza = ",".join(part.split(":")[1] for part in detalles_pizza.split(","))
+
+    # Guarda el pedido en el CSV
+    guardar_pedido_en_csv(usuario._nombre, usuario._usuario, usuario._contrasenia, detalles_pizza)

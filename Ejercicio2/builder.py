@@ -11,11 +11,7 @@ class Builder(ABC):
      los objetos del Producto.
     """
 
-    @property #Este es un decorador que permite acceder al método como si fuera un atributo.
-    @abstractmethod
-    def product_pizza(self) -> None:
-        pass
-
+   
     @abstractmethod
     def tipo_de_masa(self) -> None:
         pass
@@ -60,10 +56,10 @@ class ConcreteBuilder1(Builder):
         self.reset()
 
     def reset(self) -> None:
-        self._product_pizza = Product1
-    
+        self._product_pizza = Composite()
+
     @property #Este es un decorador que permite acceder al método como si fuera un atributo.
-    def product_pizza(self) -> Product1:
+    def product_pizza(self) -> Composite:
         """
         Se supone que los constructores de hormigón deben proporcionar sus propios métodos(lo llamo igual) para
          recuperando resultados. Esto se debe a que varios tipos de constructores pueden crear
@@ -198,7 +194,7 @@ class ConcreteBuilder1(Builder):
 
 #clase para el producto
 class Product1():
-    def __init__(self, composite: Component) -> None:
+    def __init__(self, composite: Composite) -> None:
         self.composite = composite
 
     def add_part(self, part: Component) -> None:
@@ -208,9 +204,8 @@ class Product1():
         parts = self.composite.get_parts_pizza()
         print(f"El cliente ha elegido su pizza: {', '.join(part.operation() for part in parts)}", end="")
 
-    def get_parts_pizza(self):
-        return self.parts
-
+    def get_parts_pizza(self) -> List[Component]:
+        return self.composite.get_parts_pizza()
 
 class Director:
     """

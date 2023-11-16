@@ -68,9 +68,5 @@ class Usuario:
         self.builder.maridajes_recomendados()
         self.builder.extras()
 
-        # para guardar el pedido en un csv
-        detalles_pizza = self.builder.product_pizza.get_parts_pizza()
-        guardar_pedido_en_csv(self._nombre, self._usuario, self._contrasenia, detalles_pizza)
-
-
+    
 

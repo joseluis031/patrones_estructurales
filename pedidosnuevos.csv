@@ -4,3 +4,15 @@ e,e,e,fina,tomate,champinones,horno,redonda,vino,trufa
 i,i,i,fina,tomate,,horno,redonda,vino,
 mart,m,a,fina,tomate,champinones,horno,redonda,vino,doble de ingredientes
 
+a,a,a,<composite.Leaf object at 0x00000199157D3CD0>,<composite.Leaf object at 0x00000199157D3D30>,<composite.Leaf object at 0x0000019915CF15D0>,<composite.Leaf object at 0x0000019915CF10F0>,<composite.Leaf object at 0x0000019915CF1A20>,<composite.Leaf object at 0x0000019915CF1630>,<composite.Leaf object at 0x0000019915CF19C0>
+a,v,c,<composite.Leaf object at 0x0000023A57133CD0>,<composite.Leaf object at 0x0000023A57133D30>,<composite.Leaf object at 0x0000023A57603370>,<composite.Leaf object at 0x0000023A57603280>,<composite.Leaf object at 0x0000023A576034C0>,<composite.Leaf object at 0x0000023A57641930>,<composite.Leaf object at 0x0000023A57641A20>
+a,v,c,B,r,a,n,c,h,(,)
+m,m,m,<composite.Leaf object at 0x000002C74B403DF0>,<composite.Leaf object at 0x000002C74B403D00>,<composite.Leaf object at 0x000002C74B403C10>,<composite.Leaf object at 0x000002C74B8D32B0>,<composite.Leaf object at 0x000002C74B8D3190>,<composite.Leaf object at 0x000002C74B8D33D0>,<composite.Leaf object at 0x000002C74B8D3460>
+m,m,m,B,r,a,n,c,h,(,)
+w,w,w,B,r,a,n,c,h,(,m,a,s,a, ,e,l,e,g,i,d,a,:, ,a,+,s,a,l,s,a, ,b,a,s,e, ,e,l,e,g,i,d,a,:, ,a,+,i,n,g,r,e,d,i,e,n,t,e,s, ,p,r,i,n,c,i,p,a,l,e,s, ,e,l,e,g,i,d,o,s,:, ,b,a,c,o,n,+,t,e,c,n,i,c,a,s, ,d,e, ,c,o,c,c,i,o,n, ,e,l,e,g,i,d,a,s,:, ,a,+,p,r,e,s,e,n,t,a,c,i,o,n, ,e,l,e,g,i,d,a,:, ,a,+,m,a,r,i,d,a,j,e,s, ,e,l,e,g,i,d,o,s,:, ,a,+,e,x,t,r,a,s, ,e,l,e,g,i,d,o,s,:, ,d,o,b,l,e, ,d,e, ,s,a,l,s,a,)
+e,e,e,m,a,s,a,e,l,e,g,i,d,a,:,a,",",s,a,l,s,a,b,a,s,e,e,l,e,g,i,d,a,:,a,",",i,n,g,r,e,d,i,e,n,t,e,s,p,r,i,n,c,i,p,a,l,e,s,e,l,e,g,i,d,o,s,:,c,h,a,m,p,i,n,o,n,e,s,",",t,e,c,n,i,c,a,s,d,e,c,o,c,c,i,o,n,e,l,e,g,i,d,a,s,:,a,",",p,r,e,s,e,n,t,a,c,i,o,n,e,l,e,g,i,d,a,:,a,",",m,a,r,i,d,a,j,e,s,e,l,e,g,i,d,o,s,:,a,",",e,x,t,r,a,s,e,l,e,g,i,d,o,s,:,s,a,l,s,a,r,a,n,c,h,e,r,a
+z,z,z,"masaelegida:fina,salsabaseelegida:tomate,ingredientesprincipaleselegidos:bacon,tecnicasdecoccionelegidas:horno,presentacionelegida:redonda,maridajeselegidos:vino,extraselegidos:dobledesalsa"
+x,x,x,"fina,tomate,champinones,a,a,a,trufa"
+t,t,t,,,,,,,
+r,r,r,,,,,,,
+z,z,z,fina,a,champinones,a,a,a,dobledesalsa

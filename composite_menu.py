@@ -139,7 +139,7 @@ class Composite_combo1(Component_menu):
         results = []
         for child in self._children:
             results.append(child.precio())
-        return sum(results)
+        return sum(results)-sum(results)*0.15 #descuento por pedir combo
 
 
 def client_code(component: Component_menu) -> None:
@@ -330,6 +330,7 @@ if __name__ == "__main__":
         
         
     elif bienvenida == "4":
+        print("Los combos tienen un 15% de descuento respecto del precio total")
         print("Tenemos los siguientes combos:")
         print("1. Combo Pareja: 2 pizzas: margarita y 4 quesos, 2 refrescos, aceitunas y croquetas  y 2 helados")
         print("2. Combo Familiar: 2 pizzas margarita y 2 barbacoa, 2 aguas y 2 refrescos, 2 alitas y 2 de patatas y 4 tartas de queso")

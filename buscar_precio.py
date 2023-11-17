@@ -7,7 +7,7 @@ def buscar_preciopizza(pizza):
                 if pizza in row:
                     return f"El precio de {pizza} es {row[1]}"
                 
-a = buscar_preciopizza("margarita")
+a = buscar_preciopizza("a")
 print(a)      
 
 def buscar_precioentrante(entrante):
@@ -16,7 +16,7 @@ def buscar_precioentrante(entrante):
         for row in reader:
             if entrante in row[9]:
                 return f"El precio de {entrante} es {row[10]}" 
-b = buscar_precioentrante("calamares")
+b = buscar_precioentrante("aa")
 print(b)     
 
 def buscar_preciobebida(bebida):
@@ -26,7 +26,7 @@ def buscar_preciobebida(bebida):
             if bebida in row[3]:
                 return f"El precio de {bebida} es {row[4]}"
             
-c = buscar_preciobebida("coca-cola")
+c = buscar_preciobebida("aa")
 print(c)
 
 def buscar_preciopostre(postre):
@@ -36,6 +36,6 @@ def buscar_preciopostre(postre):
             if postre in row[6]:
                 return f"El precio de {postre} es {row[7]}"
             
-d = buscar_preciopostre("tarta de queso")
+d = buscar_preciopostre("a")
 print(d)
 

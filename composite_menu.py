@@ -166,7 +166,7 @@ def client_code2(component1: Component_menu, component2: Component_menu) -> None
 if __name__ == "__main__":
     
     
-    bienvenida = input("¿quieres un menu? (si/no) ")
+    bienvenida = input("¿quieres crear un menu? (si/no) ")
     
     if bienvenida == "si":
         print("Vamos a ello!!")
@@ -219,5 +219,95 @@ if __name__ == "__main__":
     
     
     else:
-        print("hasta otra")
-        exit()
+        bienvenida2 =input("¿quieres un menu ya creado por nosotros? ")
+        
+        if bienvenida2 == "si":
+            print("Tenemos los siguientes menus:")
+            print("1. Menu basico: alitas, Pizza margarita, agua y helado")
+            print("2. Menu EEUU: patatas, Pizza barbacoa, coca-cola y tarta de queso")
+            print("3. Menu italiano: calamares, Pizza 4 quesos, vino y helado")
+            print("4. Menu español: ensalada, Pizza carbonara, agua y tarta de chocolate")
+            print("5. Menu frances: patatas, Pizza hawaiana, coca-cola y helado")
+            menu = input("Elige el numero del menu que quieres: ")
+            lista_menu = ["1", "2", "3", "4", "5"]
+            while menu not in lista_menu:
+                menu = input("No tenemos esa, ¿que menu quieres? ")
+                
+            if menu == "1":
+                pedido1_pizza = Leaf_pizza("margarita")
+                pedido1_bebida = Leaf_bebida("agua")
+                pedido1_entrante = Leaf_entrante("alitas de pollo")
+                pedido1_postre = Leaf_postre("helado")
+                
+                # Calcular precio total del menú
+                precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
+                print("El precio de tu pizza es: ", pedido1_pizza.precio())
+                print("El precio de tu bebida es: ", pedido1_bebida.precio())
+                print("El precio de tu entrante es: ", pedido1_entrante.precio())
+                print("El precio de tu postre es: ", pedido1_postre.precio())
+                print(f"El precio total del menú basico es: {precio_total_menu}")
+                
+            elif menu == "2":
+                pedido1_pizza = Leaf_pizza("barbacoa")
+                pedido1_bebida = Leaf_bebida("coca-cola")
+                pedido1_entrante = Leaf_entrante("patatas")
+                pedido1_postre = Leaf_postre("tarta de queso")
+                
+                # Calcular precio total del menú
+                precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
+                print("El precio de tu pizza es: ", pedido1_pizza.precio())
+                print("El precio de tu bebida es: ", pedido1_bebida.precio())
+                print("El precio de tu entrante es: ", pedido1_entrante.precio())
+                print("El precio de tu postre es: ", pedido1_postre.precio())
+                
+                print(f"El precio total del menú EEUU es: {precio_total_menu}")
+                
+            elif menu == "3":
+                pedido1_pizza = Leaf_pizza("4 quesos")
+                pedido1_bebida = Leaf_bebida("vino")
+                pedido1_entrante = Leaf_entrante("calamares")
+                pedido1_postre = Leaf_postre("helado")
+                
+                # Calcular precio total del menú
+                precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
+                print("El precio de tu pizza es: ", pedido1_pizza.precio())
+                print("El precio de tu bebida es: ", pedido1_bebida.precio())
+                print("El precio de tu entrante es: ", pedido1_entrante.precio())
+                print("El precio de tu postre es: ", pedido1_postre.precio())
+                
+                print(f"El precio total del menú italiano es: {precio_total_menu}")
+                
+            elif menu == "4":
+                pedido1_pizza = Leaf_pizza("carbonara")
+                pedido1_bebida = Leaf_bebida("agua")
+                pedido1_entrante = Leaf_entrante("ensalada")
+                pedido1_postre = Leaf_postre("tarta de chocolate")
+                
+                # Calcular precio total del menú
+                precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
+                print("El precio de tu pizza es: ", pedido1_pizza.precio())
+                print("El precio de tu bebida es: ", pedido1_bebida.precio())
+                print("El precio de tu entrante es: ", pedido1_entrante.precio())
+                print("El precio de tu postre es: ", pedido1_postre.precio())
+                
+                print(f"El precio total del menú  español es: {precio_total_menu}")
+                
+            elif menu == "5":
+                pedido1_pizza = Leaf_pizza("hawaiana")
+                pedido1_bebida = Leaf_bebida("coca-cola")
+                pedido1_entrante = Leaf_entrante("patatas")
+                pedido1_postre = Leaf_postre("helado")
+                
+                # Calcular precio total del menú
+                precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
+                print("El precio de tu pizza es: ", pedido1_pizza.precio())
+                print("El precio de tu bebida es: ", pedido1_bebida.precio())
+                print("El precio de tu entrante es: ", pedido1_entrante.precio())
+                print("El precio de tu postre es: ", pedido1_postre.precio())
+                
+                print(f"El precio total del menú frances es: {precio_total_menu}")
+                
+        else:
+            print("Vale, adios")
+            exit()
+            

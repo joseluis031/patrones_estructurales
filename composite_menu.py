@@ -190,12 +190,7 @@ if __name__ == "__main__":
         while postre not in lista_postre:
             postre = input("No tenemos esa, ¿que postre quieres? ")
         
-            
-        
-        
-        
-        
-            
+           
         pedido1_pizza = Leaf_pizza(pizza)
         pedido1_bebida = Leaf_bebida(bebida)
         pedido1_entrante = Leaf_entrante(entrante)
@@ -211,14 +206,7 @@ if __name__ == "__main__":
         
         print(f"El precio total del menú es: {precio_total_menu}")
         
-        
-        
-        
-    
-    
-    
-    
-    
+ 
         
     if bienvenida == "2":
         print("Tenemos los siguientes menus:")
@@ -306,6 +294,43 @@ if __name__ == "__main__":
             
             print(f"El precio total del menú frances es: {precio_total_menu}")
             
+    
+    elif bienvenida == "3":
+        print("Tenemos los siguientes productos: 1. Bebida, 2. Entrante, 3. Postre")
+        producto = input("Elige el numero del producto que quieres: ")
+        lista_producto = ["1", "2", "3"]
+        while producto not in lista_producto:
+            producto = input("No tenemos esa, ¿que producto quieres? ")
+            
+        if producto == "1":
+            bebida = input("¿que bebida quieres? Tenemos: coca-cola, fanta, agua o aa :")
+            lista_bebida = ["coca-cola", "fanta", "agua", "aa"]
+            while bebida not in lista_bebida:
+                bebida = input("No tenemos esa, ¿que bebida quieres? ")
+            pedido1_bebida = Leaf_bebida(bebida)
+            print("El precio de tu bebida es: ", pedido1_bebida.precio())
+            
+        elif producto == "2":
+            entrante = input("¿que entrante quieres? Tenemos: patatas, calamares, ensalada o aa :")
+            lista_entrante = ["patatas", "calamares", "ensalada", "aa"]
+            while entrante not in lista_entrante:
+                entrante = input("No tenemos esa, ¿que entrante quieres? ")
+            pedido1_entrante = Leaf_entrante(entrante)
+            print("El precio de tu entrante es: ", pedido1_entrante.precio())
+            
+        elif producto == "3":
+            postre = input("¿que postre quieres? Tenemos: tarta de queso, tarta de chocolate, helado o a :")
+            lista_postre = ["tarta de queso", "tarta de chocolate", "helado", "a"]
+            while postre not in lista_postre:
+                postre = input("No tenemos esa, ¿que postre quieres? ")
+            pedido1_postre = Leaf_postre(postre)
+            print("El precio de tu postre es: ", pedido1_postre.precio())
+            
+        
+        
+        
+    
+         
     else:
         print("Vale, adios")
         exit()

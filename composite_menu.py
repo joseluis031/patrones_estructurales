@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List
-
+import csv
 
 class Component_menu(ABC):
 
@@ -35,6 +35,13 @@ class Leaf_pizza(Component_menu):
     def __init__(self, pizza: str, precio: float) -> None:
         self._pizza = pizza
         self._precio = precio
+        
+    def buscar_preciopizza(self, pizza):
+        with open('precio_elemento.csv', newline='') as File:  
+            reader = csv.reader(File)
+            for row in reader:
+                if pizza in row:
+                    return row[1]
 
     def operation(self) -> str:
         return f"{self._pizza} cuesta:  {self._precio}€"

@@ -25,6 +25,9 @@ class Component_menu(ABC):
     def operation(self) -> str:
         pass
     
+    @abstractmethod
+    def precio(self) -> float:
+        pass
 
 
 
@@ -40,7 +43,12 @@ class Leaf_pizza(Component_menu):
                 if self._pizza in row:
                     return f"El precio de {self._pizza} es {row[1]}"
 
-
+    def precio(self) -> float:
+        with open('precio_elementos.csv', newline='') as File:
+            reader = csv.reader(File)
+            for row in reader:
+                if self._pizza in row:
+                    return float(row[1])
     
 class Leaf_bebida(Component_menu):
 
@@ -54,6 +62,13 @@ class Leaf_bebida(Component_menu):
             for row in reader:
                 if self._bebida in row[3]:
                     return f"El precio de {self._bebida} es {row[4]}"
+                
+    def precio(self) -> float:
+        with open('precio_elementos.csv', newline='') as File:
+            reader = csv.reader(File)
+            for row in reader:
+                if self._bebida in row[3]:
+                    return float(row[4])
     
 class Leaf_entrante(Component_menu):
 
@@ -67,6 +82,13 @@ class Leaf_entrante(Component_menu):
             for row in reader:
                 if self._entrante in row[9]:
                     return f"El precio de {self._entrante} es {row[10]}" 
+                
+    def precio(self) -> float:
+        with open('precio_elementos.csv', newline='') as File:
+            reader = csv.reader(File)
+            for row in reader:
+                if self._entrante in row[9]:
+                    return float(row[10])
     
 class Leaf_postre(Component_menu):
 
@@ -80,6 +102,13 @@ class Leaf_postre(Component_menu):
             for row in reader:
                 if self._postre in row[6]:
                     return f"El precio de {self._postre} es {row[7]}"
+                
+    def precio(self) -> float:
+        with open('precio_elementos.csv', newline='') as File:
+            reader = csv.reader(File)
+            for row in reader:
+                if self._postre in row[6]:
+                    return float(row[7])
 
 
 class Composite_combo1(Component_menu):
@@ -161,7 +190,6 @@ if __name__ == "__main__":
         while postre not in lista_postre:
             postre = input("No tenemos esa, ¿que postre quieres? ")
         
-        print ("Tu pedido es: ", pizza, bebida, entrante, postre, " y el precio total es: ")
             
         
         
@@ -169,17 +197,19 @@ if __name__ == "__main__":
         
             
         pedido1_pizza = Leaf_pizza(pizza)
-        print(pedido1_pizza.operation())
-        
         pedido1_bebida = Leaf_bebida(bebida)
-        print(pedido1_bebida.operation())
-        
         pedido1_entrante = Leaf_entrante(entrante)
-        print(pedido1_entrante.operation())
-        
         pedido1_postre = Leaf_postre(postre)
-        print(pedido1_postre.operation())
+
+        # Calcular precio total del menú
+        precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
+        print("El precio de tu pizza es: ", pedido1_pizza.precio())
+        print("El precio de tu bebida es: ", pedido1_bebida.precio())
+        print("El precio de tu entrante es: ", pedido1_entrante.precio())
+        print("El precio de tu postre es: ", pedido1_postre.precio())
         
+        
+        print(f"El precio total del menú es: {precio_total_menu}")
         
         
         

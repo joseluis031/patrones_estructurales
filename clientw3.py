@@ -8,7 +8,7 @@ class Cliente:
         self.usuario = usuario
         self.contraseña = contraseña
 
-    def guardar_pedido(self):
+    def guardar_cliente(self):
         # Nombre del archivo CSV
         archivo_csv = 'clientes.csv'
         self.id = hash((self.nombre, self.usuario, self.contraseña))
@@ -25,6 +25,22 @@ class Cliente:
             # Escribir la información del cliente y su pedido
             writer = csv.writer(file)
             writer.writerow(row)
+            
+    def guardar_pedido(self, pedido):
+        # Nombre del archivo CSV para los pedidos
+        archivo_pedidos = 'pedidos_cliente.csv'
+
+        # Crear o abrir el archivo en modo de escritura
+        with open(archivo_pedidos, mode='a', newline='') as file:
+            writer = csv.writer(file)
+
+            # Si el archivo está vacío, escribir las columnas
+            if file.tell() == 0:
+                writer.writerow(['id', 'elemento', 'precio'])
+
+            # Escribir el pedido del cliente con su ID
+            for item in pedido:
+                writer.writerow([self.id, item.operation(), item.precio()])
 
 if __name__ == "__main__":
     # Ejemplo de cómo usar la clase Cliente
@@ -51,9 +67,10 @@ if __name__ == "__main__":
         pedido_cliente = Composite_combo1("Menú Personalizado")
         for item in menu_personalizado:
             pedido_cliente.add(item)
-            
+
         cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
-        cliente.guardar_pedido()
+        cliente.guardar_cliente()
+        cliente.guardar_pedido(pedido_cliente._children)  # Guardar el pedido del cliente
 
 
         exit()

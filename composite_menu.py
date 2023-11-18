@@ -110,6 +110,35 @@ class Leaf_postre(Component_menu):
                 if self._postre in row[6]:
                     return float(row[7])
 
+class Composite_menu(Component_menu):
+        
+    
+        def __init__(self, menu) -> None:
+            self._menu = menu
+            self._children: List[Component_menu] = []
+    
+    
+        def add(self, component: Component_menu) -> None:
+            self._children.append(component)
+            component.parent = self
+    
+        def remove(self, component: Component_menu) -> None:
+            self._children.remove(component)
+            component.parent = None
+    
+    
+        def operation(self) -> str:
+    
+            results = []
+            for child in self._children:
+                results.append(child.operation())
+            return f"({'+'.join(results)})"
+    
+        def precio(self) -> float:
+            results = []
+            for child in self._children:
+                results.append(child.precio())
+            return sum(results)-sum(results)*0.05 #descuento por pedir menu predeterminado
 
 class Composite_combo1(Component_menu):
     

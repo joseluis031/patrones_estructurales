@@ -109,13 +109,13 @@ if __name__ == "__main__":
         
 
         # Crear un Composite_combo1 con los elementos del menú personalizado
-        pedido_cliente = Composite_combo1("Menú Personalizado")
+        pedido_cliente = Composite_menu("Menú Personalizado")
         for item in menu_personalizado:
             pedido_cliente.add(item)
-
+        
         cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
         cliente.guardar_cliente()
-        cliente.guardar_pedido([pedido_cliente])  # Guardar el pedido del cliente
+        cliente.guardar_pedido(pedido_cliente._children)  # Guardar el pedido del cliente
 
 
         exit()

@@ -253,15 +253,23 @@ if __name__ == "__main__":
             pedido1_entrante = Leaf_entrante("alitas de pollo")
             pedido1_postre = Leaf_postre("helado")
             
+            pedido1_menu = Composite_menu("Menu basico")
+            pedido1_menu.add(pedido1_pizza)
+            pedido1_menu.add(pedido1_bebida)
+            pedido1_menu.add(pedido1_entrante)
+            pedido1_menu.add(pedido1_postre)
+            
+            
+            
             # Calcular precio total del menú
-            precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
             print("El precio de tu pizza es: ", pedido1_pizza.precio())
             print("El precio de tu bebida es: ", pedido1_bebida.precio())
             print("El precio de tu entrante es: ", pedido1_entrante.precio())
             print("El precio de tu postre es: ", pedido1_postre.precio())
-            descuento = precio_total_menu*0.05
-            precio_final = precio_total_menu - descuento
-            print(f"El precio total del menú basico es: {precio_final}")
+            
+            print("El precio total del menu basico (con descuento)es: ", pedido1_menu.precio())
+            
+            
             
         elif menu == "2":
             pedido1_pizza = Leaf_pizza("barbacoa")
@@ -269,68 +277,83 @@ if __name__ == "__main__":
             pedido1_entrante = Leaf_entrante("patatas")
             pedido1_postre = Leaf_postre("tarta de queso")
             
+            pedido2_menu = Composite_menu("Menu EEUU")
+            pedido2_menu.add(pedido1_pizza)
+            pedido2_menu.add(pedido1_bebida)
+            pedido2_menu.add(pedido1_entrante)
+            pedido2_menu.add(pedido1_postre)
+            
             # Calcular precio total del menú
-            precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
             print("El precio de tu pizza es: ", pedido1_pizza.precio())
             print("El precio de tu bebida es: ", pedido1_bebida.precio())
             print("El precio de tu entrante es: ", pedido1_entrante.precio())
             print("El precio de tu postre es: ", pedido1_postre.precio())
-            descuento = precio_total_menu*0.05
-            precio_final = precio_total_menu - descuento
             
-            print(f"El precio total del menú EEUU es: {precio_final}")
             
+            print("El precio total del menu EEUU (con descuento)es: ", pedido2_menu.precio())            
+        
+        
         elif menu == "3":
             pedido1_pizza = Leaf_pizza("4 quesos")
             pedido1_bebida = Leaf_bebida("vino")
             pedido1_entrante = Leaf_entrante("calamares")
             pedido1_postre = Leaf_postre("helado")
             
+            pedido3_menu = Composite_menu("Menu italiano")
+            pedido3_menu.add(pedido1_pizza)
+            pedido3_menu.add(pedido1_bebida)
+            pedido3_menu.add(pedido1_entrante)
+            pedido3_menu.add(pedido1_postre)
+            
             # Calcular precio total del menú
-            precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
             print("El precio de tu pizza es: ", pedido1_pizza.precio())
             print("El precio de tu bebida es: ", pedido1_bebida.precio())
             print("El precio de tu entrante es: ", pedido1_entrante.precio())
             print("El precio de tu postre es: ", pedido1_postre.precio())
-            descuento = precio_total_menu*0.05
-            precio_final = precio_total_menu - descuento
             
-            print(f"El precio total del menú italiano es: {precio_final}")
             
+            print("El precio total del menu italiano (con descuento)es: ", pedido3_menu.precio())
+                        
         elif menu == "4":
             pedido1_pizza = Leaf_pizza("carbonara")
             pedido1_bebida = Leaf_bebida("agua")
             pedido1_entrante = Leaf_entrante("ensalada")
             pedido1_postre = Leaf_postre("tarta de chocolate")
             
+            pedido4_menu = Composite_menu("Menu español")
+            pedido4_menu.add(pedido1_pizza)
+            pedido4_menu.add(pedido1_bebida)
+            pedido4_menu.add(pedido1_entrante)
+            pedido4_menu.add(pedido1_postre)
+            
             # Calcular precio total del menú
-            precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
             print("El precio de tu pizza es: ", pedido1_pizza.precio())
             print("El precio de tu bebida es: ", pedido1_bebida.precio())
             print("El precio de tu entrante es: ", pedido1_entrante.precio())
             print("El precio de tu postre es: ", pedido1_postre.precio())
-            descuento = precio_total_menu*0.05
-            precio_final = precio_total_menu - descuento
             
-            print(f"El precio total del menú  español es: {precio_final}")
-            
+            print(f"El precio total del menu español (con descuento)es: {pedido4_menu.precio()}")
+                        
         elif menu == "5":
             pedido1_pizza = Leaf_pizza("hawaiana")
             pedido1_bebida = Leaf_bebida("coca-cola")
             pedido1_entrante = Leaf_entrante("patatas")
             pedido1_postre = Leaf_postre("helado")
             
+            pedido5_menu = Composite_menu("Menu frances")
+            pedido5_menu.add(pedido1_pizza)
+            pedido5_menu.add(pedido1_bebida)
+            pedido5_menu.add(pedido1_entrante)
+            pedido5_menu.add(pedido1_postre)
+            
             # Calcular precio total del menú
-            precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
             print("El precio de tu pizza es: ", pedido1_pizza.precio())
             print("El precio de tu bebida es: ", pedido1_bebida.precio())
             print("El precio de tu entrante es: ", pedido1_entrante.precio())
             print("El precio de tu postre es: ", pedido1_postre.precio())
-            descuento = precio_total_menu*0.05
-            precio_final = precio_total_menu - descuento
+           
             
-            print(f"El precio total del menú frances es: {precio_final}")
-            
+            print(f"El precio total del menu frances (con descuento)es: {pedido5_menu.precio()}")            
     
     elif bienvenida == "3":
         print("Tenemos los siguientes productos: 1. Bebida, 2. Entrante, 3. Postre")

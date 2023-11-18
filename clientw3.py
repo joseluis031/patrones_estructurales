@@ -1,7 +1,7 @@
 import csv
 from composite_menu import *    
 
-
+import ast
 class Cliente:
     def __init__(self, nombre, usuario, contraseña):
         self.nombre = nombre
@@ -42,6 +42,23 @@ class Cliente:
             for item in pedido:
                 writer.writerow([self.id, item.operation(), item.precio()])
                 
+    def guardar_combo_menu(self, pedido,tipo):
+        archivo_pedidos = 'combos_menu.csv'
+
+        with open(archivo_pedidos, mode='a', newline='') as file:
+            writer = csv.writer(file)
+
+            if file.tell() == 0:
+                writer.writerow(['id', 'tipo_pedido', 'detalle'])
+
+            detalle = self.format_pedido_detalle(pedido)
+            writer.writerow([self.id, tipo, detalle])
+    def format_pedido_detalle(self, pedido):
+        # Convert pedido elements to a formatted string
+        formatted_pedido = "[" + ', '.join([item.operation() for item in pedido]) + "]"
+        return formatted_pedido
+        
+                
 def buscar_pedido_anterior():
     # Preguntar al usuario si ha hecho algún pedido antes
 
@@ -53,15 +70,28 @@ def buscar_pedido_anterior():
         id_usuario = buscar_id_usuario(nombre_usuario, contraseña)
 
         if id_usuario is not None:
-            # Buscar los elementos asociados al ID en el archivo de pedidos
-            buscar_pedidos(id_usuario)
-            print("¿Quieres repetirlo? (si/no):" )
+            print("¿fue personalizado? (si/no): ")
             respuesta = input("Sí/No: ")
-            if respuesta.lower() == "si":
-                print("Repetimos el pedido anterior.")
-                exit()
+            if respuesta.lower() == "no":
+                
+                buscar_combos_menu(id_usuario)
+                print("¿Quieres repetirlo? (si/no):" )
+                respuesta = input("Sí/No: ")
+                if respuesta.lower() == "si":
+                    print("Repetimos el pedido anterior.")
+                    exit()
+                else:
+                    pass
             else:
-                pass
+                # Buscar los elementos asociados al ID en el archivo de pedidos
+                buscar_pedidos(id_usuario)
+                print("¿Quieres repetirlo? (si/no):" )
+                respuesta = input("Sí/No: ")
+                if respuesta.lower() == "si":
+                    print("Repetimos el pedido anterior.")
+                    exit()
+                else:
+                    pass
         else:
             print("Usuario no encontrado.")
             pass
@@ -92,7 +122,23 @@ def buscar_pedidos(id_usuario):
         for row in reader:
             if row[0] == id_usuario:
                 print(f"Elemento: {row[1]}, Precio: {row[2]}")
+                
+def buscar_combos_menu(id_usuario):
+    archivo_csv_pedidos = 'combos_menu.csv'
 
+    with open(archivo_csv_pedidos, mode='r') as file:
+        reader = csv.reader(file)
+        next(reader)  # Skip the headers
+
+        print("Detalles del pedido anterior:")
+        for row in reader:
+            if row[0] == id_usuario:
+                tipo_pedido = row[1]
+                try:
+                    detalle = ast.literal_eval(row[2])  # Try to convert to a list
+                    print(f"Tipo: {tipo_pedido}, Detalle: {detalle}, Precio: {sum(item.precio() for item in detalle)}")
+                except ValueError as e:
+                    print(f"Error parsing detalle for {tipo_pedido}: {e}")
 if __name__ == "__main__":
     
     pedido_anterior = input("¿Has hecho algún pedido anteriormente? (si/no): ")
@@ -175,7 +221,7 @@ if __name__ == "__main__":
                 
 
             # Guardar el pedido del cliente
-                cliente.guardar_pedido(pedido1_menu._children)
+                cliente.guardar_combo_menu(pedido1_menu._children, "Menu basico")
                 
             elif menu == "2":
                 pedido1_pizza = Leaf_pizza("barbacoa")
@@ -202,8 +248,7 @@ if __name__ == "__main__":
                 cliente.guardar_cliente()
                 
                 # Guardar el pedido del cliente
-                cliente.guardar_pedido(pedido2_menu._children)           
-            
+                cliente.guardar_combo_menu(pedido2_menu._children, "Menu EEUU")            
             
             elif menu == "3":
                 pedido1_pizza = Leaf_pizza("4 quesos")
@@ -230,8 +275,7 @@ if __name__ == "__main__":
                 cliente.guardar_cliente()
                 
                 # Guardar el pedido del cliente
-                cliente.guardar_pedido(pedido3_menu._children)
-                
+                cliente.guardar_combo_menu(pedido3_menu._children, "Menu italiano")                
                             
             elif menu == "4":
                 pedido1_pizza = Leaf_pizza("carbonara")
@@ -257,8 +301,8 @@ if __name__ == "__main__":
                 cliente.guardar_cliente()
                 
                 # Guardar el pedido del cliente
-                cliente.guardar_pedido(pedido4_menu._children)
-                            
+                cliente.guardar_combo_menu(pedido4_menu._children, "Menu español")
+                                            
             elif menu == "5":
                 pedido1_pizza = Leaf_pizza("hawaiana")
                 pedido1_bebida = Leaf_bebida("coca-cola")
@@ -284,8 +328,9 @@ if __name__ == "__main__":
                 cliente.guardar_cliente()
                 
                 # Guardar el pedido del cliente
-                cliente.guardar_pedido(pedido5_menu._children)
+                cliente.guardar_combo_menu(pedido5_menu._children, "Menu frances")
                 
+                                
         elif bienvenida =="3":
             print("Tenemos los siguientes productos: 1. Bebida, 2. Entrante, 3. Postre")
             producto = input("Elige el numero del producto que quieres: ")
@@ -368,7 +413,7 @@ if __name__ == "__main__":
                 
                 # Guardar el pedido del cliente
                 cliente.guardar_pedido(combo1._children)
-                
+                                
             elif combo == "2":
                 combo1 = Composite_combo1("Combo Familiar")
                 pedido1_pizza = Leaf_pizza("margarita")
@@ -417,7 +462,7 @@ if __name__ == "__main__":
                 
                 # Guardar el pedido del cliente
                 cliente.guardar_pedido(combo1._children)
-                
+                                
             elif combo == "3":
                 combo1 = Composite_combo1("Combo Maxi")
                 pedido1_pizza = Leaf_pizza("barbacoa")
@@ -479,8 +524,7 @@ if __name__ == "__main__":
                 cliente.guardar_cliente()
                 
                 # Guardar el pedido del cliente
-                cliente.guardar_pedido(combo1._children)
-                
+                cliente.guardar_pedido(combo1._children)                
             
             
         else:
@@ -558,8 +602,8 @@ if __name__ == "__main__":
                     
 
                 # Guardar el pedido del cliente
-                    cliente.guardar_pedido(pedido1_menu._children)
-                    
+                    cliente.guardar_combo_menu(pedido1_menu._children, "Menu basico")
+                                        
                 elif menu == "2":
                     pedido1_pizza = Leaf_pizza("barbacoa")
                     pedido1_bebida = Leaf_bebida("coca-cola")
@@ -585,8 +629,7 @@ if __name__ == "__main__":
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_pedido(pedido2_menu._children)           
-                
+                    cliente.guardar_combo_menu(pedido2_menu._children, "Menu EEUU")                
                 
                 elif menu == "3":
                     pedido1_pizza = Leaf_pizza("4 quesos")
@@ -613,8 +656,7 @@ if __name__ == "__main__":
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_pedido(pedido3_menu._children)
-                    
+                    cliente.guardar_combo_menu(pedido3_menu._children, "Menu italiano")                    
                                 
                 elif menu == "4":
                     pedido1_pizza = Leaf_pizza("carbonara")
@@ -640,8 +682,8 @@ if __name__ == "__main__":
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_pedido(pedido4_menu._children)
-                                
+                    cliente.guardar_combo_menu(pedido4_menu._children, "Menu español")
+                                                    
                 elif menu == "5":
                     pedido1_pizza = Leaf_pizza("hawaiana")
                     pedido1_bebida = Leaf_bebida("coca-cola")
@@ -667,8 +709,8 @@ if __name__ == "__main__":
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_pedido(pedido5_menu._children)
-                    
+                    cliente.guardar_combo_menu(pedido5_menu._children, "Menu frances")
+                                        
             elif bienvenida =="3":
                 print("Tenemos los siguientes productos: 1. Bebida, 2. Entrante, 3. Postre")
                 producto = input("Elige el numero del producto que quieres: ")
@@ -750,8 +792,8 @@ if __name__ == "__main__":
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_pedido(combo1._children)
-                    
+                    cliente.guardar_combo_menu(combo1._children, "Combo Pareja")
+                                        
                 elif combo == "2":
                     combo1 = Composite_combo1("Combo Familiar")
                     pedido1_pizza = Leaf_pizza("margarita")
@@ -799,8 +841,8 @@ if __name__ == "__main__":
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_pedido(combo1._children)
-                    
+                    cliente.guardar_combo_menu(combo1._children, "Combo Familiar")
+                                        
                 elif combo == "3":
                     combo1 = Composite_combo1("Combo Maxi")
                     pedido1_pizza = Leaf_pizza("barbacoa")
@@ -862,8 +904,7 @@ if __name__ == "__main__":
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_pedido(combo1._children)
-                    
+                    cliente.guardar_combo_menu(combo1._children, "Combo Maxi")                    
                 
                 
             else:

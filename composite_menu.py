@@ -41,7 +41,7 @@ class Leaf_pizza(Component_menu):
             reader = csv.reader(File)
             for row in reader:
                 if self._pizza in row:
-                    return f"El precio de {self._pizza} es {row[1]}"
+                    return self._pizza
 
     def precio(self) -> float:
         with open('precio_elementos.csv', newline='') as File:
@@ -61,7 +61,7 @@ class Leaf_bebida(Component_menu):
             reader = csv.reader(File)
             for row in reader:
                 if self._bebida in row[3]:
-                    return f"El precio de {self._bebida} es {row[4]}"
+                    return self._bebida
                 
     def precio(self) -> float:
         with open('precio_elementos.csv', newline='') as File:
@@ -81,7 +81,7 @@ class Leaf_entrante(Component_menu):
             reader = csv.reader(File)
             for row in reader:
                 if self._entrante in row[9]:
-                    return f"El precio de {self._entrante} es {row[10]}" 
+                    return self._entrante 
                 
     def precio(self) -> float:
         with open('precio_elementos.csv', newline='') as File:
@@ -101,7 +101,7 @@ class Leaf_postre(Component_menu):
             reader = csv.reader(File)
             for row in reader:
                 if self._postre in row[6]:
-                    return f"El precio de {self._postre} es {row[7]}"
+                    return self._postre
                 
     def precio(self) -> float:
         with open('precio_elementos.csv', newline='') as File:
@@ -142,25 +142,49 @@ class Composite_combo1(Component_menu):
         return sum(results)-sum(results)*0.15 #descuento por pedir combo
 
 
-def client_code(component: Component_menu) -> None:
-    """
-    The client code works with all of the components via the base interface.
-    """
+def obtener_pizza() -> str:
+    lista_pizza = ["margarita", "barbacoa", "4 quesos", "carbonara", "hawaiana", "romana", "4 estaciones", "vegetal", "napolitana", "a"]
+    pizza = input("¿Qué pizza quieres? Tenemos: " + ", ".join(lista_pizza) + ": ")
+    while pizza not in lista_pizza:
+        pizza = input("No tenemos esa, ¿qué pizza quieres? ")
+    return pizza
 
-    print(f"RESULT: {component.operation()}", end="")
+def obtener_bebida() -> str:
+    lista_bebida = ["coca-cola", "fanta", "agua", "aa"]
+    bebida = input("¿Qué bebida quieres? Tenemos: " + ", ".join(lista_bebida) + ": ")
+    while bebida not in lista_bebida:
+        bebida = input("No tenemos esa, ¿qué bebida quieres? ")
+    return bebida
+
+def obtener_entrante() -> str:
+    lista_entrante = ["patatas", "calamares", "ensalada", "aa"]
+    entrante = input("¿Qué entrante quieres? Tenemos: " + ", ".join(lista_entrante) + ": ")
+    while entrante not in lista_entrante:
+        entrante = input("No tenemos esa, ¿qué entrante quieres? ")
+    return entrante
+
+def obtener_postre() -> str:
+    lista_postre = ["tarta de queso", "tarta de chocolate", "helado", "a"]
+    postre = input("¿Qué postre quieres? Tenemos: " + ", ".join(lista_postre) + ": ")
+    while postre not in lista_postre:
+        postre = input("No tenemos esa, ¿qué postre quieres? ")
+    return postre
+
+def crear_menu_personalizado() -> List[Component_menu]:
+    print("Vamos a ello!!")
+    pizza = obtener_pizza()
+    bebida = obtener_bebida()
+    entrante = obtener_entrante()
+    postre = obtener_postre()
+
+    pedido_pizza = Leaf_pizza(pizza)
+    pedido_bebida = Leaf_bebida(bebida)
+    pedido_entrante = Leaf_entrante(entrante)
+    pedido_postre = Leaf_postre(postre)
+
+    return [pedido_pizza, pedido_bebida, pedido_entrante, pedido_postre]
 
 
-def client_code2(component1: Component_menu, component2: Component_menu) -> None:
-    """
-    Thanks to the fact that the child-management operations are declared in the
-    base Component class, the client code can work with any component, simple or
-    complex, without depending on their concrete classes.
-    """
-
-    if component1.is_composite():
-        component1.add(component2)
-
-    print(f"RESULT: {component1.operation()}", end="")
 
 
 if __name__ == "__main__":
@@ -169,42 +193,16 @@ if __name__ == "__main__":
     
     
     if bienvenida == "1":
-        print("Vamos a ello!!")
-        pizza = input("¿que pizza quieres? Tenemos:  margarita, barbacoa, 4 quesos, carbonara, hawaiana, romana, 4 estaciones, vegetal, napolitana o a :")
-        lista_pizza = [ "margarita", "barbacoa", "4 quesos", "carbonara", "hawaiana", "romana", "4 estaciones", "vegetal", "napolitana", "a"]
-        while pizza not in lista_pizza:
-            pizza = input("No tenemos esa, ¿que pizza quieres? ")
-            
-        bebida = input("¿que bebida quieres? Tenemos: coca-cola, fanta, agua o aa :")
-        lista_bebida = ["coca-cola", "fanta", "agua", "aa"]
-        while bebida not in lista_bebida:
-            bebida = input("No tenemos esa, ¿que bebida quieres? ")
-            
-        entrante = input("¿que entrante quieres? Tenemos: patatas, calamares, ensalada o aa :")
-        lista_entrante = ["patatas", "calamares", "ensalada", "aa"]
-        while entrante not in lista_entrante:
-            entrante = input("No tenemos esa, ¿que entrante quieres? ")
-            
-        postre = input("¿que postre quieres? Tenemos: tarta de queso, tarta de chocolate, helado o a :")
-        lista_postre = ["tarta de queso", "tarta de chocolate", "helado", "a"]
-        while postre not in lista_postre:
-            postre = input("No tenemos esa, ¿que postre quieres? ")
-        
-           
-        pedido1_pizza = Leaf_pizza(pizza)
-        pedido1_bebida = Leaf_bebida(bebida)
-        pedido1_entrante = Leaf_entrante(entrante)
-        pedido1_postre = Leaf_postre(postre)
+        menu_personalizado = crear_menu_personalizado()
 
-        # Calcular precio total del menú
-        precio_total_menu = pedido1_pizza.precio() + pedido1_bebida.precio() + pedido1_entrante.precio() + pedido1_postre.precio()
-        print("El precio de tu pizza es: ", pedido1_pizza.precio())
-        print("El precio de tu bebida es: ", pedido1_bebida.precio())
-        print("El precio de tu entrante es: ", pedido1_entrante.precio())
-        print("El precio de tu postre es: ", pedido1_postre.precio())
-        
-        
-        print(f"El precio total del menú es: {precio_total_menu}")
+        # Calcular precio total del menú personalizado
+        precio_total_menu_personalizado = sum(item.precio() for item in menu_personalizado)
+        print("Detalles del menú personalizado:")
+        for item in menu_personalizado:
+            print(f"{item.operation()} - Precio: {item.precio()}")
+        print(f"El precio total del menú personalizado es: {precio_total_menu_personalizado}")
+        exit()
+
         
  
         
@@ -313,28 +311,19 @@ if __name__ == "__main__":
             producto = input("No tenemos esa, ¿que producto quieres? ")
             
         if producto == "1":
-            bebida = input("¿que bebida quieres? Tenemos: coca-cola, fanta, agua o aa :")
-            lista_bebida = ["coca-cola", "fanta", "agua", "aa"]
-            while bebida not in lista_bebida:
-                bebida = input("No tenemos esa, ¿que bebida quieres? ")
+            bebida = obtener_bebida()
             pedido1_bebida = Leaf_bebida(bebida)
-            print("El precio de tu bebida es: ", pedido1_bebida.precio())
+            print("El precio de tu ",pedido1_bebida.operation()," es: ", pedido1_bebida.precio())
             
         elif producto == "2":
-            entrante = input("¿que entrante quieres? Tenemos: patatas, calamares, ensalada o aa :")
-            lista_entrante = ["patatas", "calamares", "ensalada", "aa"]
-            while entrante not in lista_entrante:
-                entrante = input("No tenemos esa, ¿que entrante quieres? ")
+            entrante = obtener_entrante()
             pedido1_entrante = Leaf_entrante(entrante)
-            print("El precio de tu entrante es: ", pedido1_entrante.precio())
+            print("El precio de tu ",pedido1_entrante.operation()," es: ", pedido1_entrante.precio())
             
         elif producto == "3":
-            postre = input("¿que postre quieres? Tenemos: tarta de queso, tarta de chocolate, helado o a :")
-            lista_postre = ["tarta de queso", "tarta de chocolate", "helado", "a"]
-            while postre not in lista_postre:
-                postre = input("No tenemos esa, ¿que postre quieres? ")
+            postre = obtener_postre()
             pedido1_postre = Leaf_postre(postre)
-            print("El precio de tu postre es: ", pedido1_postre.precio())
+            print("El precio de tu ",pedido1_postre.operation()," es: ", pedido1_postre.precio())
             
         
         

@@ -42,17 +42,21 @@ class Cliente:
             for item in pedido:
                 writer.writerow([self.id, item.operation(), item.precio()])
                 
-    def guardar_combo_menu(self, pedido,tipo):
+    def guardar_combo_menu(self, pedido, tipo):
         archivo_pedidos = 'combos_menu.csv'
 
         with open(archivo_pedidos, mode='a', newline='') as file:
             writer = csv.writer(file)
-
+            precio_total = sum(item.precio() for item in pedido)
+            if precio_total < 50:
+                precio_con_descuento = precio_total - precio_total * 0.05 #menu
+            else:
+                precio_con_descuento = precio_total - precio_total * 0.15 #combo
             if file.tell() == 0:
-                writer.writerow(['id', 'tipo_pedido', 'detalle'])
+                writer.writerow(['id', 'tipo_pedido', 'Precio', 'Pedido'])
 
-            detalle = self.format_pedido_detalle(pedido)
-            writer.writerow([self.id, tipo, detalle])
+            # Escribir el pedido del cliente con su ID
+            writer.writerow([self.id, tipo, precio_con_descuento, self.format_pedido_detalle(pedido) ])
     def format_pedido_detalle(self, pedido):
         # Convert pedido elements to a formatted string
         formatted_pedido = "[" + ', '.join([item.operation() for item in pedido]) + "]"
@@ -70,19 +74,20 @@ def buscar_pedido_anterior():
         id_usuario = buscar_id_usuario(nombre_usuario, contraseña)
 
         if id_usuario is not None:
-            print("¿fue personalizado? (si/no): ")
-            respuesta = input("Sí/No: ")
-            if respuesta.lower() == "no":
-                
+            print("¿fue personalizjjado? (si/no): ")
+            respuesta1 = input("Sí/No: ")
+            if respuesta1.lower() == "no":
                 buscar_combos_menu(id_usuario)
                 print("¿Quieres repetirlo? (si/no):" )
                 respuesta = input("Sí/No: ")
                 if respuesta.lower() == "si":
                     print("Repetimos el pedido anterior.")
                     exit()
+                
                 else:
                     pass
-            else:
+                
+            if respuesta1.lower() == "si":
                 # Buscar los elementos asociados al ID en el archivo de pedidos
                 buscar_pedidos(id_usuario)
                 print("¿Quieres repetirlo? (si/no):" )
@@ -133,12 +138,10 @@ def buscar_combos_menu(id_usuario):
         print("Detalles del pedido anterior:")
         for row in reader:
             if row[0] == id_usuario:
-                tipo_pedido = row[1]
-                try:
-                    detalle = ast.literal_eval(row[2])  # Try to convert to a list
-                    print(f"Tipo: {tipo_pedido}, Detalle: {detalle}, Precio: {sum(item.precio() for item in detalle)}")
-                except ValueError as e:
-                    print(f"Error parsing detalle for {tipo_pedido}: {e}")
+                print(f"Tipo de pedido: {row[1]}, Precio: {row[2]}, Pedido: {row[3]}")
+                
+
+                
 if __name__ == "__main__":
     
     pedido_anterior = input("¿Has hecho algún pedido anteriormente? (si/no): ")
@@ -375,7 +378,7 @@ if __name__ == "__main__":
         elif bienvenida =="4":
             print("Los combos tienen un 15% de descuento respecto del precio total")
             print("Tenemos los siguientes combos:")
-            print("1. Combo Pareja: 2 pizzas: margarita y 4 quesos, 2 refrescos, aceitunas y croquetas  y 2 helados")
+            print("1. Combo Pareja: 2 pizzas: barbacoa y 4 quesos, 1vino y 1 champagne, calamares y croquetas  y tarta de chocolate y tarta de queso")
             print("2. Combo Familiar: 2 pizzas margarita y 2 barbacoa, 2 aguas y 2 refrescos, 2 alitas y 2 de patatas y 4 tartas de queso")
             print("3. Combo Maxi muerte por chocolat: 6 pizzas barbacoa, 6 agua, 6 alitas de pollo y 6 tarta de chocolate")
             combo = input("Elige el numero del combo que quieres: ")
@@ -385,14 +388,14 @@ if __name__ == "__main__":
                 
             if combo == "1":
                 combo1 = Composite_combo1("Combo Pareja")
-                pedido1_pizza = Leaf_pizza("margarita")
+                pedido1_pizza = Leaf_pizza("barbacoa")
                 pedido1_pizza2 = Leaf_pizza("4 quesos")
-                pedido1_bebida = Leaf_bebida("fanta")
-                pedido1_bebida2 = Leaf_bebida("coca-cola")
-                pedido1_entrante = Leaf_entrante("aceitunas")
+                pedido1_bebida = Leaf_bebida("  vino")
+                pedido1_bebida2 = Leaf_bebida("champagne")
+                pedido1_entrante = Leaf_entrante("calamares")
                 pedido1_entrante2 = Leaf_entrante("croquetas")
-                pedido1_postre = Leaf_postre("helado")
-                pedido1_postre2 = Leaf_postre("helado")
+                pedido1_postre = Leaf_postre("tarta de chocolate")
+                pedido1_postre2 = Leaf_postre("tarta de queso")
                 
                 
                 combo1.add(pedido1_pizza)
@@ -755,7 +758,7 @@ if __name__ == "__main__":
             elif bienvenida =="4":
                 print("Los combos tienen un 15% de descuento respecto del precio total")
                 print("Tenemos los siguientes combos:")
-                print("1. Combo Pareja: 2 pizzas: margarita y 4 quesos, 2 refrescos, aceitunas y croquetas  y 2 helados")
+                print("1. Combo Pareja: 2 pizzas: barbacoa y 4 quesos, 1vino y 1 champagne, calamares y croquetas  y tarta de chocolate y tarta de queso")
                 print("2. Combo Familiar: 2 pizzas margarita y 2 barbacoa, 2 aguas y 2 refrescos, 2 alitas y 2 de patatas y 4 tartas de queso")
                 print("3. Combo Maxi muerte por chocolat: 6 pizzas barbacoa, 6 agua, 6 alitas de pollo y 6 tarta de chocolate")
                 combo = input("Elige el numero del combo que quieres: ")
@@ -765,14 +768,14 @@ if __name__ == "__main__":
                     
                 if combo == "1":
                     combo1 = Composite_combo1("Combo Pareja")
-                    pedido1_pizza = Leaf_pizza("margarita")
+                    pedido1_pizza = Leaf_pizza("barbacoa")
                     pedido1_pizza2 = Leaf_pizza("4 quesos")
-                    pedido1_bebida = Leaf_bebida("fanta")
-                    pedido1_bebida2 = Leaf_bebida("coca-cola")
-                    pedido1_entrante = Leaf_entrante("aceitunas")
+                    pedido1_bebida = Leaf_bebida("vino")
+                    pedido1_bebida2 = Leaf_bebida("champagne")
+                    pedido1_entrante = Leaf_entrante("calamares")
                     pedido1_entrante2 = Leaf_entrante("croquetas")
-                    pedido1_postre = Leaf_postre("helado")
-                    pedido1_postre2 = Leaf_postre("helado")
+                    pedido1_postre = Leaf_postre("tarta de chocolate")
+                    pedido1_postre2 = Leaf_postre("tarta de queso")
                     
                     
                     combo1.add(pedido1_pizza)

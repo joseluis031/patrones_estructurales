@@ -138,7 +138,7 @@ def buscar_combos_menu(id_usuario):
         print("Detalles del pedido anterior:")
         for row in reader:
             if row[0] == id_usuario:
-                print(f"Tipo de pedido: {row[1]}, Precio: {row[2]}, Pedido: {row[3]}")
+                print(f"Tipo de pedido: {row[1]}, Precio: {row[2]}")
                 
 
                 

@@ -2,6 +2,7 @@ import csv
 from composite_menu import *    
 from obtener_productos import *
 from busqueda_pedido import *
+from menus_y_cmbos_predef import *
 
 import ast
 class Cliente:

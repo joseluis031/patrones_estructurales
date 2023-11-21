@@ -171,7 +171,3 @@ class Composite_combo1(Component_menu):
         return sum(results)-sum(results)*0.15 #descuento por pedir combo
 
 
-
-
-
-

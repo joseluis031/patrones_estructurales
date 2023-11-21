@@ -65,7 +65,7 @@ def buscar_pedidos(id_usuario):
         reader = csv.reader(file)
         next(reader)  # Saltar la primera fila (encabezados)
         
-        print("Elementos del pedido anterior:")
+        print("Detalles del pedido anterior:")
         for row in reader:
             if row[0] == id_usuario:
                 print(f"Elemento: {row[1]}, Precio: {row[2]}")
@@ -80,5 +80,8 @@ def buscar_combos_menu(id_usuario):
         print("Detalles del pedido anterior:")
         for row in reader:
             if row[0] == id_usuario:
-                print(f"Tipo de pedido: {row[1]}, Precio: {row[2]}")
-                
+                # Obtener el detalle del pedido formateado
+                detalle_formateado = eval(row[3])  # Convertir la cadena a una lista de Python
+                print(f"Pedido: {row[1]}, Precio: {row[2]}, Contiene: {', '.join(detalle_formateado)}")
+                    
+                                

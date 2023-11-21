@@ -2,7 +2,6 @@ import csv
 from composite_menu import *    
 from obtener_productos import *
 from busqueda_pedido import *
-from menus_y_cmbos_predef import *
 
 import ast
 class Cliente:
@@ -59,11 +58,21 @@ class Cliente:
                 writer.writerow(['id', 'tipo_pedido', 'Precio', 'Pedido'])
 
             # Escribir el pedido del cliente con su ID
-            writer.writerow([self.id, tipo, precio_con_descuento, self.format_pedido_detalle(pedido) ])
+            nombres_elementos = [item._nombre for item in pedido]
+
+        # Escribir el pedido del cliente con su ID
+            writer.writerow([self.id, tipo, precio_con_descuento, self.format_pedido_detalle(nombres_elementos)])
     def format_pedido_detalle(self, pedido):
-        # Convert pedido elements to a formatted string
-        formatted_pedido = "[" + ', '.join([item.operation() for item in pedido]) + "]"
+        from collections import Counter
+    
+    # Obtener un contador de elementos en el pedido
+        contador_elementos = Counter(pedido)
+    
+    # Convertir el contador en una lista de cadenas con el formato "cantidad x elemento"
+        formatted_pedido = [f"{cantidad} x {elemento}" for elemento, cantidad in contador_elementos.items()]
+    
         return formatted_pedido
+            
         
                 
 

@@ -22,3 +22,5 @@ id,tipo_pedido,detalle
 1093003315020958996,Combo Maxi,132.6,"['6 x barbacoa', '6 x agua', '6 x alitas de pollo', '6 x tarta de chocolate']"
 2627018816845266632,Combo Maxi,132.6,"['6 x barbacoa', '6 x agua', '6 x alitas de pollo', '6 x tarta de chocolate']"
 2835917699225813362,Combo Familiar,74.8,"['2 x margarita', '2 x barbacoa', '2 x agua', '2 x coca-cola', '2 x alitas de pollo', '2 x patatas', '4 x tarta de queso']"
+-8733623905587326278,Menu italiano,23.75,"['1 x 4 quesos', '1 x vino', '1 x calamares', '1 x helado']"
+2753809741593882668,Combo Pareja,52.7,"['1 x barbacoa', '1 x 4 quesos', '1 x vino', '1 x champagne', '1 x calamares', '1 x croquetas', '1 x tarta de chocolate', '1 x tarta de queso']"

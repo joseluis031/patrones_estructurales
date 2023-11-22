@@ -392,7 +392,7 @@ def pedido1():
                 cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
                 cliente.guardar_cliente()
                 # Guardar el pedido del cliente
-                cliente.guardar_pizzapersonalizada("Pizza personalizada", "salsa de tomate,mozzarella,pepperoni,bacon,cebolla,oregano")                
+                cliente.guardar_pizzapersonalizada("Pizza personalizada",pedido1_pizza.elementos())              
                 
                 
             else:

@@ -56,7 +56,7 @@ class Leaf_pizza(Component_menu):
 class Leaf_pizza_personalizada(Component_menu):
     def __init__(self, nombre) -> None:
         self._nombre = nombre
-        self.detalles_pizza = []
+        
     
         
     def operation(self):
@@ -81,6 +81,16 @@ class Leaf_pizza_personalizada(Component_menu):
 
         usuario.pedir_pizza()
         builder.product_pizza.list_parts()
+    def elementos(self):
+        usuario = Usuariobu()
+        builder = ConcreteBuilder1()
+        usuario.builder = builder
+         # Obtén las elecciones del cliente como una lista de strings
+        detalles_pizza = usuario.builder.product_pizza.parts
+        
+        # Muestra las elecciones del cliente
+        return detalles_pizza
+        # Guarda el pedido del cliente
 
     
     

@@ -11,7 +11,9 @@ if __name__ == "__main__":
     
     if pedido_anterior.lower() == "si":
         buscar_pedido_anterior()
-        pedido1()     
+        pedido1() 
+        exit()    
                 
     else:
         pedido1()
+        exit()

@@ -32,7 +32,7 @@ def pedido1():
                 cliente.guardar_pedido(pedido_cliente._children)  # Guardar el pedido del cliente
 
 
-                exit()
+                
             if bienvenida == "2":
                 print("Tenemos los siguientes menus(cada menu ya creado tiene 5% descontado del precio total final):")
                 print("1. Menu basico: alitas, Pizza margarita, agua y helado")

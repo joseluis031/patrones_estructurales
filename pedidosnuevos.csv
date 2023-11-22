@@ -1,4 +1,4 @@
-Nombre, Usuario, Contrasenia, Masa, Salsa, Ingredientes principales,tecnicas coccion,presentacion,maridajes,extras
+Id, Pedido, Masa, Salsa, Ingredientes principales,tecnicas coccion,presentacion,maridajes,extras
 t,t,t,fina,tomate,,horno,redonda,vino,
 e,e,e,fina,tomate,champinones,horno,redonda,vino,trufa
 i,i,i,fina,tomate,,horno,redonda,vino,
@@ -16,3 +16,6 @@ x,x,x,"fina,tomate,champinones,a,a,a,trufa"
 t,t,t,,,,,,,
 r,r,r,,,,,,,
 z,z,z,fina,a,champinones,a,a,a,dobledesalsa
+5694544172489886969,Pizza personalizada,p,e,r,s,o,n,a,l,i,z,a,d,a
+-271488834964499988,Pizza personalizada,,,,,,,
+2577892371975918461,Pizza personalizada,s,a,l,s,a, ,d,e, ,t,o,m,a,t,e,",",m,o,z,z,a,r,e,l,l,a,",",p,e,p,p,e,r,o,n,i,",",b,a,c,o,n,",",c,e,b,o,l,l,a,",",o,r,e,g,a,n,o

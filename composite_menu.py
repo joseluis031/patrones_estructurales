@@ -2,6 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List
 import csv
+from builder_pizza import *
+from usuario_builder import *
 
 class Component_menu(ABC):
 
@@ -36,6 +38,7 @@ class Leaf_pizza(Component_menu):
     def __init__(self, nombre) -> None:
         self._nombre = nombre
         
+        
     def operation(self):
         with open('precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
@@ -49,6 +52,37 @@ class Leaf_pizza(Component_menu):
             for row in reader:
                 if self._nombre in row:
                     return float(row[1])
+                
+class Leaf_pizza_personalizada(Component_menu):
+    def __init__(self, nombre) -> None:
+        self._nombre = nombre
+        self.detalles_pizza = []
+    
+        
+    def operation(self):
+        with open('precio_elementos.csv', newline='') as File:
+            reader = csv.reader(File)
+            for row in reader:
+                if self._nombre in row:
+                    return self._nombre
+        
+    def precio(self) -> float:
+        with open('precio_elementos.csv', newline='') as File:
+            reader = csv.reader(File)
+            for row in reader:
+                if self._nombre in row:
+                    return float(row[1])
+     
+    def pedir_pizza(self):   
+        usuario = Usuariobu()
+        builder = ConcreteBuilder1()
+        usuario.builder = builder
+
+
+        usuario.pedir_pizza()
+        builder.product_pizza.list_parts()
+
+    
     
 class Leaf_bebida(Component_menu):
 

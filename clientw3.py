@@ -62,6 +62,7 @@ class Cliente:
 
         # Escribir el pedido del cliente con su ID
             writer.writerow([self.id, tipo, precio_con_descuento, self.format_pedido_detalle(nombres_elementos)])
+    
     def format_pedido_detalle(self, pedido):
         from collections import Counter
     
@@ -72,6 +73,26 @@ class Cliente:
         formatted_pedido = [f"{cantidad} x {elemento}" for elemento, cantidad in contador_elementos.items()]
     
         return formatted_pedido
+    
+    
+    def guardar_pizzapersonalizada(self, tipo, detalles_pizza):
+        with open('pedidosnuevos.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+
+            # Crea una nueva fila con nombre, usuario y contraseña
+            row = [self.id, tipo]
+
+            # Agrega cada detalle de la pizza como una columna separada
+            for detalle in detalles_pizza:
+                if ":" in detalle:
+                    key, value = detalle.split(": ", 1)
+                    row.append(value)
+                else:
+                    row.append(detalle)
+
+            # Agrega detalles adicionales del pedido
+            row.extend([""] * (7 - len(detalles_pizza)))  # Asegura que haya suficientes columnas para todos los detalles
+            writer.writerow(row)
             
         
                 

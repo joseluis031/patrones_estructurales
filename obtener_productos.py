@@ -3,7 +3,7 @@ from clientw3 import *
 
 
 def obtener_pizza() -> str:
-    lista_pizza = ["margarita", "barbacoa", "4 quesos", "carbonara", "hawaiana", "romana", "4 estaciones", "vegetal", "napolitana", "a"]
+    lista_pizza = [ "personalizada","margarita", "barbacoa", "4 quesos", "carbonara", "hawaiana", "romana", "4 estaciones", "vegetal", "napolitana", "a"]
     pizza = input("¿Qué pizza quieres? Tenemos: " + ", ".join(lista_pizza) + ": ")
     while pizza not in lista_pizza:
         pizza = input("No tenemos esa, ¿qué pizza quieres? ")
@@ -44,3 +44,5 @@ def crear_menu_personalizado() -> List[Component_menu]:
     pedido_postre = Leaf_postre(postre)
 
     return [pedido_pizza, pedido_bebida, pedido_entrante, pedido_postre]
+
+

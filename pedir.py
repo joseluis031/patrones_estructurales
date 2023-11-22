@@ -7,7 +7,7 @@ def pedido1():
             nombre_usuario = input("Introduce tu nombre de usuario: ")
             contraseña = input("Introduce tu contraseña: ")   
             
-            bienvenida = input("¿Qué deseas hacer (1,2,3,4,5): 1. Crear tu propio menú, 2. Elegir un menú ya creado, 3. Un producto suelto, 4. Un Combo, 5. Nada ")
+            bienvenida = input("¿Qué deseas hacer (1,2,3,4,5): 1. Crear tu propio menú, 2. Elegir un menú ya creado, 3. Un producto suelto, 4. Un Combo, 5. Pizza by you Delizioso o 6. Salir ")
 
 
             if bienvenida == "1":
@@ -376,7 +376,23 @@ def pedido1():
                     cliente.guardar_cliente()
                     
                     # Guardar el pedido del cliente
-                    cliente.guardar_combo_menu(combo1._children, "Combo Maxi")                    
+                    cliente.guardar_combo_menu(combo1._children, "Combo Maxi") 
+                    
+            elif bienvenida =="5":
+                
+                
+                pedido1_pizza = Leaf_pizza_personalizada("personalizada")
+                print("Vamos a crear tu pizza")
+                pedido1_pizza.pedir_pizza()
+                
+                print("El precio de tu ",pedido1_pizza.operation()," es: ", pedido1_pizza.precio())
+                
+                
+                
+                cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
+                cliente.guardar_cliente()
+                # Guardar el pedido del cliente
+                cliente.guardar_pizzapersonalizada("Pizza personalizada", "salsa de tomate,mozzarella,pepperoni,bacon,cebolla,oregano")                
                 
                 
             else:

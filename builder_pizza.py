@@ -2,7 +2,6 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any
 
-from composite import *
 
 #clase abstracta para el builder
 class Builder(ABC): 
@@ -27,19 +26,19 @@ class Builder(ABC):
     @abstractmethod
     def ingredientes_principales(self) -> None:
         pass
-    
+
     @abstractmethod
     def tecnicas_de_coccion(self) -> None:
         pass
-    
+
     @abstractmethod
     def presentacion(self) -> None:
         pass
-    
+
     @abstractmethod
     def maridajes_recomendados(self) -> None:
         pass
-    
+
     @abstractmethod
     def extras(self) -> None:
         pass
@@ -60,17 +59,16 @@ class ConcreteBuilder1(Builder):
         self.reset()
 
     def reset(self) -> None:
-        self._product_pizza = Composite()
+        self._product_pizza = Product1()
 
     @property #Este es un decorador que permite acceder al método como si fuera un atributo.
-    def product_pizza(self) -> Composite:
+    def product_pizza(self) -> Product1:
         """
         Se supone que los constructores de hormigón deben proporcionar sus propios métodos(lo llamo igual) para
          recuperando resultados. Esto se debe a que varios tipos de constructores pueden crear
          productos completamente diferentes que no siguen la misma interfaz.
          Por lo tanto, dichos métodos no se pueden declarar en la interfaz base del Constructor.
          (al menos en un lenguaje de programación de tipo estático).
-
          Generalmente, después de devolver el resultado final al cliente, un constructor
          Se espera que la instancia esté lista para comenzar a producir otro producto.
          Por eso es una práctica habitual llamar al método reset al final de
@@ -82,43 +80,43 @@ class ConcreteBuilder1(Builder):
         self.reset()
         return product_pizza
     #metodos para crear las diferentes partes de los objetos del producto
-    
+
     #creo una lista para cada elemento de la pizza y luego la añado al producto
     #y si el cliente elige un elemento que no esta en la lista le digo que no lo tenemos y que elija otro
     def tipo_de_masa(self) -> None:
-        lista_masa = ["normal","a", "fina", "extrafina", "doble"]
+        lista_masa = ["normal", "a", "fina", "extrafina", "doble"]
         masa = input("Introduzca el tipo de masa(normal, fina, extrafina o doble): ")
         if masa not in lista_masa:
             print("no tenemos esa masa, Introduzca un tipo de masa valido")
             self.tipo_de_masa()
         else:
-            self._product_pizza.add(Leaf("masa elegida: {}".format(masa)))
+            self._product_pizza.add("masa elegida: {}".format(masa))
 
     def salsa_base(self) -> None:
-        lista_salsa = ["tomate", "a", "carbonara", "barbacoa", "pesto", "vegana"]
+        lista_salsa = ["tomate","a", "carbonara", "barbacoa", "pesto", "vegana"]
         salsa = input("Introduzca la salsa base(tomate, carbonara, barbacoa, pesto o vegana): ")
         if salsa not in lista_salsa:
             print("no tenemos esa salsa, Introduzca una salsa valida")
             self.salsa_base()
         else:
-            self._product_pizza.add(Leaf("salsa base elegida: {}".format(salsa)))
+            self._product_pizza.add("salsa base elegida: {}".format(salsa))
 
     #esta funcion utilizo un bucle while para que el cliente pueda elegir mas de un ingrediente
     def ingredientes_principales(self) -> None:
         lista_ingredientes = ["jamon", "queso", "bacon", "champinones", "pimiento", "cebolla", "atun", "aceitunas", "pollo", "carne", "gambas", "anchoas", "salami", "chorizo", "tomate", "maiz", "piña", "rucula"]
-    
+
         # Crea una lista para almacenar los ingredientes elegidos
         ingredientes_elegidos = []
         #
         while True:
             for i, ingrediente in enumerate(lista_ingredientes, 1):
                 print(f"{i}. {ingrediente}")
-            
+
             seleccion = input("Introduce el número del ingrediente o '0' si no quieres mas ingredientes: ")
-            
+
             if seleccion == '0':
                 break  # Terminar la selección de ingredientes
-            
+
             if seleccion.isdigit():
                 indice = int(seleccion)
                 if 1 <= indice <= len(lista_ingredientes):
@@ -129,20 +127,20 @@ class ConcreteBuilder1(Builder):
                     print("Número de ingrediente no válido. Inténtalo de nuevo.")
             else:
                 print("Entrada no válida. Introduce el número del ingrediente o '0' para terminar.")
-        
+
         # Agrega los ingredientes elegidos al producto
         ingredientes_elegidos_str = ", ".join(ingredientes_elegidos)
-        self._product_pizza.add(Leaf("ingredientes principales elegidos: " + ingredientes_elegidos_str))
-    
+        self._product_pizza.add("ingredientes principales elegidos: " + ingredientes_elegidos_str)
+
     def tecnicas_de_coccion(self) -> None:
-        lista_coccion = ["horno", "a", "parrilla", "sarten", "microondas"]
+        lista_coccion = ["horno", "parrilla", "a", "sarten", "microondas"]
         coccion = input("Introduzca las tecnicas de coccion(horno, parrilla, sarten o microondas,): ")
         if coccion not in lista_coccion:
             print("no tenemos esa tecnica de coccion, Introduzca una tecnica de coccion valida")
             self.tecnicas_de_coccion()
         else:
-            self._product_pizza.add(Leaf("tecnicas de coccion elegidas: {}".format(coccion)))
-    
+            self._product_pizza.add("tecnicas de coccion elegidas: {}".format(coccion))
+
     def presentacion(self) -> None:
         lista_present = ["cuadrada", "a", "redonda", "premium", "calzone", "sorpresa"]
         present=input("Introduzca la presentacion(cuadrada, redonda, premium, calzone o sorpresa): ")
@@ -150,33 +148,33 @@ class ConcreteBuilder1(Builder):
             print("no tenemos esa presentacion, Introduzca una presentacion valida")
             self.presentacion()
         else:
-            self._product_pizza.add(Leaf("presentacion elegida: {}".format(present)))
-        
+            self._product_pizza.add("presentacion elegida: {}".format(present))
+
     def maridajes_recomendados(self) -> None:
-        lista_maridaje = ["cerveza", "a", "vino", "refresco", "agua"]
+        lista_maridaje = ["cerveza", "vino","a", "refresco", "agua"]
         maridaje = input("Introduzca los maridajes recomendados(cerveza, vino, refresco o agua): ")
         if maridaje not in lista_maridaje:
             print("no tenemos ese maridaje, Introduzca un maridaje valido")
             self.maridajes_recomendados()
         else:
-            self._product_pizza.add(Leaf("maridajes elegidos: {}".format(maridaje)))
-        
-    def extras(self) -> None:
+            self._product_pizza.add("maridajes elegidos: {}".format(maridaje))
+
+    def extras(self) -> None:#quiero mas extras
         lista_extras = ["queso doble", "doble de ingredientes", "doble de salsa", "trufa", "caviar", "bordes de queso","salsa  ranchera", "salsa de ajo", "salsa de soja", "salsa de yogur", "salsa de curry" ]
-    
+
         # Crea una lista para almacenar los extras elegidos
         extras_elegidos = []
-        
+
         while True:
             print("Elige extras de la lista:")
             for i, extra in enumerate(lista_extras, 1):
                 print(f"{i}. {extra}")
-            
+
             seleccion = input("Introduce el número del extra o '0' para terminar: ")
-            
+
             if seleccion == '0':
                 break  # Terminar la selección de extras
-            
+
             if seleccion.isdigit():
                 indice = int(seleccion)
                 if 1 <= indice <= len(lista_extras):
@@ -187,29 +185,36 @@ class ConcreteBuilder1(Builder):
                     print("Número de extra no válido. Inténtalo de nuevo.")
             else:
                 print("Entrada no válida. Introduce el número del extra o '0' para terminar.")
-        
+
         # Agrega los extras elegidos al producto
         extras_elegidos_str = ", ".join(extras_elegidos)
-        self._product_pizza.add(Leaf("extras elegidos: " + extras_elegidos_str))
-            
-    
+        self._product_pizza.add("extras elegidos: " + extras_elegidos_str)
         
-    
+
+
+
+
+
 
 #clase para el producto
 class Product1():
-    def __init__(self, composite: Component) -> None:
-        self.composite = composite
+    """
+    Tiene sentido utilizar el patrón Builder sólo cuando sus productos sean bastante
+     complejos y requieren una configuración extensa.
+     A diferencia de otros patrones creacionales, diferentes constructores concretos pueden producir
+     productos no relacionados. En otras palabras, es posible que los resultados de varios constructores no
+     Sigue siempre la misma interfaz.
+    """
 
-    def add_part(self, part: Component) -> None:
-        self.composite.add(part)
-        
+    def __init__(self) -> None:
+        self.parts = []
+
+    def add(self, part: Any) -> None: 
+        self.parts.append(part) #añade las partes de la pizza
+
     def list_parts(self) -> None:
-        parts = self.composite.get_parts_pizza()
-        print(f"El cliente ha elegido su pizza: {', '.join(part.operation() for part in parts)}", end="")
-
-    def get_parts_pizza(self):
-        return self.parts
+        print(f"El cliente ha elegido su pizza. {', '.join(self.parts)}", end="") #muestra las partes de la pizza
+        
 
 class Director:
     """
@@ -221,7 +226,7 @@ class Director:
      #creo un constructor
     def __init__(self) -> None:
         self._builder = None
-    
+
     #creo un getter y un setter para el constructor
     @property
     def builder(self) -> Builder:
@@ -249,3 +254,4 @@ class Director:
         self.builder.presentacion()
         self.builder.maridajes_recomendados()
         self.builder.extras()
+        

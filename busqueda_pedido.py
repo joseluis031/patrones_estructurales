@@ -96,6 +96,8 @@ def buscar_combos_menu(id_usuario):
                 detalle_formateado = eval(row[3])  # Convertir la cadena a una lista de Python
                 print(f"Pedido: {row[1]}, Precio: {row[2]}, Contiene: {', '.join(detalle_formateado)}")
                 
+import csv
+
 def buscar_pizza_personalizada(id_usuario):
     with open('pedidosnuevos.csv', mode='r', newline='') as file:
         reader = csv.reader(file)
@@ -108,11 +110,11 @@ def buscar_pizza_personalizada(id_usuario):
                 if fila_anterior is not None:
                     masa = fila_anterior[2]
                     salsa = fila_anterior[3]
-                    otros_ingredientes = fila_anterior[4:-5]
-                    metodo = fila_anterior[-5]
-                    presentacion = fila_anterior[-4]
-                    maridaje = fila_anterior[-3]
-                    ingredientes_extra = fila_anterior[-2]
+                    otros_ingredientes = fila_anterior[4:5]
+                    metodo = fila_anterior[-4]
+                    presentacion = fila_anterior[-3]
+                    maridaje = fila_anterior[-2]
+                    ingredientes_extra = fila_anterior[-1]
 
                     resultado = "Tu anterior pedido de pizza:\nMasa: {}\nSalsa: {}\nIngredientes: {}\nMétodo de cocción: {}\nPresentación: {}\nMaridaje: {}\nIngredientes extra: {}".format(masa, salsa, "\n".join(otros_ingredientes), metodo, presentacion, maridaje, ingredientes_extra)
                     print(resultado)
@@ -125,4 +127,5 @@ def buscar_pizza_personalizada(id_usuario):
 
     if not encontrado:
         print(f"No se encontró un pedido para el usuario con ID {id_usuario}")
+
                                 

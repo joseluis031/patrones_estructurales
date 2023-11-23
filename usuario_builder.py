@@ -2,7 +2,6 @@ from builder_pizza import *
 
 
 director = Director()
-
 #si quito para que sea privado, me da ellist part pero sigo sin poder acceder a las partes
 
 import csv
@@ -15,9 +14,11 @@ import csv
 class Usuariobu:
     def __init__(self):
          self._builder = None
-         self._nombre = None
+         self.nombre = None
          self.usuario = None
-         self._contrasenia = None
+         
+         self.contrasenia = None
+         self.id = hash((self.nombre, self.usuario, self.contrasenia))
          self._pedido = None
          self._pizza = None
          self.parteslista = []
@@ -64,15 +65,34 @@ class Usuariobu:
         self.builder.presentacion()
         self.builder.maridajes_recomendados()
         self.builder.extras()
-        self.partes=self.builder.product_pizza.parts
-        self.parteslista.append(self.partes)
+        
         #para  guardar el pedido en un csv
-        detalles_pizza = self.builder.product_pizza.parts
+        detalles_pizza = self.builder.producir_pizza.parts
+        
+        def guardar_pizza( tipo, detalles_pizza):
+            with open('pedidosnuevos.csv', mode='a', newline='') as file:
+                writer = csv.writer(file)
+                id = self.nombre
+                # Crea una nueva fila con nombre, usuario y contraseña
+                row = [id, tipo]
+
+                # Agrega cada detalle de la pizza como una columna separada
+                for detalle in detalles_pizza:
+                    if ":" in detalle:
+                        key, value = detalle.split(": ", 1)
+                        row.append(value)
+                    else:
+                        row.append(detalle)
+
+                # Agrega detalles adicionales del pedido
+                row.extend([""] * (7 - len(detalles_pizza)))  # Asegura que haya suficientes columnas para todos los detalles
+                writer.writerow(row)
+        guardar_pizza("Pizza personaliza",detalles_pizza)
         print(detalles_pizza)
 
     def elecciones(self):
         # Esta función toma los detalles de la pizza y guarda solo las elecciones en un archivo CSV
-        self.partes=self.builder.product_pizza.parts
+        self.partes=self.builder.producir_pizza.parts
         return(self.partes)
         
         

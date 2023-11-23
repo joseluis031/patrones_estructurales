@@ -80,7 +80,7 @@ class Leaf_pizza_personalizada(Component_menu):
 
 
         usuario.pedir_pizza()
-        builder.product_pizza.list_parts()
+        builder.producir_pizza.list_parts()
     def elementos(self, usuario):
         # Obtén las elecciones del cliente como una lista de strings
         usuario.elecciones()

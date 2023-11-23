@@ -396,13 +396,13 @@ def pedido1():
                 cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
                 cliente.guardar_cliente()
                 print("\nEl precio de tu ",pedido1_pizza.operation()," es: ", pedido1_pizza.precio())
+                cliente.guardar_pizzapersonalizada()
+                
 
-                elementos_pizza = []
-                elementos_pizza.append(pedido1_pizza.elementos(usuario))
+                
                 
                 
                 # Guardar el pedido del cliente
-                cliente.guardar_pizzapersonalizada("Pizza personalizada", elementos_pizza)
                                 # Guardar el pedido del cliente
                 
                 

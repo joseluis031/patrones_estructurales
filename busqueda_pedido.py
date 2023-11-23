@@ -97,23 +97,32 @@ def buscar_combos_menu(id_usuario):
                 print(f"Pedido: {row[1]}, Precio: {row[2]}, Contiene: {', '.join(detalle_formateado)}")
                 
 def buscar_pizza_personalizada(id_usuario):
-            with open('pedidosnuevos.csv', mode='r', newline='') as file:
-                reader = csv.reader(file)
-                encontrado = False
-                for row in reader:  #tiene que coincidir el nombre de usuario, el nombre y la contraseña para poder verificar que es el usuario
-                    if row and row[0] == id_usuario:
-                        
-                                #lee y printea los nombre de la columna 0 del csva partir de Masa
-                                ingredientes = row[2:]
-                                masa = ingredientes[0]
-                                salsa = ingredientes[1]
-                                otros_ingredientes = ingredientes[2:-4]
-                                metodo = ingredientes[-4]
-                                presentacion = ingredientes[-3]
-                                maridaje = ingredientes[-2]
-                                ingredientes_extra = ingredientes[-1]
-                                resultado = "Tu anterior pedido de pizza:\nMasa: {}\nSalsa: {}\nIngredientes: {}\nMétodo de cocción: {}\nPresentación: {}\nMaridaje: {}\nIngredientes extra: {}".format(masa, salsa, "\n".join(otros_ingredientes), metodo, presentacion, maridaje, ingredientes_extra)
-                                print(resultado)
-                                print()
-                                encontrado = True
+    with open('pedidosnuevos.csv', mode='r', newline='') as file:
+        reader = csv.reader(file)
+        encontrado = False
+        fila_anterior = None
+
+        for row in reader:
+            if row and row[0] == id_usuario:
+                # Si se encontró la fila con el id_usuario, imprime la fila anterior
+                if fila_anterior is not None:
+                    masa = fila_anterior[2]
+                    salsa = fila_anterior[3]
+                    otros_ingredientes = fila_anterior[4:-5]
+                    metodo = fila_anterior[-5]
+                    presentacion = fila_anterior[-4]
+                    maridaje = fila_anterior[-3]
+                    ingredientes_extra = fila_anterior[-2]
+
+                    resultado = "Tu anterior pedido de pizza:\nMasa: {}\nSalsa: {}\nIngredientes: {}\nMétodo de cocción: {}\nPresentación: {}\nMaridaje: {}\nIngredientes extra: {}".format(masa, salsa, "\n".join(otros_ingredientes), metodo, presentacion, maridaje, ingredientes_extra)
+                    print(resultado)
+                    print()
+                    encontrado = True
+                break
+
+            # Guarda la fila actual como la fila anterior
+            fila_anterior = row
+
+    if not encontrado:
+        print(f"No se encontró un pedido para el usuario con ID {id_usuario}")
                                 

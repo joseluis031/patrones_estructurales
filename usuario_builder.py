@@ -2,8 +2,8 @@ from builder_pizza import *
 
 
 director = Director()
-builder = ConcreteBuilder1()
-director.builder = builder
+
+
 
 import csv
 
@@ -19,7 +19,8 @@ class Usuariobu:
          self.usuario = None
          self._contrasenia = None
          self._pedido = None
-         self._pizza = None
+         self.pizza = None
+         self.parteslista = []
 
     @property
     def builder(self) -> Builder:
@@ -63,11 +64,17 @@ class Usuariobu:
         self.builder.presentacion()
         self.builder.maridajes_recomendados()
         self.builder.extras()
-
+        self.partes=self.builder.product_pizza.parts
+        self.parteslista.append(self.partes)
         #para  guardar el pedido en un csv
+        
 
+    def elecciones(self):
         # Esta función toma los detalles de la pizza y guarda solo las elecciones en un archivo CSV
-        self.builder.product_pizza.parts
+        print(self.parteslista)
+        
+        
+        
 #funcion para guardar el pedido en un csv   
 
 

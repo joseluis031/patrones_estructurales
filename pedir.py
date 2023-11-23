@@ -380,19 +380,29 @@ def pedido1():
                     
             elif bienvenida =="5":
                 
+                usuario = Usuariobu()
+                builder = ConcreteBuilder1()
+                usuario.builder = builder
                 
+                
+                
+
+                # Hacer el pedido
                 pedido1_pizza = Leaf_pizza_personalizada("personalizada")
                 print("Vamos a crear tu pizza")
-                pedido1_pizza.pedir_pizza()
-                
+                pedido1_pizza.pedir_pizza_pers(usuario,builder)
                 print("El precio de tu ",pedido1_pizza.operation()," es: ", pedido1_pizza.precio())
-                
                 
                 
                 cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
                 cliente.guardar_cliente()
+                elementos_pizza = []
+                elementos_pizza.append(pedido1_pizza.elementos(usuario))
+                
+                
                 # Guardar el pedido del cliente
-                cliente.guardar_pizzapersonalizada("Pizza personalizada",pedido1_pizza.elementos())              
+                cliente.guardar_pizzapersonalizada("Pizza personalizada", elementos_pizza)
+                                # Guardar el pedido del cliente
                 
                 
             else:

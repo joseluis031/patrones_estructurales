@@ -12,7 +12,7 @@ class Builder(ABC):
 
     @property #Este es un decorador que permite acceder al método como si fuera un atributo.
     @abstractmethod
-    def product_pizza(self) -> None:
+    def product_pizza2(self) -> None:
         pass
 
     @abstractmethod
@@ -59,10 +59,10 @@ class ConcreteBuilder1(Builder):
         self.reset()
 
     def reset(self) -> None:
-        self._product_pizza = Product1()
+        self.product_pizza = Product1()
 
     @property #Este es un decorador que permite acceder al método como si fuera un atributo.
-    def product_pizza(self) -> Product1:
+    def product_pizza2(self) -> Product1:
         """
         Se supone que los constructores de hormigón deben proporcionar sus propios métodos(lo llamo igual) para
          recuperando resultados. Esto se debe a que varios tipos de constructores pueden crear
@@ -76,9 +76,9 @@ class ConcreteBuilder1(Builder):
          y puede hacer que sus constructores esperen una llamada de reinicio explícita desde el
          código de cliente antes de deshacerse del resultado anterior.
         """
-        product_pizza = self._product_pizza
+        product_pizza2 = self.product_pizza
         self.reset()
-        return product_pizza
+        return product_pizza2
     #metodos para crear las diferentes partes de los objetos del producto
 
     #creo una lista para cada elemento de la pizza y luego la añado al producto
@@ -90,7 +90,7 @@ class ConcreteBuilder1(Builder):
             print("no tenemos esa masa, Introduzca un tipo de masa valido")
             self.tipo_de_masa()
         else:
-            self._product_pizza.add("masa elegida: {}".format(masa))
+            self.product_pizza.add("masa elegida: {}".format(masa))
 
     def salsa_base(self) -> None:
         lista_salsa = ["tomate","a", "carbonara", "barbacoa", "pesto", "vegana"]
@@ -99,7 +99,7 @@ class ConcreteBuilder1(Builder):
             print("no tenemos esa salsa, Introduzca una salsa valida")
             self.salsa_base()
         else:
-            self._product_pizza.add("salsa base elegida: {}".format(salsa))
+            self.product_pizza.add("salsa base elegida: {}".format(salsa))
 
     #esta funcion utilizo un bucle while para que el cliente pueda elegir mas de un ingrediente
     def ingredientes_principales(self) -> None:
@@ -130,7 +130,7 @@ class ConcreteBuilder1(Builder):
 
         # Agrega los ingredientes elegidos al producto
         ingredientes_elegidos_str = ", ".join(ingredientes_elegidos)
-        self._product_pizza.add("ingredientes principales elegidos: " + ingredientes_elegidos_str)
+        self.product_pizza.add("ingredientes principales elegidos: " + ingredientes_elegidos_str)
 
     def tecnicas_de_coccion(self) -> None:
         lista_coccion = ["horno", "parrilla", "a", "sarten", "microondas"]
@@ -139,7 +139,7 @@ class ConcreteBuilder1(Builder):
             print("no tenemos esa tecnica de coccion, Introduzca una tecnica de coccion valida")
             self.tecnicas_de_coccion()
         else:
-            self._product_pizza.add("tecnicas de coccion elegidas: {}".format(coccion))
+            self.product_pizza.add("tecnicas de coccion elegidas: {}".format(coccion))
 
     def presentacion(self) -> None:
         lista_present = ["cuadrada", "a", "redonda", "premium", "calzone", "sorpresa"]
@@ -148,7 +148,7 @@ class ConcreteBuilder1(Builder):
             print("no tenemos esa presentacion, Introduzca una presentacion valida")
             self.presentacion()
         else:
-            self._product_pizza.add("presentacion elegida: {}".format(present))
+            self.product_pizza.add("presentacion elegida: {}".format(present))
 
     def maridajes_recomendados(self) -> None:
         lista_maridaje = ["cerveza", "vino","a", "refresco", "agua"]
@@ -157,7 +157,7 @@ class ConcreteBuilder1(Builder):
             print("no tenemos ese maridaje, Introduzca un maridaje valido")
             self.maridajes_recomendados()
         else:
-            self._product_pizza.add("maridajes elegidos: {}".format(maridaje))
+            self.product_pizza.add("maridajes elegidos: {}".format(maridaje))
 
     def extras(self) -> None:#quiero mas extras
         lista_extras = ["queso doble", "doble de ingredientes", "doble de salsa", "trufa", "caviar", "bordes de queso","salsa  ranchera", "salsa de ajo", "salsa de soja", "salsa de yogur", "salsa de curry" ]
@@ -188,7 +188,7 @@ class ConcreteBuilder1(Builder):
 
         # Agrega los extras elegidos al producto
         extras_elegidos_str = ", ".join(extras_elegidos)
-        self._product_pizza.add("extras elegidos: " + extras_elegidos_str)
+        self.product_pizza.add("extras elegidos: " + extras_elegidos_str)
         
 
 

@@ -73,23 +73,15 @@ class Leaf_pizza_personalizada(Component_menu):
                 if self._nombre in row:
                     return float(row[1])
      
-    def pedir_pizza(self):   
-        usuario = Usuariobu()
-        builder = ConcreteBuilder1()
-        usuario.builder = builder
+    def pedir_pizza_pers(self, usuario,builder):
+        
 
 
         usuario.pedir_pizza()
         builder.product_pizza.list_parts()
-    def elementos(self):
-        usuario = Usuariobu()
-        builder = ConcreteBuilder1()
-        usuario.builder = builder
-         # Obtén las elecciones del cliente como una lista de strings
-        detalles_pizza = usuario.builder.product_pizza.parts
-        
-        # Muestra las elecciones del cliente
-        return detalles_pizza
+    def elementos(self, usuario):
+        # Obtén las elecciones del cliente como una lista de strings
+        usuario.elecciones()
         # Guarda el pedido del cliente
 
     

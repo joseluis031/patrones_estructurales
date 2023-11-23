@@ -84,10 +84,7 @@ class Cliente:
 
             # Agrega cada detalle de la pizza como una columna separada
             for detalle in detalles_pizza:
-                if ":" in detalle:
-                    key, value = detalle.split(": ", 1)
-                    row.append(value)
-                else:
+                
                     row.append(detalle)
 
             # Agrega detalles adicionales del pedido

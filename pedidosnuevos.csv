@@ -1,42 +1,39 @@
-Id, Pedido, Masa, Salsa, Ingredientes principales,tecnicas coccion,presentacion,maridajes,extras
-t,t,t,fina,tomate,,horno,redonda,vino,
-e,e,e,fina,tomate,champinones,horno,redonda,vino,trufa
-i,i,i,fina,tomate,,horno,redonda,vino,
-mart,m,a,fina,tomate,champinones,horno,redonda,vino,doble de ingredientes
-
-a,a,a,<composite.Leaf object at 0x00000199157D3CD0>,<composite.Leaf object at 0x00000199157D3D30>,<composite.Leaf object at 0x0000019915CF15D0>,<composite.Leaf object at 0x0000019915CF10F0>,<composite.Leaf object at 0x0000019915CF1A20>,<composite.Leaf object at 0x0000019915CF1630>,<composite.Leaf object at 0x0000019915CF19C0>
-a,v,c,<composite.Leaf object at 0x0000023A57133CD0>,<composite.Leaf object at 0x0000023A57133D30>,<composite.Leaf object at 0x0000023A57603370>,<composite.Leaf object at 0x0000023A57603280>,<composite.Leaf object at 0x0000023A576034C0>,<composite.Leaf object at 0x0000023A57641930>,<composite.Leaf object at 0x0000023A57641A20>
-a,v,c,B,r,a,n,c,h,(,)
-m,m,m,<composite.Leaf object at 0x000002C74B403DF0>,<composite.Leaf object at 0x000002C74B403D00>,<composite.Leaf object at 0x000002C74B403C10>,<composite.Leaf object at 0x000002C74B8D32B0>,<composite.Leaf object at 0x000002C74B8D3190>,<composite.Leaf object at 0x000002C74B8D33D0>,<composite.Leaf object at 0x000002C74B8D3460>
-m,m,m,B,r,a,n,c,h,(,)
-w,w,w,B,r,a,n,c,h,(,m,a,s,a, ,e,l,e,g,i,d,a,:, ,a,+,s,a,l,s,a, ,b,a,s,e, ,e,l,e,g,i,d,a,:, ,a,+,i,n,g,r,e,d,i,e,n,t,e,s, ,p,r,i,n,c,i,p,a,l,e,s, ,e,l,e,g,i,d,o,s,:, ,b,a,c,o,n,+,t,e,c,n,i,c,a,s, ,d,e, ,c,o,c,c,i,o,n, ,e,l,e,g,i,d,a,s,:, ,a,+,p,r,e,s,e,n,t,a,c,i,o,n, ,e,l,e,g,i,d,a,:, ,a,+,m,a,r,i,d,a,j,e,s, ,e,l,e,g,i,d,o,s,:, ,a,+,e,x,t,r,a,s, ,e,l,e,g,i,d,o,s,:, ,d,o,b,l,e, ,d,e, ,s,a,l,s,a,)
-e,e,e,m,a,s,a,e,l,e,g,i,d,a,:,a,",",s,a,l,s,a,b,a,s,e,e,l,e,g,i,d,a,:,a,",",i,n,g,r,e,d,i,e,n,t,e,s,p,r,i,n,c,i,p,a,l,e,s,e,l,e,g,i,d,o,s,:,c,h,a,m,p,i,n,o,n,e,s,",",t,e,c,n,i,c,a,s,d,e,c,o,c,c,i,o,n,e,l,e,g,i,d,a,s,:,a,",",p,r,e,s,e,n,t,a,c,i,o,n,e,l,e,g,i,d,a,:,a,",",m,a,r,i,d,a,j,e,s,e,l,e,g,i,d,o,s,:,a,",",e,x,t,r,a,s,e,l,e,g,i,d,o,s,:,s,a,l,s,a,r,a,n,c,h,e,r,a
-z,z,z,"masaelegida:fina,salsabaseelegida:tomate,ingredientesprincipaleselegidos:bacon,tecnicasdecoccionelegidas:horno,presentacionelegida:redonda,maridajeselegidos:vino,extraselegidos:dobledesalsa"
-x,x,x,"fina,tomate,champinones,a,a,a,trufa"
-t,t,t,,,,,,,
-r,r,r,,,,,,,
-z,z,z,fina,a,champinones,a,a,a,dobledesalsa
-5694544172489886969,Pizza personalizada,p,e,r,s,o,n,a,l,i,z,a,d,a
--271488834964499988,Pizza personalizada,fina,tomate,champinones,horno,redonda,vino,doble de ingredientes
-2577892371975918461,Pizza personalizada,s,a,l,s,a, ,d,e, ,t,o,m,a,t,e,",",m,o,z,z,a,r,e,l,l,a,",",p,e,p,p,e,r,o,n,i,",",b,a,c,o,n,",",c,e,b,o,l,l,a,",",o,r,e,g,a,n,o
--9042473849471681303,Pizza personalizada,personalizada
--1298257783678747647,Pizza personalizada
-4600330962431886566,Pizza personalizada
-576658782493319322,Pizza personalizada,,,,,,,
-8167834622600434273,Pizza personalizada,,,,,,,
-9153895723591484406,Pizza personalizada,,,,,,,
-3923408028235587826,Pizza personalizada,,,,,,,
-6218727917663058273,Pizza personalizada,[,N,o,n,e,],
-8224431024071911301,Pizza personalizada,,,,,,,
-5346457842764794328,Pizza personalizada,,,,,,,
-8341138169942292741,Pizza personalizada,,,,,,,
-800562017581266474,Pizza personalizada,,,,,,,
--1599085337589038701,Pizza personalizada,,,,,,,
-1131380463892546495,Pizza personalizada,,,,,,,
--4129132461229821814,Pizza personalizada,,,,,,,
--3726111684474723501,Pizza personalizada,,,,,,,
-normal,,,,,,,
-personalizada,,,,,,,
-personalizada,,,,,,,
-personalizada,,,,,,,
-2409814111733895944,Pizza personalizada,,,,,,,
+Id, Pedido, Masa, Salsa, Ingredientes principales,tecnicas coccion,presentacion,maridajes,extras,tipo de masa,salsa base,ingredientes principales,tecnicas de coccion,maridajes recomendados
+t,t,fina,tomate,,horno,redonda,vino,,,,,,
+e,e,fina,tomate,champinones,horno,redonda,vino,trufa,,,,,
+i,i,fina,tomate,,horno,redonda,vino,,,,,,
+m,a,fina,tomate,champinones,horno,redonda,vino,doble de ingredientes,,,,,
+a,a,<composite.Leaf object at 0x00000199157D3CD0>,<composite.Leaf object at 0x00000199157D3D30>,<composite.Leaf object at 0x0000019915CF15D0>,<composite.Leaf object at 0x0000019915CF10F0>,<composite.Leaf object at 0x0000019915CF1A20>,<composite.Leaf object at 0x0000019915CF1630>,<composite.Leaf object at 0x0000019915CF19C0>,,,,,
+v,c,<composite.Leaf object at 0x0000023A57133CD0>,<composite.Leaf object at 0x0000023A57133D30>,<composite.Leaf object at 0x0000023A57603370>,<composite.Leaf object at 0x0000023A57603280>,<composite.Leaf object at 0x0000023A576034C0>,<composite.Leaf object at 0x0000023A57641930>,<composite.Leaf object at 0x0000023A57641A20>,,,,,
+m,m,<composite.Leaf object at 0x000002C74B403DF0>,<composite.Leaf object at 0x000002C74B403D00>,<composite.Leaf object at 0x000002C74B403C10>,<composite.Leaf object at 0x000002C74B8D32B0>,<composite.Leaf object at 0x000002C74B8D3190>,<composite.Leaf object at 0x000002C74B8D33D0>,<composite.Leaf object at 0x000002C74B8D3460>,,,,,
+z,z,"masaelegida:fina,salsabaseelegida:tomate,ingredientesprincipaleselegidos:bacon,tecnicasdecoccionelegidas:horno,presentacionelegida:redonda,maridajeselegidos:vino,extraselegidos:dobledesalsa",,,,,,,,,,,
+x,x,"fina,tomate,champinones,a,a,a,trufa",,,,,,,,,,,
+t,t,,,,,,,,,,,,
+r,r,,,,,,,,,,,,
+z,z,fina,a,champinones,a,a,a,dobledesalsa,,,,,
+Pizza personalizada,fina,tomate,champinones,horno,redonda,vino,doble de ingredientes,,,,,,
+Pizza personalizada,personalizada,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,[,N,o,n,e,],,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Pizza personalizada,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,p r e s e n t a c i o n   e l e g i d a :   a,,e x t r a s   e l e g i d o s :  ,m a s a   e l e g i d a :   a,s a l s a   b a s e   e l e g i d a :   a,i n g r e d i e n t e s   p r i n c i p a l e s   e l e g i d o s :  ,t e c n i c a s   d e   c o c c i o n   e l e g i d a s :   a,m a r i d a j e s   e l e g i d o s :   a
+,,,,,,p r e s e n t a c i o n   e l e g i d a :   a,,e x t r a s   e l e g i d o s :  ,m a s a   e l e g i d a :   a,s a l s a   b a s e   e l e g i d a :   a,i n g r e d i e n t e s   p r i n c i p a l e s   e l e g i d o s :  ,t e c n i c a s   d e   c o c c i o n   e l e g i d a s :   a,m a r i d a j e s   e l e g i d o s :   a
+Nombre del Cliente,

@@ -53,6 +53,8 @@ class Leaf_pizza(Component_menu):
                 if self._nombre in row:
                     return float(row[1])
                 
+
+        
 class Leaf_pizza_personalizada(Component_menu):
     def __init__(self, nombre) -> None:
         self._nombre = nombre

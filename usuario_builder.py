@@ -3,7 +3,7 @@ from builder_pizza import *
 
 director = Director()
 
-
+#si quito para que sea privado, me da ellist part pero sigo sin poder acceder a las partes
 
 import csv
 
@@ -55,7 +55,7 @@ class Usuariobu:
             print("Vamos a ello!!")
 
 
-
+    
     def pedir_pizza(self) -> None:
         self.builder.tipo_de_masa()
         self.builder.salsa_base()
@@ -67,7 +67,8 @@ class Usuariobu:
         self.partes=self.builder.product_pizza.parts
         self.parteslista.append(self.partes)
         #para  guardar el pedido en un csv
-        
+        detalles_pizza = self.builder.product_pizza.parts
+        print(detalles_pizza)
 
     def elecciones(self):
         # Esta función toma los detalles de la pizza y guarda solo las elecciones en un archivo CSV

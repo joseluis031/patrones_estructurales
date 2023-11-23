@@ -190,6 +190,7 @@ class ConcreteBuilder1(Builder):
         extras_elegidos_str = ", ".join(extras_elegidos)
         self._product_pizza.add("extras elegidos: " + extras_elegidos_str)
         
+        
 
 
 
@@ -226,6 +227,7 @@ class Director:
      #creo un constructor
     def __init__(self) -> None:
         self._builder = None
+        self.lista = []
 
     #creo un getter y un setter para el constructor
     @property
@@ -255,3 +257,38 @@ class Director:
         self.builder.maridajes_recomendados()
         self.builder.extras()
         
+    def listar_pizza(self) -> None:
+        return (self.lista.append(self.builder.product_pizza.parts))
+        
+
+import csv
+
+def guardar_pizzapersonalizada( tipo, detalles_pizza):
+        with open('pedidosnuevos.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+
+            # Crea una nueva fila con nombre, usuario y contraseña
+            row = [ tipo]
+
+            # Agrega cada detalle de la pizza como una columna separada
+            for detalle in detalles_pizza:
+                
+                    row.append(detalle)
+
+            # Agrega detalles adicionales del pedido
+            row.extend([""] * (7 - len(detalles_pizza)))  # Asegura que haya suficientes columnas para todos los detalles
+            writer.writerow(row)
+
+#ejemplo de uso
+if __name__ == "__main__":
+    director = Director()
+    builder = ConcreteBuilder1()
+    director.builder = builder
+
+    print("Construyendo una pizza normal:")
+    director.build_pizza()
+    builder.product_pizza.list_parts()
+    director.listar_pizza()
+
+    print("\n")
+    guardar_pizzapersonalizada( "normal", builder.product_pizza.list_parts())

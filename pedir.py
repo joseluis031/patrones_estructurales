@@ -391,11 +391,12 @@ def pedido1():
                 pedido1_pizza = Leaf_pizza_personalizada("personalizada")
                 print("Vamos a crear tu pizza")
                 pedido1_pizza.pedir_pizza_pers(usuario,builder)
-                print("El precio de tu ",pedido1_pizza.operation()," es: ", pedido1_pizza.precio())
                 
                 
                 cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
                 cliente.guardar_cliente()
+                print("\nEl precio de tu ",pedido1_pizza.operation()," es: ", pedido1_pizza.precio())
+
                 elementos_pizza = []
                 elementos_pizza.append(pedido1_pizza.elementos(usuario))
                 

@@ -19,7 +19,7 @@ class Usuariobu:
          self.usuario = None
          self._contrasenia = None
          self._pedido = None
-         self.pizza = None
+         self._pizza = None
          self.parteslista = []
 
     @property
@@ -71,7 +71,8 @@ class Usuariobu:
 
     def elecciones(self):
         # Esta función toma los detalles de la pizza y guarda solo las elecciones en un archivo CSV
-        print(self.parteslista)
+        self.partes=self.builder.product_pizza.parts
+        return(self.partes)
         
         
         

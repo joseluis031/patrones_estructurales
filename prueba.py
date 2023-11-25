@@ -41,7 +41,7 @@ class Pedido():
         df.to_csv('pedidosnuevos.csv', index=False)
 '''
         
-
+'''
 ejemplo de uso
 if __name__ == "__main__":
     director = Director()
@@ -75,7 +75,7 @@ def guardar_pedido_en_csv(cliente, choices):
         writer.writerow({'Cliente': cliente, 'Elecciones': choices})
     
     
-
+'''
 director = Director()
 builder = ConcreteBuilder1()
 director.builder = builder
@@ -87,3 +87,4 @@ detalles_pizza = director.listar_pizza()
 
 pedido_actual = director.builder.producir_pizza.get_choices_str()
 guardar_pedido_en_csv('Nombre del Cliente', pedido_actual)
+'''

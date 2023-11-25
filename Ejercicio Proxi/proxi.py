@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
+from typing import List
 
-
-class Subject(ABC):
+class Component(ABC):
     """
     The Subject interface declares common operations for both RealSubject and
     the Proxy. As long as the client works with RealSubject using this
@@ -9,20 +9,43 @@ class Subject(ABC):
     """
 
     @abstractmethod
-    def request(self) -> None:
+    def operation(self) -> None:
         pass
 
 
-class RealSubject(Subject):
-    """
-    The RealSubject contains some core business logic. Usually, RealSubjects are
-    capable of doing some useful work which may also be very slow or sensitive -
-    e.g. correcting input data. A Proxy can solve these issues without any
-    changes to the RealSubject's code.
-    """
+class Carpeta(Component):
 
-    def request(self) -> None:
-        print("RealSubject: Handling request.")
+    def __init__(self):
+        self._children = List[Component] = []
+    
+    def add(self, component: Component) -> None:
+        self._children.append(component)
+        component.parent = self
+        
+    def remove(self, component: Component) -> None:
+        self._children.remove(component)
+        component.parent = None
+    
+    def operation(self) -> str:
+        result = []
+        for child in self._children:
+            result.append(child.operation())
+        return result
+            
+        
+class Documentos_Leaf(Component):
+    def __init__(self, nombre) -> None:
+        self._nombre = nombre
+        
+    def operation(self):
+        return self._nombre
+
+class Enlace_Leaf(Component):
+    def __init__(self, nombre) -> None:
+        self._nombre = nombre
+        
+    def operation(self):
+        return self._nombre
 
 
 class Proxy(Subject):

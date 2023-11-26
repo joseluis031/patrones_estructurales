@@ -1,6 +1,6 @@
 {
   "tipo": "Carpeta",
-  "nombre": "Principal",
+  "nombre": "Secundaria",
   "children": [
     {
       "tipo": "Documento",
@@ -30,7 +30,7 @@
       "access_log": [
         {
           "document_name": "Documento1",
-          "timestamp": "2023-11-26 19:00:22"
+          "timestamp": "2023-11-26 19:27:58"
         }
       ]
     }

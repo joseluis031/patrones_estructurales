@@ -71,8 +71,9 @@ class Enlace_Leaf(Component):
         }
 
 class Proxy(Component):
-    def __init__(self, real_subject, ):
+    def __init__(self, real_subject, usuario_actual=None):
         self.real_subject = real_subject
+        self.usuario_actual = usuario_actual
         self.access_log = []
         self.access_checked = False  # Flag to track if access has been checked
 
@@ -101,9 +102,7 @@ class Proxy(Component):
         }
 
     def realizar_operacion(self):
-        if not self.usuario_actual:
-            print("Debe iniciar sesión primero.")
-            return
+        
 
         print("Operaciones disponibles:")
         print("1. Acceder a un documento")
@@ -120,7 +119,7 @@ class Proxy(Component):
             print("Opción no válida.")
 
 
-
+'''
 import json
 carpeta_principal = Carpeta("Principal")
 documento1 = Documentos_Leaf("Documento1", "Texto", 10)
@@ -138,3 +137,4 @@ carpeta_principal.add(proxy_documento1)
 estructura_json = carpeta_principal.to_dict()
 with open("Ejercicio Proxi/basedatos.json", "w") as json_file:
     json.dump(estructura_json, json_file, indent=2)
+'''

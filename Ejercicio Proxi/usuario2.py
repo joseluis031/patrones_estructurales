@@ -31,7 +31,7 @@ class Usuario:
         except Exception as e:
             print(f"Error al buscar en CSV: {e}")
             return False
-
+'''
 # Solicitar al usuario que elija entre registrarse e iniciar sesión
 opcion = input("¿Desea registrarse (r) o iniciar sesión (i)? ").lower()
 
@@ -50,3 +50,4 @@ elif opcion == 'i':
 
 else:
     print("Opción no válida. Por favor, seleccione 'r' para registrarse o 'i' para iniciar sesión.")
+'''

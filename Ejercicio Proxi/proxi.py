@@ -3,12 +3,6 @@ from typing import List
 from datetime import datetime
 
 class Component(ABC):
-    """
-    The Subject interface declares common operations for both RealSubject and
-    the Proxy. As long as the client works with RealSubject using this
-    interface, you'll be able to pass it a proxy instead of a real subject.
-    """
-
     @abstractmethod
     def operation(self) -> None:
         pass
@@ -16,9 +10,7 @@ class Component(ABC):
     def to_dict(self):
         raise NotImplementedError("to_dict method must be implemented in subclasses")
 
-
 class Carpeta(Component):
-
     def __init__(self, nombre):
         self.nombre = nombre
         self._children = []
@@ -42,13 +34,12 @@ class Carpeta(Component):
             "children": [child.to_dict() for child in self._children]
         }
             
-        
 class Documentos_Leaf(Component):
     def __init__(self, nombre, tipo_documento, tamaño):
         self.nombre = nombre
         self.tipo_documento = tipo_documento
         self.tamaño = tamaño
-        self.access_log = []
+        
         
     def operation(self):
         return  f"Leaf: {self.nombre} ({self.tipo_documento}, {self.tamaño} KB)"
@@ -58,8 +49,7 @@ class Documentos_Leaf(Component):
             "tipo": "Documento",
             "nombre": self.nombre,
             "tipo_documento": self.tipo_documento,
-            "tamaño": self.tamaño,
-            "access_log": self.access_log
+            "tamanio": self.tamaño,
         }
 
 class Enlace_Leaf(Component):
@@ -78,19 +68,18 @@ class Enlace_Leaf(Component):
         }
 
 class Proxy(Component):
-    """
-    The Proxy has an interface identical to the RealSubject.
-    """
-
     def __init__(self, real_subject):
         self.real_subject = real_subject
         self.access_log = []
+        self.access_checked = False  # Flag to track if access has been checked
 
     def operation(self):
         document_name = self.real_subject.nombre
-        if self.check_access(document_name):
-            self.real_subject.operation()
-            self.access_log(document_name)
+        if not self.access_checked:  # Check access only the first time
+            self.check_access(document_name)
+            self.access_checked = True
+        self.real_subject.operation()
+        self.log_access(document_name)
        
     def check_access(self, document_name) -> bool:
         print("Proxy: Checking access prior to firing a real request.")
@@ -98,8 +87,7 @@ class Proxy(Component):
         self.access_log.append({'document_name': document_name , 'timestamp': timestamp})
         return True
 
-
-    def access_log(self) -> None:
+    def log_access(self, document_name) -> None:
         print("Proxy: Logging the time of request.", end="")
 
     def to_dict(self):
@@ -109,7 +97,20 @@ class Proxy(Component):
             'access_log': self.access_log
         }
 
+import json
+carpeta_principal = Carpeta("Principal")
+documento1 = Documentos_Leaf("Documento1", "Texto", 10)
+documento2 = Documentos_Leaf("Documento2", "Imagen", 20)
+enlace1 = Enlace_Leaf("Enlace1", "http://enlace1.com")
+proxy_documento1 = Proxy(documento1)
+proxy_documento1.operation()
 
+carpeta_principal.add(documento1)
+carpeta_principal.add(documento2)
+carpeta_principal.add(enlace1)
+carpeta_principal.add(proxy_documento1)
 
-
- 
+# Convertir la estructura a JSON
+estructura_json = carpeta_principal.to_dict()
+with open("Ejercicio Proxi/basedatos.json", "w") as json_file:
+    json.dump(estructura_json, json_file, indent=2)

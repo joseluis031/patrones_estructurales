@@ -1,5 +1,27 @@
 {
   "tipo": "Carpeta",
   "nombre": "Principal",
-  "Contiene": []
+  "Contiene": [
+    {
+      "tipo": "Documento",
+      "nombre": "Documento1",
+      "tipo_documento": "Texto",
+      "tamanio": 10
+    },
+    {
+      "type": "Proxy",
+      "real_subject": {
+        "tipo": "Documento",
+        "nombre": "Documento1",
+        "tipo_documento": "Texto",
+        "tamanio": 10
+      },
+      "access_log": [
+        {
+          "Modificado por Usuario": "Documento1",
+          "timestamp": "2023-11-27 00:34:22"
+        }
+      ]
+    }
+  ]
 }

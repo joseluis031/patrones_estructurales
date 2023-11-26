@@ -31,7 +31,7 @@ class Usuario:
         except Exception as e:
             print(f"Error al buscar en CSV: {e}")
             return False
-'''
+
 # Solicitar al usuario que elija entre registrarse e iniciar sesión
 opcion = input("¿Desea registrarse (r) o iniciar sesión (i)? ").lower()
 
@@ -47,7 +47,23 @@ elif opcion == 'i':
     nombre_usuario_buscar = input("Ingrese su nombre de usuario: ")
     contraseña_buscar = getpass.getpass("Ingrese su contraseña: ")
     Usuario.buscar_en_csv("Ejercicio Proxi/usuarios.csv", nombre_usuario_buscar, contraseña_buscar)
+    if Usuario.buscar_en_csv("Ejercicio Proxi/usuarios.csv", nombre_usuario_buscar, contraseña_buscar):
+        # Usuario autenticado, crear Proxy y acceder a la estructura
+        carpeta_principal = Carpeta("Principal")
+        documento1 = Documentos_Leaf("Documento1", "Texto", 10, nombre_usuario_buscar)
+
+        proxy_documento1 = Proxy(documento1)
+        
+
+        # Llamada a la función realizar_operacion
+        proxy_documento1.operation()
+        carpeta_principal.add(documento1)
+        carpeta_principal.add(proxy_documento1)
+
+        # Convertir la estructura a JSON
+        estructura_json = carpeta_principal.to_dict()
+        with open("Ejercicio Proxi/basedatos.json", "w") as json_file:
+            json.dump(estructura_json, json_file, indent=2)
 
 else:
     print("Opción no válida. Por favor, seleccione 'r' para registrarse o 'i' para iniciar sesión.")
-'''

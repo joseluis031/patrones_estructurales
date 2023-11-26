@@ -12,36 +12,36 @@ class Usuario:
         self.contrasenia = contrasenia
 
 
-    def cargar_desde_csv(filename):
-        try:
-            with open(filename, 'r') as file:
-                reader = csv.DictReader(file)
-                data = [Usuario(row["nombre_usuario"], row["contrasenia"]) for row in reader]
-                return data
-        except FileNotFoundError:
-            return []
+def cargar_desde_csv(filename):
+    try:
+        with open(filename, 'r') as file:
+            reader = csv.DictReader(file)
+            data = [Usuario(row["nombre_usuario"], row["contrasenia"]) for row in reader]
+            return data
+    except FileNotFoundError:
+        return []
 
-    def guardar_en_csv(data, filename):
-        header = ["nombre_usuario", "contrasenia"]
-        with open(filename, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(header)
-            for usuario in data:
-                writer.writerow([usuario.nombre_usuario, usuario.contrasenia])
+def guardar_en_csv(data, filename):
+    header = ["nombre_usuario", "contrasenia"]
+    with open(filename, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(header)
+        for usuario in data:
+            writer.writerow([usuario.nombre_usuario, usuario.contrasenia])
 
-    def iniciar_sesion(usuarios_registrados, nombre_usuario, contrasenia):
-        for usuario in usuarios_registrados:
-            if usuario.nombre_usuario == nombre_usuario and usuario.contrasenia == contrasenia:
-                print(f"Sesión iniciada para {nombre_usuario}.")
-                return usuario
-        print("Nombre de usuario o contraseña incorrectos.")
-        return None
+def iniciar_sesion(usuarios_registrados, nombre_usuario, contrasenia):
+    for usuario in usuarios_registrados:
+        if usuario.nombre_usuario == nombre_usuario and usuario.contrasenia == contrasenia:
+            print(f"Sesión iniciada para {nombre_usuario}.")
+            return usuario
+    print("Nombre de usuario o contraseña incorrectos.")
+    return None
 
-    def registrar_usuario(usuarios_registrados, nombre_usuario, contrasenia):
-        nuevo_usuario = Usuario(nombre_usuario, contrasenia)
-        usuarios_registrados.append(nuevo_usuario)
-        print(f"Usuario {nombre_usuario} registrado exitosamente.")
-
+def registrar_usuario(usuarios_registrados, nombre_usuario, contrasenia):
+    nuevo_usuario = Usuario(nombre_usuario, contrasenia)
+    usuarios_registrados.append(nuevo_usuario)
+    print(f"Usuario {nombre_usuario} registrado exitosamente.")
+'''
 # Ejemplo de uso:
 usuarios_registrados = cargar_desde_csv("usuarios.csv")
 proxy = Proxy(Documentos_Leaf("Documento1", "Texto", 1024))
@@ -64,3 +64,4 @@ else:
 # Guardar información en JSON y CSV
 guardar_en_csv(usuarios_registrados, "usuarios.csv")
 guardar_en_json(proxy.access_log, "registro_operaciones.json")
+'''

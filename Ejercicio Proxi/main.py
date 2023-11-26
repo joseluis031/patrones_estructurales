@@ -15,7 +15,7 @@ if opcion == 'r':
     nuevo_usuario = Usuario(nombre_usuario, contraseña)
     nuevo_usuario.guardar_en_csv("Ejercicio Proxi/usuarios.csv")
 
-elif opcion == 'i':
+if opcion == 'i':
     # Iniciar sesión
     nombre_usuario_buscar = input("Ingrese su nombre de usuario: ")
     contraseña_buscar = getpass.getpass("Ingrese su contraseña: ")
@@ -23,22 +23,13 @@ elif opcion == 'i':
     # Buscar un usuario en el archivo CSV con nombre de usuario y contraseña
     if Usuario.buscar_en_csv("Ejercicio Proxi/usuarios.csv", nombre_usuario_buscar, contraseña_buscar):
         # Usuario autenticado, crear Proxy y acceder a la estructura
-        carpeta_principal = Carpeta("Secundaria")
-        documento1 = Documentos_Leaf("Documento1", "Texto", 10)
-        documento2 = Documentos_Leaf("Documento2", "Imagen", 20)
-        enlace1 = Enlace_Leaf("Enlace1", "http://enlace1.com")
-        proxy_documento1 = Proxy(documento1, usuario_actual=nombre_usuario_buscar)
-        proxy_documento1.operation()
+        carpeta_principal = Carpeta("Principal")
+        proxy_documento1 = Proxy(carpeta_principal, usuario_actual=nombre_usuario_buscar)
 
-        carpeta_principal.add(documento1)
-        carpeta_principal.add(documento2)
-        carpeta_principal.add(enlace1)
-        carpeta_principal.add(proxy_documento1)
+        # Llamada a la función realizar_operacion
+        proxy_documento1.realizar_operacion()
 
         # Convertir la estructura a JSON
         estructura_json = carpeta_principal.to_dict()
         with open("Ejercicio Proxi/basedatos.json", "w") as json_file:
             json.dump(estructura_json, json_file, indent=2)
-
-else:
-    print("Opción no válida. Por favor, seleccione 'r' para registrarse o 'i' para iniciar sesión.")

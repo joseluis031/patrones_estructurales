@@ -1,38 +1,5 @@
 {
   "tipo": "Carpeta",
-  "nombre": "Secundaria",
-  "children": [
-    {
-      "tipo": "Documento",
-      "nombre": "Documento1",
-      "tipo_documento": "Texto",
-      "tamanio": 10
-    },
-    {
-      "tipo": "Documento",
-      "nombre": "Documento2",
-      "tipo_documento": "Imagen",
-      "tamanio": 20
-    },
-    {
-      "tipo": "Enlace",
-      "nombre": "Enlace1",
-      "link": "http://enlace1.com"
-    },
-    {
-      "type": "Proxy",
-      "real_subject": {
-        "tipo": "Documento",
-        "nombre": "Documento1",
-        "tipo_documento": "Texto",
-        "tamanio": 10
-      },
-      "access_log": [
-        {
-          "document_name": "Documento1",
-          "timestamp": "2023-11-26 19:27:58"
-        }
-      ]
-    }
-  ]
+  "nombre": "Principal",
+  "Contiene": []
 }

@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
+from datetime import datetime
 
 class Component(ABC):
     """
@@ -15,48 +16,51 @@ class Component(ABC):
 
 class Carpeta(Component):
 
-    def __init__(self):
-        self._children = List[Component] = []
+    def __init__(self, name):
+        self.name = name
+        self._children = []
     
     def add(self, component: Component) -> None:
         self._children.append(component)
-        component.parent = self
         
     def remove(self, component: Component) -> None:
         self._children.remove(component)
-        component.parent = None
     
     def operation(self) -> str:
-        result = []
-        for child in self._children:
-            result.append(child.operation())
-        return result
+        results = [f"Composite: {self.name}"]
+        for child in self.children:
+            results.append(child.operation())
+        return '\n'.join(results)
             
         
 class Documentos_Leaf(Component):
-    def __init__(self, nombre) -> None:
-        self._nombre = nombre
+    def __init__(self, nombre, tipo_documento, tamaño):
+        self.nombre = nombre
+        self.tipo_documento = tipo_documento
+        self.tamaño = tamaño
         
     def operation(self):
-        return self._nombre
+        return  f"Leaf: {self.name} ({self.document_type}, {self.size} KB)"
 
 class Enlace_Leaf(Component):
-    def __init__(self, nombre) -> None:
-        self._nombre = nombre
+    def __init__(self, nombre, link):
+        self.nombre = nombre
+        self.link = link
         
     def operation(self):
-        return self._nombre
+        return f"Enlace: {self.name} -> {self.link}"
 
 
-class Proxy(Subject):
+class Proxy(Component):
     """
     The Proxy has an interface identical to the RealSubject.
     """
 
-    def __init__(self, real_subject: RealSubject) -> None:
-        self._real_subject = real_subject
+    def __init__(self, real_subject):
+        self.real_subject = real_subject
+        self.access_log = {}
 
-    def request(self) -> None:
+    def operation(self):
         """
         The most common applications of the Proxy pattern are lazy loading,
         caching, controlling the access, logging, etc. A Proxy can perform one

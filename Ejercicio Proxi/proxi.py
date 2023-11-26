@@ -28,7 +28,7 @@ class Carpeta(Component):
     
     def operation(self) -> str:
         results = [f"Composite: {self.name}"]
-        for child in self.children:
+        for child in self._children:
             results.append(child.operation())
         return '\n'.join(results)
             
@@ -40,7 +40,7 @@ class Documentos_Leaf(Component):
         self.tamaño = tamaño
         
     def operation(self):
-        return  f"Leaf: {self.name} ({self.document_type}, {self.size} KB)"
+        return  f"Leaf: {self.nombre} ({self.tipo_documento}, {self.tamaño} KB)"
 
 class Enlace_Leaf(Component):
     def __init__(self, nombre, link):
@@ -48,7 +48,7 @@ class Enlace_Leaf(Component):
         self.link = link
         
     def operation(self):
-        return f"Enlace: {self.name} -> {self.link}"
+        return f"Enlace: {self.nombre} -> {self.link}"
 
 
 class Proxy(Component):
@@ -61,23 +61,15 @@ class Proxy(Component):
         self.access_log = {}
 
     def operation(self):
-        """
-        The most common applications of the Proxy pattern are lazy loading,
-        caching, controlling the access, logging, etc. A Proxy can perform one
-        of these things and then, depending on the result, pass the execution to
-        the same method in a linked RealSubject object.
-        """
-
-        if self.check_access():
-            self._real_subject.request()
-            self.log_access()
-
+        document_name = self.real_subject.name
+        if self.check_access(document_name):
+            self.real_subject.operation()
+            self.access_log[document_name] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+       
     def check_access(self) -> bool:
         print("Proxy: Checking access prior to firing a real request.")
         return True
 
-    def log_access(self) -> None:
-        print("Proxy: Logging the time of request.", end="")
 
 
 def client_code(subject: Subject) -> None:

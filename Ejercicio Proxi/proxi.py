@@ -9,6 +9,9 @@ class Component(ABC):
     
     def to_dict(self):
         raise NotImplementedError("to_dict method must be implemented in subclasses")
+    
+    def realizar_operacion(self):
+        pass
 
 class Carpeta(Component):
     def __init__(self, nombre):
@@ -68,7 +71,7 @@ class Enlace_Leaf(Component):
         }
 
 class Proxy(Component):
-    def __init__(self, real_subject):
+    def __init__(self, real_subject, ):
         self.real_subject = real_subject
         self.access_log = []
         self.access_checked = False  # Flag to track if access has been checked
@@ -96,6 +99,27 @@ class Proxy(Component):
             'real_subject': self.real_subject.to_dict(),
             'access_log': self.access_log
         }
+
+    def realizar_operacion(self):
+        if not self.usuario_actual:
+            print("Debe iniciar sesión primero.")
+            return
+
+        print("Operaciones disponibles:")
+        print("1. Acceder a un documento")
+        print("2. Operación específica del documento (simulación)")
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            self.real_subject.operation()
+            self.log_access(self.real_subject.nombre)
+        elif opcion == "2":
+            print("Realizando operación específica en el documento (simulación)...")
+            self.log_access("Operación específica")
+        else:
+            print("Opción no válida.")
+
+
 
 import json
 carpeta_principal = Carpeta("Principal")

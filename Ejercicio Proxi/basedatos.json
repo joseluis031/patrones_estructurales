@@ -16,9 +16,19 @@
     },
     {
       "tipo": "Documento",
-      "nombre": "wq",
-      "tipo_documento": "qw",
-      "tamanio": 34
+      "nombre": "editadowq",
+      "tipo_documento": "texto",
+      "tamanio": 89
+    },
+    {
+      "tipo": "Enlace",
+      "nombre": "editadomessi",
+      "link": "messi10.com"
+    },
+    {
+      "tipo": "Carpeta",
+      "nombre": "io editada",
+      "Contiene": []
     }
   ]
 }

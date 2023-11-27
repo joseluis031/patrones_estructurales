@@ -104,8 +104,9 @@ class Proxy(Component):
         }
         
 def cargar_estructura_desde_json(parent, json_data):
+    print("La carpeta principal del programa ")
     for child_data in json_data.get("Contiene", []):
-        print("Child Data:", child_data)
+        print(" contiene:", child_data)
         if child_data.get("tipo") == "Carpeta":
             child_folder = Carpeta(child_data.get("nombre"))
             parent.add(child_folder)

@@ -85,7 +85,7 @@ def realizar_operacion(usuario_actual, carpeta_principal):
         print(f"Carpeta '{nombre_carpeta}' añadida correctamente.")
     elif opcion == "6":
         # Editar documentos, enlaces o carpetas existentes
-        editar_elemento(carpeta_principal)
+        agregar_elemento_a_carpeta(carpeta_principal)
     else:
         print("Opción no válida.")
 
@@ -156,18 +156,41 @@ def editar_carpeta(carpeta, nombre_carpeta):
     
     
     
-def añadir_elemento(carpeta):
-    tipo_a_añadir = input("Ingrese el tipo a añadir (Documento, Enlace, Carpeta): ")
-    nombre_a_añadir = input("Ingrese el nombre a añadir: ")
-    
-    if tipo_a_añadir == "Documento":
-        añadir_documento(carpeta, nombre_a_añadir)
-    elif tipo_a_añadir == "Enlace":
-        añadir_enlace(carpeta, nombre_a_añadir)
-    elif tipo_a_añadir == "Carpeta":
-        añadir_carpeta(carpeta, nombre_a_añadir)
-    else:
-        print("Tipo no válido.")
+def agregar_elemento_a_carpeta(carpeta_principal):
+    # Mostrar las carpetas disponibles
+    print("Carpetas disponibles:")
+    for i, child in enumerate(carpeta_principal._children):
+        if isinstance(child, Carpeta):
+            print(f"{i + 1}. {child.nombre}")
+
+    # Elegir la carpeta
+    try:
+        indice_carpeta = int(input("Seleccione una carpeta (por número): ")) - 1
+        carpeta_seleccionada = carpeta_principal._children[indice_carpeta]
+
+        # Pedir detalles del nuevo elemento
+        tipo_elemento = input("Ingrese el tipo de elemento (Documento, Enlace, Carpeta): ")
+        nombre_elemento = input("Ingrese el nombre del nuevo elemento: ")
+
+        if tipo_elemento == "Documento":
+            tipo_documento = input("Ingrese el tipo de documento: ")
+            tamaño_documento = int(input("Ingrese el tamaño del documento en KB: "))
+            nuevo_elemento = Documentos_Leaf(nombre_elemento, tipo_documento, tamaño_documento)
+        elif tipo_elemento == "Enlace":
+            enlace = input("Ingrese el enlace: ")
+            nuevo_elemento = Enlace_Leaf(nombre_elemento, enlace)
+        elif tipo_elemento == "Carpeta":
+            nuevo_elemento = Carpeta(nombre_elemento)
+        else:
+            print("Tipo de elemento no válido.")
+            return
+
+        carpeta_seleccionada.add(nuevo_elemento)
+        guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
+        print(f"Elemento '{nombre_elemento}' añadido correctamente a la carpeta '{carpeta_seleccionada.nombre}'.")
+    except (ValueError, IndexError):
+        print("Selección no válida.")
+
 
 
 

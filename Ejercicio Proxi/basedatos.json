@@ -28,7 +28,14 @@
     {
       "tipo": "Carpeta",
       "nombre": "io editada",
-      "Contiene": []
+      "Contiene": [
+        {
+          "tipo": "Documento",
+          "nombre": "a\u00f1adir2",
+          "tipo_documento": "texto",
+          "tamanio": 67
+        }
+      ]
     }
   ]
 }

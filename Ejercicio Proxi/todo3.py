@@ -9,7 +9,7 @@ class Component(ABC):
     def operation(self) -> None:
         pass
     
-    def to_dict(self):
+    def to_dicta(self):
         raise NotImplementedError("to_dict method must be implemented in subclasses")
     
     def realizar_operacion(self):
@@ -32,7 +32,7 @@ class Carpeta(Component):
             results.append(child.operation())
         return '\n'.join(results)
     
-    def to_dict(self):
+    def to_dicta(self):
         return {
             "tipo": "Carpeta",
             "nombre": self.nombre,
@@ -49,7 +49,7 @@ class Documentos_Leaf(Component):
     def operation(self):
         return  f"Leaf: {self.nombre} ({self.tipo_documento}, {self.tamaño} KB)"
     
-    def to_dict(self):
+    def to_dicta(self):
         return {
             "tipo": "Documento",
             "nombre": self.nombre,
@@ -237,18 +237,22 @@ def realizar_operacion(usuario_actual, carpeta_principal):
         if pregunta == "1":
             pregunta2 = input("¿Que desea: \n 1.añadir un documento \n 2.añadir un enlace \n 3.añadir una carpeta ? \n").lower()
             if pregunta2 == "1":
-                nombre_documento = input("Ingrese el nombre del nuevo documento: ")
-                tipo_documento = input("Ingrese el tipo del nuevo documento: ")
-                tamaño_documento = input("Ingrese el tamaño del nuevo documento (KB): ")
+                
+                
+                documento1 = Documentos_Leaf("Documento1", "Texto", 10)
+        
+                proxy_documento1 = Proxy(documento1)
+                proxy_documento1.operation()
 
-                nuevo_documento = Documentos_Leaf(nombre_documento, tipo_documento, tamaño_documento)
-                carpeta_principal.add(nuevo_documento)
-                
-                
-                
-                guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
+                carpeta_principal.add(proxy_documento1)
 
-                print(f"Documento '{nombre_documento}' añadido correctamente.")
+                # Convertir la estructura a JSON
+                estructura_json = carpeta_principal.to_dict()
+                print(estructura_json)
+                
+                guardar_estructura_en_json(estructura_json, "Ejercicio Proxi/basedatos.json")
+
+                print(f"Documento añadido correctamente.")
                 exit()
             elif pregunta2 == "2":
                 nombre_enlace = input("Ingrese el nombre del nuevo enlace: ")

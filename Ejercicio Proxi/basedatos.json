@@ -99,6 +99,18 @@
       "nombre": "qqq",
       "tipo_documento": "q",
       "tamanio": "2"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "o",
+      "tipo_documento": "oppp",
+      "tamanio": "2"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "abc",
+      "tipo_documento": "texto",
+      "tamanio": "456"
     }
   ]
 }

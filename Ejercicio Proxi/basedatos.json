@@ -56,14 +56,43 @@
     },
     {
       "tipo": "Documento",
-      "nombre": "e",
-      "tipo_documento": "e",
-      "tamanio": "3"
+      "nombre": "noticias",
+      "tipo_documento": "texto",
+      "tamanio": 36
     },
     {
       "tipo": "Enlace",
       "nombre": "viode viral",
       "link": "caidas.com"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "robo al barsa",
+      "tipo_documento": "texto",
+      "tamanio": "355"
+    },
+    {
+      "tipo": "Enlace",
+      "nombre": "polm",
+      "link": "polm.com"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "a",
+      "tipo_documento": "a",
+      "tamanio": "2"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "a",
+      "tipo_documento": "a",
+      "tamanio": "a"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "w",
+      "tipo_documento": "q",
+      "tamanio": "2"
     }
   ]
 }

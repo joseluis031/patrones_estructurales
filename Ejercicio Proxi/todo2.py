@@ -89,7 +89,11 @@ class Proxy2(Component):
         self.log_access()
 
     def check_access(self, nombre_usuario, contraseña) -> None:
-        print("Proxy: Verificar el acceso antes de enviar una solicitud real.")
+        print("Proxy: Verificando el acceso antes de enviar una solicitud real...")
+        #que pasen 3 segundos
+        from time import sleep
+        sleep(3)
+        
         if self.usuarios_registrados:
             usuario_autenticado = any(
                 user.usuario == nombre_usuario and user.contraseña == contraseña for user in self.usuarios_registrados
@@ -98,7 +102,9 @@ class Proxy2(Component):
             if usuario_autenticado:
                 print("Proxy: Usuario autenticado. Acceso concedido.")
                 self.usuario_autenticado = True
-                self.log_access()
+                nombre_usuario = nombre_usuario
+                self.log_access(nombre_usuario)
+                self.to_dict(nombre_usuario)
                 return True
                 
             else:
@@ -109,17 +115,17 @@ class Proxy2(Component):
             exit()  # Salir del programa si no hay usuarios registrados
 
 
-    def log_access(self) -> None:
+    def log_access(self,nombre_usuario) -> None:
         if self.usuario_autenticado:
             print("Proxy: Registro de la hora de la solicitud:", end="")
-            print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            print("El usuario {} accedió a la carpeta {} a las {}".format(nombre_usuario, self.real_subject.nombre, datetime.now().strftime("%H:%M:%S")))
             return True
  
-    def to_dict(self):
+    def to_dict(self,nombre_usuario):
         return {
             "tipo": "Proxy",
-            "nombre": self.nombre,
-            "children": [child.to_dict() for child in self._children]
+            "editado por": nombre_usuario,
+            "hora":  datetime.now().strftime("%H:%M:%S")
         }
 
 
@@ -237,9 +243,12 @@ def realizar_operacion(usuario_actual, carpeta_principal):
 
                 nuevo_documento = Documentos_Leaf(nombre_documento, tipo_documento, tamaño_documento)
                 carpeta_principal.add(nuevo_documento)
+                
+                
                 guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
 
                 print(f"Documento '{nombre_documento}' añadido correctamente.")
+                exit()
             elif pregunta2 == "2":
                 nombre_enlace = input("Ingrese el nombre del nuevo enlace: ")
                 link_enlace = input("Ingrese el enlace: ")
@@ -247,6 +256,7 @@ def realizar_operacion(usuario_actual, carpeta_principal):
                 carpeta_principal.add(nuevo_enlace)
                 guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
                 print(f"Enlace '{nombre_enlace}' añadido correctamente.")
+                exit()
                 
             elif pregunta2 == "3":
                 nombre_carpeta = input("Ingrese el nombre de la nueva carpeta: ")
@@ -254,19 +264,24 @@ def realizar_operacion(usuario_actual, carpeta_principal):
                 carpeta_principal.add(nueva_carpeta)
                 guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
                 print(f"Carpeta '{nombre_carpeta}' añadida correctamente.")
+                exit()
         elif pregunta == "2":
             agregar_elemento_a_carpeta(carpeta_principal)
+            exit()
             
         
     elif opcion1 == "2":
         borrar_elemento(carpeta_principal)        
+        exit()
                 
     elif opcion1 == "3":
         editar_elemento(carpeta_principal)
+        exit()
         
     elif opcion1 == "4":
         carpeta_principal.operation()
        # log_access(carpeta_principal.nombre)
+        exit()
     elif opcion1 == "5":
         print("Gracias por usar el programa")
         exit()

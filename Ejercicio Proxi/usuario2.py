@@ -3,6 +3,8 @@ from proxi import *
 import getpass  # Módulo para ocultar la entrada de contraseña en la consola
 import csv 
 
+
+
 class Usuario:
     def __init__(self, usuario, contraseña):
         self.usuario = usuario
@@ -48,185 +50,19 @@ def iniciar_sesion():
     contraseña_buscar = getpass.getpass("Ingrese su contraseña: ")
     return Usuario.buscar_en_csv("Ejercicio Proxi/usuarios.csv", nombre_usuario_buscar, contraseña_buscar)
 
-def realizar_operacion(usuario_actual, carpeta_principal):
-    # ... (código anterior)
-
-    opcion = input("Seleccione una opción: ")
-
-    if opcion == "1":
-        # Acceder a una Carpeta (simulación)
-        carpeta_principal.operation()
-    elif opcion == "2":
-        # Editar documento (simulación)
-        print("Realizando operación específica en el documento (simulación)...")
-    elif opcion == "3":
-        # Añadir documento (simulación)
-        nombre_documento = input("Ingrese el nombre del nuevo documento: ")
-        tipo_documento = input("Ingrese el tipo de documento: ")
-        tamaño_documento = int(input("Ingrese el tamaño del documento en KB: "))
-        nuevo_documento = Documentos_Leaf(nombre_documento, tipo_documento, tamaño_documento)
-        carpeta_principal.add(nuevo_documento)
-        guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
-        print(f"Documento '{nombre_documento}' añadido correctamente.")
-    elif opcion == "4":
-        # Añadir enlace (simulación)
-        nombre_enlace = input("Ingrese el nombre del nuevo enlace: ")
-        link_enlace = input("Ingrese el enlace: ")
-        nuevo_enlace = Enlace_Leaf(nombre_enlace, link_enlace)
-        carpeta_principal.add(nuevo_enlace)
-        guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
-        print(f"Enlace '{nombre_enlace}' añadido correctamente.")
-    elif opcion == "5":
-        # Añadir carpeta (simulación)
-        nombre_carpeta = input("Ingrese el nombre de la nueva carpeta: ")
-        nueva_carpeta = Carpeta(nombre_carpeta)
-        carpeta_principal.add(nueva_carpeta)
-        guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
-        print(f"Carpeta '{nombre_carpeta}' añadida correctamente.")
-    elif opcion == "6":
-        # Editar documentos, enlaces o carpetas existentes
-        borrar_elemento(carpeta_principal)
-
-    else:
-        print("Opción no válida.")
 
 
-def editar_elemento(carpeta):
-    tipo_a_editar = input("Ingrese el tipo a editar (Documento, Enlace, Carpeta): ")
-    nombre_a_editar = input("Ingrese el nombre a editar: ")
 
-    if tipo_a_editar == "Documento":
-        editar_documento(carpeta, nombre_a_editar)
-    elif tipo_a_editar == "Enlace":
-        editar_enlace(carpeta, nombre_a_editar)
-    elif tipo_a_editar == "Carpeta":
-        editar_carpeta(carpeta, nombre_a_editar)
-    else:
-        print("Tipo no válido.")
-        
-def editar_documento(carpeta, nombre_documento):
-    for child in carpeta._children:
-        if isinstance(child, Documentos_Leaf) and child.nombre == nombre_documento:
-            print(f"Documento encontrado: {child.operation()}")
-            nuevo_nombre = input("Ingrese el nuevo nombre del documento: ")
-            nuevo_tipo = input("Ingrese el nuevo tipo de documento: ")
-            nuevo_tamaño = int(input("Ingrese el nuevo tamaño del documento en KB: "))
-            
-            child.nombre = nuevo_nombre
-            child.tipo_documento = nuevo_tipo
-            child.tamaño = nuevo_tamaño
-            
-            guardar_estructura_en_json(carpeta, "Ejercicio Proxi/basedatos.json")
-            
-            print(f"Documento '{nombre_documento}' editado correctamente.")
-            return
-
-    print(f"Documento '{nombre_documento}' no encontrado.")
-    
-def editar_enlace(carpeta, nombre_enlace):
-    for child in carpeta._children:
-        if isinstance(child, Enlace_Leaf) and child.nombre == nombre_enlace:
-            print(f"Enlace encontrado: {child.operation()}")
-            nuevo_nombre = input("Ingrese el nuevo nombre del enlace: ")
-            nuevo_link = input("Ingrese el nuevo enlace: ")
-            
-            child.nombre = nuevo_nombre
-            child.link = nuevo_link
-            
-            guardar_estructura_en_json(carpeta, "Ejercicio Proxi/basedatos.json")
-            
-            print(f"Enlace '{nombre_enlace}' editado correctamente.")
-            return
-
-    print(f"Enlace '{nombre_enlace}' no encontrado.")
-    
-def editar_carpeta(carpeta, nombre_carpeta):
-    for child in carpeta._children:
-        if isinstance(child, Carpeta) and child.nombre == nombre_carpeta:
-            print(f"Carpeta encontrada: {child.operation()}")
-            nuevo_nombre = input("Ingrese el nuevo nombre de la carpeta: ")
-            
-            child.nombre = nuevo_nombre
-            
-            guardar_estructura_en_json(carpeta, "Ejercicio Proxi/basedatos.json")
-            
-            print(f"Carpeta '{nombre_carpeta}' editada correctamente.")
-            return
-
-    print(f"Carpeta '{nombre_carpeta}' no encontrada.")
     
     
     
-def agregar_elemento_a_carpeta(carpeta_principal):
-    # Mostrar las carpetas disponibles
-    print("Carpetas disponibles:")
-    for i, child in enumerate(carpeta_principal._children):
-        if isinstance(child, Carpeta):
-            print(f"{i + 1}. {child.nombre}")
-
-    # Elegir la carpeta
-    try:
-        indice_carpeta = int(input("Seleccione una carpeta (por número): ")) - 1
-        carpeta_seleccionada = carpeta_principal._children[indice_carpeta]
-
-        # Pedir detalles del nuevo elemento
-        tipo_elemento = input("Ingrese el tipo de elemento (Documento, Enlace, Carpeta): ")
-        nombre_elemento = input("Ingrese el nombre del nuevo elemento: ")
-
-        if tipo_elemento == "Documento":
-            tipo_documento = input("Ingrese el tipo de documento: ")
-            tamaño_documento = int(input("Ingrese el tamaño del documento en KB: "))
-            nuevo_elemento = Documentos_Leaf(nombre_elemento, tipo_documento, tamaño_documento)
-        elif tipo_elemento == "Enlace":
-            enlace = input("Ingrese el enlace: ")
-            nuevo_elemento = Enlace_Leaf(nombre_elemento, enlace)
-        elif tipo_elemento == "Carpeta":
-            nuevo_elemento = Carpeta(nombre_elemento)
-        else:
-            print("Tipo de elemento no válido.")
-            return
-
-        carpeta_seleccionada.add(nuevo_elemento)
-        guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
-        print(f"Elemento '{nombre_elemento}' añadido correctamente a la carpeta '{carpeta_seleccionada.nombre}'.")
-    except (ValueError, IndexError):
-        print("Selección no válida.")
 
 
 
 
 
-def borrar_elemento(carpeta):
-    # Inputs
-    tipo_elemento = input("Ingrese el tipo del elemento (Carpeta/Documento/Enlace): ")
-    nombre_elemento = input("Ingrese el nombre del elemento que desea borrar: ")
 
-    # Verificar si la carpeta contiene elementos
-    if not carpeta._children:
-        print(f"No hay elementos para borrar en la carpeta '{carpeta.nombre}'.")
-        return
 
-    # Buscar el elemento por tipo y nombre
-    elemento_encontrado = None
-    for elemento in carpeta._children:
-        if isinstance(elemento, Carpeta) and elemento.nombre == nombre_elemento and tipo_elemento == "Carpeta":
-            elemento_encontrado = elemento
-            break
-        elif isinstance(elemento, Documentos_Leaf) and elemento.nombre == nombre_elemento and tipo_elemento == "Documento":
-            elemento_encontrado = elemento
-            break
-        elif isinstance(elemento, Enlace_Leaf) and elemento.nombre == nombre_elemento and tipo_elemento == "Enlace":
-            elemento_encontrado = elemento
-            break
-
-    # Si se encuentra el elemento, eliminarlo y actualizar el JSON
-    if elemento_encontrado:
-        carpeta.remove(elemento_encontrado)
-        guardar_estructura_en_json(carpeta, "Ejercicio Proxi/basedatos.json")
-        print(f"Elemento '{nombre_elemento}' ({tipo_elemento}) eliminado correctamente de la carpeta '{carpeta.nombre}'.")
-    else:
-        print(f"No se encontró el elemento '{nombre_elemento}' ({tipo_elemento}) en la carpeta '{carpeta.nombre}'.")
-        
 
 # Llamada a la función
 
@@ -253,20 +89,7 @@ def borrar_elemento(carpeta):
 
 
 
-opcion = input("¿Desea registrarse (r) o iniciar sesión (i)? ").lower()
 
-if opcion == 'r':
-    # Registrarse
-    registrar_usuario()
-elif opcion == 'i':
-    # Iniciar sesión
-    if iniciar_sesion():
-        # Usuario autenticado, cargar estructura y realizar operaciones
-        carpeta_principal = Carpeta("Principal")
-        cargar_estructura_desde_json(carpeta_principal, json.load(open("Ejercicio Proxi/basedatos.json")))
-        realizar_operacion("usuario_actual", carpeta_principal)
-else:
-    print("Opción no válida. Por favor, seleccione 'r' para registrarse o 'i' para iniciar sesión.")
 '''
 # Solicitar al usuario que elija entre registrarse e iniciar sesión
 opcion = input("¿Desea registrarse (r) o iniciar sesión (i)? ").lower()

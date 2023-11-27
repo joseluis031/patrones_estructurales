@@ -70,7 +70,7 @@ class Usuariobu:
         detalles_pizza = self.builder.producir_pizza.parts
         
         def guardar_pizza( tipo, detalles_pizza):
-            with open('pedidosnuevos.csv', mode='a', newline='') as file:
+            with open('Pizzeria/Datos/pedidosnuevos.csv', mode='a', newline='') as file:
                 writer = csv.writer(file)
                 id = self.nombre
                 # Crea una nueva fila con nombre, usuario y contraseña

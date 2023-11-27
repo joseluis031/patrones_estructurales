@@ -40,14 +40,14 @@ class Leaf_pizza(Component_menu):
         
         
     def operation(self):
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row:
                     return self._nombre
 
     def precio(self) -> float:
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row:
@@ -62,14 +62,14 @@ class Leaf_pizza_personalizada(Component_menu):
     
         
     def operation(self):
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row:
                     return self._nombre
         
     def precio(self) -> float:
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row:
@@ -95,14 +95,14 @@ class Leaf_bebida(Component_menu):
     
     
     def operation(self):
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row[3]:
                     return self._nombre
                 
     def precio(self) -> float:
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row[3]:
@@ -115,14 +115,14 @@ class Leaf_entrante(Component_menu):
         
 
     def operation(self):
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row[9]:
                     return self._nombre
                 
     def precio(self) -> float:
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row[9]:
@@ -135,14 +135,14 @@ class Leaf_postre(Component_menu):
         
 
     def operation(self):
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row[6]:
                     return self._nombre
                 
     def precio(self) -> float:
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if self._nombre in row[6]:

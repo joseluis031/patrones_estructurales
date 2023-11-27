@@ -288,16 +288,16 @@ class Pedido():
     def guardar_pedido(self):
         diccionario_pedido = self.dict()
         try:
-            pedidos = pd.read_csv('pedidosnuevos.csv')
+            pedidos = pd.read_csv('Datos/pedidosnuevos.csv')
         except:
             pedidos = pd.DataFrame(columns=['masa', 'salsa', 'ingredientes', 'coccion', 'presentacion', 'maridaje', 'extras'])
         
         pedidos = pd.concat([pedidos, pd.DataFrame([diccionario_pedido])], ignore_index=True)
-        pedidos.to_csv('pedidosnuevos.csv', index=False)
+        pedidos.to_csv('Datos/pedidosnuevos.csv', index=False)
 
 import csv
 def guardar_pizzapersonalizada( tipo, detalles_pizza):
-        with open('pedidosnuevos.csv', mode='a', newline='') as file:
+        with open('Datos/pedidosnuevos.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
 
             # Crea una nueva fila con nombre, usuario y contraseña

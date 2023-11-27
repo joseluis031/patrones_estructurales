@@ -1,5 +1,6 @@
 
 from clientw3 import *
+from obtener_productos import *
 
 
 def pedido1():        
@@ -30,6 +31,7 @@ def pedido1():
                 cliente = Cliente(nombre_cliente, nombre_usuario, contraseña)
                 cliente.guardar_cliente()
                 cliente.guardar_pedido(pedido_cliente._children)  # Guardar el pedido del cliente
+                exit()
 
 
                 
@@ -75,7 +77,7 @@ def pedido1():
 
                 # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(pedido1_menu._children, "Menu basico")
-                                        
+                    exit()    
                 elif menu == "2":
                     pedido1_pizza = Leaf_pizza("barbacoa")
                     pedido1_bebida = Leaf_bebida("coca-cola")
@@ -102,7 +104,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(pedido2_menu._children, "Menu EEUU")                
-                
+                    exit()
                 elif menu == "3":
                     pedido1_pizza = Leaf_pizza("4 quesos")
                     pedido1_bebida = Leaf_bebida("vino")
@@ -129,7 +131,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(pedido3_menu._children, "Menu italiano")                    
-                                
+                    exit()         
                 elif menu == "4":
                     pedido1_pizza = Leaf_pizza("carbonara")
                     pedido1_bebida = Leaf_bebida("agua")
@@ -155,7 +157,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(pedido4_menu._children, "Menu español")
-                                                    
+                    exit()                             
                 elif menu == "5":
                     pedido1_pizza = Leaf_pizza("hawaiana")
                     pedido1_bebida = Leaf_bebida("coca-cola")
@@ -182,7 +184,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(pedido5_menu._children, "Menu frances")
-                                        
+                    exit()                  
             elif bienvenida =="3":
                 print("Tenemos los siguientes productos: 1. Bebida, 2. Entrante, 3. Postre")
                 producto = input("Elige el numero del producto que quieres: ")
@@ -200,7 +202,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_pedido([pedido1_bebida])
-                    
+                    exit()
                 elif producto == "2":
                     entrante = obtener_entrante()
                     pedido1_entrante = Leaf_entrante(entrante)
@@ -211,7 +213,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_pedido([pedido1_entrante])
-                    
+                    exit()
                     
                 elif producto == "3":
                     postre = obtener_postre()
@@ -223,7 +225,7 @@ def pedido1():
 
                     # Guardar el pedido del cliente
                     cliente.guardar_pedido([pedido1_postre])
-                    
+                    exit()
             elif bienvenida =="4":
                 print("Los combos tienen un 15% de descuento respecto del precio total")
                 print("Tenemos los siguientes combos:")
@@ -265,7 +267,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(combo1._children, "Combo Pareja")
-                                        
+                    exit()                   
                 elif combo == "2":
                     combo1 = Composite_combo1("Combo Familiar")
                     pedido1_pizza = Leaf_pizza("margarita")
@@ -314,7 +316,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(combo1._children, "Combo Familiar")
-                                        
+                    exit()                    
                 elif combo == "3":
                     combo1 = Composite_combo1("Combo Maxi")
                     pedido1_pizza = Leaf_pizza("barbacoa")
@@ -377,7 +379,7 @@ def pedido1():
                     
                     # Guardar el pedido del cliente
                     cliente.guardar_combo_menu(combo1._children, "Combo Maxi") 
-                    
+                    exit()
             elif bienvenida =="5":
                 
                 usuario = Usuariobu()
@@ -402,9 +404,7 @@ def pedido1():
                 
                 
                 
-                # Guardar el pedido del cliente
-                                # Guardar el pedido del cliente
-                
+                exit()
                 
             else:
                 print("Vale, adios")

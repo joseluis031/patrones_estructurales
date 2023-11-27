@@ -1,7 +1,7 @@
 import csv
 
 def buscar_preciopizza(pizza):
-        with open('precio_elementos.csv', newline='') as File:
+        with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
             reader = csv.reader(File)
             for row in reader:
                 if pizza in row:
@@ -11,7 +11,7 @@ a = buscar_preciopizza("a")
 print(a)      
 
 def buscar_precioentrante(entrante):
-    with open('precio_elementos.csv', newline='') as File:
+    with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
         reader = csv.reader(File)
         for row in reader:
             if entrante in row[9]:
@@ -20,7 +20,7 @@ b = buscar_precioentrante("aa")
 print(b)     
 
 def buscar_preciobebida(bebida):
-    with open('precio_elementos.csv', newline='') as File:
+    with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
         reader = csv.reader(File)
         for row in reader:
             if bebida in row[3]:
@@ -30,7 +30,7 @@ c = buscar_preciobebida("aa")
 print(c)
 
 def buscar_preciopostre(postre):
-    with open('precio_elementos.csv', newline='') as File:
+    with open('Pizzeria/Datos/precio_elementos.csv', newline='') as File:
         reader = csv.reader(File)
         for row in reader:
             if postre in row[6]:

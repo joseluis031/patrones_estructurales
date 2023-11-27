@@ -102,3 +102,23 @@ class Proxy(Component):
             'real_subject': self.real_subject.to_dict(),
             'access_log': self.access_log
         }
+        
+def cargar_estructura_desde_json(parent, json_data):
+    for child_data in json_data.get("Contiene", []):
+        print("Child Data:", child_data)
+        if child_data.get("tipo") == "Carpeta":
+            child_folder = Carpeta(child_data.get("nombre"))
+            parent.add(child_folder)
+            cargar_estructura_desde_json(child_folder, child_data)
+        elif child_data.get("tipo") == "Documento":
+            child_document = Documentos_Leaf(child_data.get("nombre"), child_data.get("tipo_documento"), child_data.get("tamanio"))
+            parent.add(child_document)
+        elif child_data.get("tipo") == "Enlace":
+            child_link = Enlace_Leaf(child_data.get("nombre"), child_data.get("link"))
+            parent.add(child_link)
+
+
+def guardar_estructura_en_json(estructura, archivo_json):
+    estructura_json = estructura.to_dict()
+    with open(archivo_json, "w") as json_file:
+        json.dump(estructura_json, json_file, indent=2)

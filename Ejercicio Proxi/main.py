@@ -6,30 +6,55 @@ import getpass
 from usuario2 import *
 
 # Solicitar al usuario que elija entre registrarse e iniciar sesión
-opcion = input("¿Desea registrarse (r) o iniciar sesión (i)? ").lower()
+# main.py
 
-if opcion == 'r':
-    # Registrarse
+# ... (código anterior)
+
+def registrar_usuario():
     nombre_usuario = input("Ingrese su nombre de usuario: ")
-    contraseña = getpass.getpass("Ingrese su contraseña: ")  # Utilizar getpass para ocultar la contraseña
+    contraseña = getpass.getpass("Ingrese su contraseña: ")
     nuevo_usuario = Usuario(nombre_usuario, contraseña)
-    nuevo_usuario.guardar_en_csv("Ejercicio Proxi/usuarios.csv")
+    nuevo_usuario.guardar_en_csv("usuarios.csv")
 
-if opcion == 'i':
-    # Iniciar sesión
+def iniciar_sesion():
     nombre_usuario_buscar = input("Ingrese su nombre de usuario: ")
     contraseña_buscar = getpass.getpass("Ingrese su contraseña: ")
+    return Usuario.buscar_en_csv("usuarios.csv", nombre_usuario_buscar, contraseña_buscar)
 
-    # Buscar un usuario en el archivo CSV con nombre de usuario y contraseña
-    if Usuario.buscar_en_csv("Ejercicio Proxi/usuarios.csv", nombre_usuario_buscar, contraseña_buscar):
-        # Usuario autenticado, crear Proxy y acceder a la estructura
-        carpeta_principal = Carpeta("Principal")
-        proxy_documento1 = Proxy(carpeta_principal, usuario_actual=nombre_usuario_buscar)
+def realizar_operacion(usuario_actual, carpeta_principal):
+    # ... (código anterior)
 
-        # Llamada a la función realizar_operacion
-        proxy_documento1.realizar_operacion()
+    opcion = input("Seleccione una opción: ")
 
-        # Convertir la estructura a JSON
-        estructura_json = carpeta_principal.to_dict()
-        with open("Ejercicio Proxi/basedatos.json", "w") as json_file:
-            json.dump(estructura_json, json_file, indent=2)
+    if opcion == "1":
+        # Acceder a una Carpeta (simulación)
+        carpeta_principal.operation()
+    elif opcion == "2":
+        # Editar documento (simulación)
+        print("Realizando operación específica en el documento (simulación)...")
+    elif opcion == "3":
+        # Añadir documento (simulación)
+        nombre_documento = input("Ingrese el nombre del nuevo documento: ")
+        tipo_documento = input("Ingrese el tipo de documento: ")
+        tamaño_documento = int(input("Ingrese el tamaño del documento en KB: "))
+        nuevo_documento = Documentos_Leaf(nombre_documento, tipo_documento, tamaño_documento)
+        carpeta_principal.add(nuevo_documento)
+        guardar_estructura_en_json(carpeta_principal, "basedatos.json")
+        print(f"Documento '{nombre_documento}' añadido correctamente.")
+    elif opcion == "4":
+        # Añadir enlace (simulación)
+        nombre_enlace = input("Ingrese el nombre del nuevo enlace: ")
+        link_enlace = input("Ingrese el enlace: ")
+        nuevo_enlace = Enlace_Leaf(nombre_enlace, link_enlace)
+        carpeta_principal.add(nuevo_enlace)
+        guardar_estructura_en_json(carpeta_principal, "basedatos.json")
+        print(f"Enlace '{nombre_enlace}' añadido correctamente.")
+    elif opcion == "5":
+        # Añadir carpeta (simulación)
+        nombre_carpeta = input("Ingrese el nombre de la nueva carpeta: ")
+        nueva_carpeta = Carpeta(nombre_carpeta)
+        carpeta_principal.add(nueva_carpeta)
+        guardar_estructura_en_json(carpeta_principal, "basedatos.json")
+        print(f"Carpeta '{nombre_carpeta}' añadida correctamente.")
+    else:
+        print("Opción no válida.")

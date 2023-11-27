@@ -36,17 +36,23 @@
           "tamanio": 67
         },
         {
-          "tipo": "Carpeta",
-          "nombre": "capeta2",
-          "Contiene": []
-        },
-        {
           "tipo": "Documento",
           "nombre": "ooo",
           "tipo_documento": "texto",
           "tamanio": 45
+        },
+        {
+          "tipo": "Enlace",
+          "nombre": "op",
+          "link": "op.com"
         }
       ]
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "amigo edit",
+      "tipo_documento": "texto",
+      "tamanio": 345
     }
   ]
 }

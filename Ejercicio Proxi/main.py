@@ -4,7 +4,7 @@ from proxi import *
 import json
 import getpass
 from usuario2 import *
-from añadir import *
+from añadir_carpeta import *
 from borrar import *
 from editar import *
 

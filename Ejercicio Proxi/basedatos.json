@@ -93,6 +93,12 @@
       "nombre": "w",
       "tipo_documento": "q",
       "tamanio": "2"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "qqq",
+      "tipo_documento": "q",
+      "tamanio": "2"
     }
   ]
 }

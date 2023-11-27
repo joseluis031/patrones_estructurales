@@ -92,7 +92,7 @@ class Proxy2(Component):
         print("Proxy: Verificando el acceso antes de enviar una solicitud real...")
         #que pasen 3 segundos
         from time import sleep
-        sleep(3)
+        sleep(1)
         
         if self.usuarios_registrados:
             usuario_autenticado = any(
@@ -104,7 +104,7 @@ class Proxy2(Component):
                 self.usuario_autenticado = True
                 nombre_usuario = nombre_usuario
                 self.log_access(nombre_usuario)
-                self.to_dict(nombre_usuario)
+                self.to_dicta()
                 return True
                 
             else:
@@ -121,11 +121,11 @@ class Proxy2(Component):
             print("El usuario {} accedió a la carpeta {} a las {}".format(nombre_usuario, self.real_subject.nombre, datetime.now().strftime("%H:%M:%S")))
             return True
  
-    def to_dict(self,nombre_usuario):
+    def to_dicta(self):
         return {
-            "tipo": "Proxy",
-            "editado por": nombre_usuario,
-            "hora":  datetime.now().strftime("%H:%M:%S")
+            'type': 'Proxy',
+            'real_subject': self.real_subject.to_dict(),
+            'access_log': self.access_log
         }
 
 

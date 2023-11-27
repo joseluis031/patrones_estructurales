@@ -20,19 +20,19 @@ class Usuario:
             print(f"Error al guardar en CSV: {e}")
 
     @staticmethod
-    def buscar_en_csv(archivo_csv, usuario_buscar, contraseña_buscar):
+    def cargar_usuarios_desde_csv(archivo_csv):
+        usuarios = []
         try:
             with open(archivo_csv, mode='r') as file:
                 reader = csv.reader(file)
                 for row in reader:
-                    if row and row[0] == usuario_buscar and row[1] == contraseña_buscar:
-                        print(f"Inicio de sesión exitoso para '{usuario_buscar}' ")
-                        return True
-            print(f"Inicio de sesión fallido para '{usuario_buscar}' o la contraseña no coincide")
-            return False
+                    if row:
+                        usuario = Usuario(row[0], row[1])
+                        usuarios.append(usuario)
+            print("Usuarios cargados correctamente desde CSV.")
         except Exception as e:
-            print(f"Error al buscar en CSV: {e}")
-            return False
+            print(f"Error al cargar usuarios desde CSV: {e}")
+        return usuarios
 
 
 # main.py
@@ -48,10 +48,19 @@ def registrar_usuario():
 def iniciar_sesion():
     nombre_usuario_buscar = input("Ingrese su nombre de usuario: ")
     contraseña_buscar = getpass.getpass("Ingrese su contraseña: ")
-    return Usuario.buscar_en_csv("Ejercicio Proxi/usuarios.csv", nombre_usuario_buscar, contraseña_buscar)
 
-
-
+    # Cargar usuarios desde el archivo CSV
+    usuarios_registrados = Usuario.cargar_usuarios_desde_csv("Ejercicio Proxi/usuarios.csv")
+    
+    # Crear una instancia de Proxy con la lista de usuarios cargada
+    proxy = Proxy(carpeta_principal, usuarios_registrados)
+    # Autenticar al usuario mediante el Proxy
+    if proxy.check_access(nombre_usuario_buscar, contraseña_buscar):
+        print(f"Inicio de sesión exitoso para '{nombre_usuario_buscar}' ")
+        return True
+    else:
+        print(f"Inicio de sesión fallido para '{nombre_usuario_buscar}' o la contraseña no coincide")
+        return False
 
     
     

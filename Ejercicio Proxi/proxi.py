@@ -73,44 +73,66 @@ class Enlace_Leaf(Component):
         }
 
 class Proxy(Component):
-    def __init__(self, real_subject, usuario_actual=None):
+    def __init__(self, real_subject, usuarios_registrados=None):
         self.real_subject = real_subject
-        self.usuario_actual = usuario_actual
+        self.usuarios_registrados = usuarios_registrados
         self.access_log = []
         self.access_checked = False  # Flag to track if access has been checked
+        self.usuario_autenticado = False  # Flag para rastrear si el usuario está autenticado
 
     def operation(self):
-        document_name = self.real_subject.nombre
         if not self.access_checked:  # Check access only the first time
-            self.check_access(document_name)
+            self.check_access()
             self.access_checked = True
         self.real_subject.operation()
-        self.log_access(document_name)
-       
-    def check_access(self, document_name) -> bool:
-        print("Proxy: Checking access prior to firing a real request.")
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.access_log.append({'Modificado por Usuario': document_name , 'timestamp': timestamp})
-        return True
+        self.log_access()
 
-    def log_access(self, document_name) -> None:
-        print("Proxy: Logging the time of request.", end="")
+    def check_access(self, nombre_usuario, contraseña) -> None:
+        print("Proxy: Verificando el acceso antes de enviar una solicitud real...")
+        #que pasen 3 segundos
+        from time import sleep
+        sleep(1)
+        
+        if self.usuarios_registrados:
+            usuario_autenticado = any(
+                user.usuario == nombre_usuario and user.contraseña == contraseña for user in self.usuarios_registrados
+            )
 
-    def to_dict(self):
+            if usuario_autenticado:
+                print("Proxy: Usuario autenticado. Acceso concedido.")
+                self.usuario_autenticado = True
+                nombre_usuario = nombre_usuario
+                self.log_access(nombre_usuario)
+                self.to_dicta()
+                return True
+                
+            else:
+                print("Proxy: Usuario no autenticado. Acceso denegado.")
+                exit()  # Salir del programa si el usuario no está autenticado
+        else:
+            print("Proxy: No hay usuarios registrados. Acceso denegado.")
+            exit()  # Salir del programa si no hay usuarios registrados
+
+
+    def log_access(self,nombre_usuario) -> None:
+        if self.usuario_autenticado:
+            print("Proxy: Registro de la hora de la solicitud:", end="")
+            print("El usuario {} accedió a la carpeta {} a las {}".format(nombre_usuario, self.real_subject.nombre, datetime.now().strftime("%H:%M:%S")))
+            return True
+ 
+    def to_dicta(self):
         return {
             'type': 'Proxy',
             'real_subject': self.real_subject.to_dict(),
             'access_log': self.access_log
         }
         
-def cargar_estructura_desde_json(parent, json_data):
-    print("La carpeta principal del programa ")
+def cargar_estructura_desde_json5(parent, json_data):
     for child_data in json_data.get("Contiene", []):
-        print(" contiene:", child_data)
         if child_data.get("tipo") == "Carpeta":
             child_folder = Carpeta(child_data.get("nombre"))
             parent.add(child_folder)
-            cargar_estructura_desde_json(child_folder, child_data)
+            cargar_estructura_desde_json5(child_folder, child_data)
         elif child_data.get("tipo") == "Documento":
             child_document = Documentos_Leaf(child_data.get("nombre"), child_data.get("tipo_documento"), child_data.get("tamanio"))
             parent.add(child_document)
@@ -123,3 +145,5 @@ def guardar_estructura_en_json(estructura, archivo_json):
     estructura_json = estructura.to_dict()
     with open(archivo_json, "w") as json_file:
         json.dump(estructura_json, json_file, indent=2)
+        
+carpeta_principal = Carpeta("Principal")

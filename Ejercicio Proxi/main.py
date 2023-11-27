@@ -14,7 +14,7 @@ from interfaz import *
 # main.py
 
 # ... (código anterior)
-
+cargar_estructura_desde_json5(carpeta_principal, json.load(open("Ejercicio Proxi/basedatos.json")))
 opcion = input("¿Desea registrarse (r) o iniciar sesión (i)? ").lower()
 
 if opcion == 'r':
@@ -23,9 +23,9 @@ if opcion == 'r':
 elif opcion == 'i':
     # Iniciar sesión
     if iniciar_sesion():
-        # Usuario autenticado, cargar estructura y realizar operaciones
-        carpeta_principal = Carpeta("Principal")
-        cargar_estructura_desde_json(carpeta_principal, json.load(open("Ejercicio Proxi/basedatos.json")))
+        
         realizar_operacion("usuario_actual", carpeta_principal)
+        # Usuario autenticado, cargar estructura y realizar operaciones
+
 else:
     print("Opción no válida. Por favor, seleccione 'r' para registrarse o 'i' para iniciar sesión.")

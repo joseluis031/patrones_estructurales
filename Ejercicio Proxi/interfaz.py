@@ -19,9 +19,13 @@ def realizar_operacion(usuario_actual, carpeta_principal):
 
                 nuevo_documento = Documentos_Leaf(nombre_documento, tipo_documento, tamaño_documento)
                 carpeta_principal.add(nuevo_documento)
+                
+                
+                
                 guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
 
                 print(f"Documento '{nombre_documento}' añadido correctamente.")
+                exit()
             elif pregunta2 == "2":
                 nombre_enlace = input("Ingrese el nombre del nuevo enlace: ")
                 link_enlace = input("Ingrese el enlace: ")
@@ -29,6 +33,7 @@ def realizar_operacion(usuario_actual, carpeta_principal):
                 carpeta_principal.add(nuevo_enlace)
                 guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
                 print(f"Enlace '{nombre_enlace}' añadido correctamente.")
+                exit()
                 
             elif pregunta2 == "3":
                 nombre_carpeta = input("Ingrese el nombre de la nueva carpeta: ")
@@ -36,19 +41,24 @@ def realizar_operacion(usuario_actual, carpeta_principal):
                 carpeta_principal.add(nueva_carpeta)
                 guardar_estructura_en_json(carpeta_principal, "Ejercicio Proxi/basedatos.json")
                 print(f"Carpeta '{nombre_carpeta}' añadida correctamente.")
+                exit()
         elif pregunta == "2":
             agregar_elemento_a_carpeta(carpeta_principal)
+            exit()
             
         
     elif opcion1 == "2":
         borrar_elemento(carpeta_principal)        
+        exit()
                 
     elif opcion1 == "3":
         editar_elemento(carpeta_principal)
+        exit()
         
     elif opcion1 == "4":
         carpeta_principal.operation()
        # log_access(carpeta_principal.nombre)
+        exit()
     elif opcion1 == "5":
         print("Gracias por usar el programa")
         exit()

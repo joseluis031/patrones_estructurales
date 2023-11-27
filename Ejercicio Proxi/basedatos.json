@@ -111,6 +111,23 @@
       "nombre": "abc",
       "tipo_documento": "texto",
       "tamanio": "456"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "tomt",
+      "tipo_documento": "texto",
+      "tamanio": "45"
+    },
+    {
+      "tipo": "Enlace",
+      "nombre": "cansado",
+      "link": "cansado.com"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "hola",
+      "tipo_documento": "texto",
+      "tamanio": "45"
     }
   ]
 }

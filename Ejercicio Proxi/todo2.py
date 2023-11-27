@@ -124,20 +124,24 @@ class Proxy2(Component):
 
 
 
-def cargar_estructura_desde_json(parent, json_data):
-    print("La carpeta principal del programa ")
+def cargar_estructura_desde_json5(parent, json_data):
     for child_data in json_data.get("Contiene", []):
-        print(" contiene:", child_data)
         if child_data.get("tipo") == "Carpeta":
             child_folder = Carpeta(child_data.get("nombre"))
             parent.add(child_folder)
-            cargar_estructura_desde_json(child_folder, child_data)
+            cargar_estructura_desde_json5(child_folder, child_data)
         elif child_data.get("tipo") == "Documento":
             child_document = Documentos_Leaf(child_data.get("nombre"), child_data.get("tipo_documento"), child_data.get("tamanio"))
             parent.add(child_document)
         elif child_data.get("tipo") == "Enlace":
             child_link = Enlace_Leaf(child_data.get("nombre"), child_data.get("link"))
             parent.add(child_link)
+
+
+
+
+
+
 
 
 def guardar_estructura_en_json(estructura, archivo_json):
@@ -269,9 +273,9 @@ def realizar_operacion(usuario_actual, carpeta_principal):
     
 
 
-
 carpeta_principal = Carpeta("Principal")
-cargar_estructura_desde_json(carpeta_principal, json.load(open("Ejercicio Proxi/basedatos.json")))
+cargar_estructura_desde_json5(carpeta_principal, json.load(open("Ejercicio Proxi/basedatos.json")))
+
 opcion = input("¿Desea registrarse (r) o iniciar sesión (i)? ").lower()
 
 if opcion == 'r':
@@ -280,6 +284,7 @@ if opcion == 'r':
 elif opcion == 'i':
     # Iniciar sesión
     if iniciar_sesion():
+        
         realizar_operacion("usuario_actual", carpeta_principal)
         # Usuario autenticado, cargar estructura y realizar operaciones
 

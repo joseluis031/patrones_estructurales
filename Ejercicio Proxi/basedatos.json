@@ -34,6 +34,17 @@
           "nombre": "a\u00f1adir2",
           "tipo_documento": "texto",
           "tamanio": 67
+        },
+        {
+          "tipo": "Carpeta",
+          "nombre": "capeta2",
+          "Contiene": []
+        },
+        {
+          "tipo": "Documento",
+          "nombre": "ooo",
+          "tipo_documento": "texto",
+          "tamanio": 45
         }
       ]
     }

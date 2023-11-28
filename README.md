@@ -1,7 +1,9 @@
 # patrones_estructurales
 
 El link de este repositorio es el siguiente: [GitHub](https://github.com/joseluis031/patrones_estructurales.git)
-[Bajar al Readme Proxi](#id7)
+
+
+[Bajar al Readme Proxy](#id7)
 
 
 ## Pizzeria
@@ -365,3 +367,123 @@ y el cliente en clientes.csv
 
 
 ## Ejercicio Proxy <a name="id7"></a>
+
+Mi ejercicio Proxy consta de una interfaz que te da la opcion de registrarse o iniciar sesion, si te registras, tu usuario se guarda en una base de datos sqlite(tabla usuarios), y podras iniciar sesion, cuando inicies sesion, se autentifica tu usuario y contraseña mediante la clase Proxy, la cual accede a la base de datos durante 3 segundos(sleep(3)) y si no te autentifica no puedes realizar ninguna accion, y si se te autentifica, se te guarda en la tabla sesiones de la base de datos sqlite tu usuario y tu hora de tu ultimo inicio de sesion para tener un mejor control de quien entra y accede a mi carpeta principal que se guarda en un archivo.json.(si quieres probar el usuario facil es usuario:aa contraseña:aa
+
+Una vez que el proxy te da accesso a la carpeta, tienes la opcion de :
+[1.](#id8) Añadir Documento, enlace o carpeta
+[2.](#id9) Borrar Documento, enlace o carpeta
+[3.](#id10) Editar Documento, enlace o carpeta
+[4.](#id11) Acceder a una Carpeta/documento/enlace
+
+#### Añadir Documento, enlace o carpeta <a name="id8"></a>
+
+```
+¿Desea registrarse (r) o iniciar sesión (i)? i
+Ingrese su nombre de usuario: aa
+Ingrese su contraseña:
+ProxyDB: Verificando el acceso antes de enviar una solicitud real...
+ProxyDB: Usuario autenticado. Acceso concedido.
+Proxy: Registro de la hora de la solicitud:El usuario aa accedió a la carpeta Principal a las 18:29:16
+Inicio de sesión exitoso para 'aa'
+Seleccione una opción:
+ 1. Añadir Documento, enlace o carpeta
+ 2. Borrar Documento, enlace o carpeta
+ 3. Editar Documento, enlace o carpeta
+ 4. Acceder a una Carpeta/documento/enlace
+ 5. Salir
+1
+¿Que desea:
+ 1.añadir un documento, enlace o carpeta en la carpeta principal
+ 2.añadir un documento, enlace o carpeta dentro de una carpeta ?2
+Carpetas disponibles:
+5. io editada
+20. adios
+Seleccione una carpeta (por número): 20
+Ingrese el tipo de elemento (Documento, Enlace, Carpeta): Enlace
+Ingrese el nombre del nuevo elemento: ultimo enlace
+Ingrese el enlace: ultimo.com
+Elemento 'ultimo enlace' añadido correctamente a la carpeta 'adios'.
+```
+Se puede ver en el .json como se ha añadido a la carpeta "adios"
+#### Borrar Documento, enlace o carpeta <a name="id9"></a>
+
+```
+¿Desea registrarse (r) o iniciar sesión (i)? i
+Ingrese su nombre de usuario: aa
+Ingrese su contraseña:
+ProxyDB: Verificando el acceso antes de enviar una solicitud real...
+ProxyDB: Usuario autenticado. Acceso concedido.
+Proxy: Registro de la hora de la solicitud:El usuario aa accedió a la carpeta Principal a las 18:31:30
+Inicio de sesión exitoso para 'aa'
+Seleccione una opción:
+ 1. Añadir Documento, enlace o carpeta
+ 2. Borrar Documento, enlace o carpeta
+ 3. Editar Documento, enlace o carpeta
+ 4. Acceder a una Carpeta/documento/enlace
+ 5. Salir
+2
+Ingrese el tipo del elemento (Carpeta/Documento/Enlace): Documento
+Ingrese el nombre del elemento que desea borrar: Documento1
+Elemento 'Documento1' (Documento) eliminado correctamente de la carpeta 'Principal'.
+
+```
+
+#### Editar Documento, enlace o carpeta <a name="id10"></a>
+
+```
+¿Desea registrarse (r) o iniciar sesión (i)? i
+Ingrese su nombre de usuario: aa
+Ingrese su contraseña:
+ProxyDB: Verificando el acceso antes de enviar una solicitud real...
+ProxyDB: Usuario autenticado. Acceso concedido.
+Proxy: Registro de la hora de la solicitud:El usuario aa accedió a la carpeta Principal a las 18:32:14
+Inicio de sesión exitoso para 'aa'
+Seleccione una opción:
+ 1. Añadir Documento, enlace o carpeta
+ 2. Borrar Documento, enlace o carpeta
+ 3. Editar Documento, enlace o carpeta
+ 4. Acceder a una Carpeta/documento/enlace
+ 5. Salir
+3
+Ingrese el tipo a editar (Documento, Enlace, Carpeta): Documento
+Ingrese el nombre a editar: balon de oro
+Documento encontrado: Documento: balon de oro (imagen, 35678 KB)
+Ingrese el nuevo nombre del documento: balon de oro messi
+Ingrese el nuevo tipo de documento: imagen 
+Ingrese el nuevo tamaño del documento en KB: 34456
+Documento 'balon de oro' editado correctamente.
+
+```
+Puedes comprobarlo en el .json
+
+#### Acceder a una Carpeta/documento/enlace <a name="id11"></a>
+
+```
+¿Desea registrarse (r) o iniciar sesión (i)? i
+Ingrese su nombre de usuario: aa
+Ingrese su contraseña:
+ProxyDB: Verificando el acceso antes de enviar una solicitud real...
+ProxyDB: Usuario autenticado. Acceso concedido.
+Proxy: Registro de la hora de la solicitud:El usuario aa accedió a la carpeta Principal a las 18:34:37
+Inicio de sesión exitoso para 'aa'
+Seleccione una opción:
+ 1. Añadir Documento, enlace o carpeta
+ 2. Borrar Documento, enlace o carpeta
+ 3. Editar Documento, enlace o carpeta
+ 4. Acceder a una Carpeta/documento/enlace
+ 5. Salir
+4
+¿Que desea:
+ 1.acceder a una carpeta
+ 2.acceder a un documento o enlace ?1
+Ingrese el nombre de la carpeta a la que desea acceder: adios
+Accediendo a la carpeta 'adios'...
+Contiene:
+Documento: adiosmessi (texto, 456 KB)
+Enlace: amarillo -> ama.com
+Documento: frio (video, 4543 KB)
+Enlace: ultimo enlace -> ultimo.com
+
+```
+

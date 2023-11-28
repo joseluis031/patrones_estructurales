@@ -23,7 +23,7 @@ Tambien hay un csv donde se encuentran todos los precios de todos los elementos 
 
 [5.](#id5) El cliente puede elegir una Pizza by you Delizioso y asi poder personalizada todos los ingredientes de la pizza desde el inicio (mediante patron composite--->builder)
 
-
+[6.](#id6) UML
 
 #### Menu Personalizado <a name="id1"></a>
 Si el cliente elige un Menu Personalizado
@@ -356,6 +356,9 @@ Repetimos el pedido anterior.
 ```
 El pedido se guarda en un csv llamado pedido_pizzapers.csv
 y el cliente en clientes.csv
+
+#### UML <a name="id6"></a>
+![image](https://github.com/joseluis031/patrones_estructurales/assets/91721888/58f8656a-4f0e-4d76-b50e-0aae51c673e5)
 
 
 

@@ -128,6 +128,47 @@
       "nombre": "hola",
       "tipo_documento": "texto",
       "tamanio": "45"
+    },
+    {
+      "tipo": "Carpeta",
+      "nombre": "adios",
+      "Contiene": [
+        {
+          "tipo": "Documento",
+          "nombre": "adiosmessi",
+          "tipo_documento": "texto",
+          "tamanio": 456
+        },
+        {
+          "tipo": "Enlace",
+          "nombre": "amarillo",
+          "link": "ama.com"
+        },
+        {
+          "tipo": "Documento",
+          "nombre": "frio",
+          "tipo_documento": "video",
+          "tamanio": 4543
+        }
+      ]
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "saltos",
+      "tipo_documento": "video",
+      "tamanio": "5567"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "balon de oro",
+      "tipo_documento": "imagen",
+      "tamanio": "35678"
+    },
+    {
+      "tipo": "Documento",
+      "nombre": "ultfinal",
+      "tipo_documento": "imagen",
+      "tamanio": 9889
     }
   ]
 }

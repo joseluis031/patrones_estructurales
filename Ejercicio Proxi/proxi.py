@@ -28,7 +28,7 @@ class Carpeta(Component):
         self._children.remove(component)
     
     def operation(self) -> str:
-        results = [f"Composite: {self.nombre}"]
+        results = [f"Contiene:"]
         for child in self._children:
             results.append(child.operation())
         return '\n'.join(results)
@@ -48,7 +48,7 @@ class Documentos_Leaf(Component):
         
         
     def operation(self):
-        return  f"Leaf: {self.nombre} ({self.tipo_documento}, {self.tamaño} KB)"
+        return  f"Documento: {self.nombre} ({self.tipo_documento}, {self.tamaño} KB)"
     
     def to_dict(self):
         return {

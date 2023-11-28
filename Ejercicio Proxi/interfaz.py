@@ -6,7 +6,7 @@ from editar import *
 def realizar_operacion(usuario_actual, carpeta_principal):
     # ... (código anterior)
 
-    opcion1 = input("Seleccione una opción: \n 1. Añadir Documento, enlace o carpeta \n 2. Borrar Documento, enlace o carpeta \n 3. Editar Documento, enlace o carpeta \n 4. Acceder a una Carpeta (simulación) \n 5. Salir \n").lower()
+    opcion1 = input("Seleccione una opción: \n 1. Añadir Documento, enlace o carpeta \n 2. Borrar Documento, enlace o carpeta \n 3. Editar Documento, enlace o carpeta \n 4. Acceder a una Carpeta/documento/enlace \n 5. Salir \n").lower()
 
     if opcion1 == "1":
         pregunta = input("¿Que desea: \n 1.añadir un documento, enlace o carpeta en la carpeta principal \n 2.añadir un documento, enlace o carpeta dentro de una carpeta ?").lower()
@@ -56,9 +56,25 @@ def realizar_operacion(usuario_actual, carpeta_principal):
         exit()
         
     elif opcion1 == "4":
-        carpeta_principal.operation()
-       # log_access(carpeta_principal.nombre)
-        exit()
+        pregunta = input("¿Que desea: \n 1.acceder a una carpeta \n 2.acceder a un documento o enlace ?").lower()
+        if pregunta == "1":
+            nombre_carpeta = input("Ingrese el nombre de la carpeta a la que desea acceder: ")
+            for child in carpeta_principal._children:
+                if child.nombre == nombre_carpeta:
+                    print(f"Accediendo a la carpeta '{nombre_carpeta}'...")
+                    print(child.operation())
+                    exit()
+            print(f"La carpeta '{nombre_carpeta}' no existe.")
+            exit()
+        elif pregunta == "2":
+            nombre_documento = input("Ingrese el nombre del documento o enlace al que desea acceder: ")
+            for child in carpeta_principal._children:
+                if child.nombre == nombre_documento:
+                    print(f"Accediendo al documento o enlace '{nombre_documento}'...")
+                    print(child.operation())
+                    exit()
+            print(f"El documento o enlace '{nombre_documento}' no existe.")
+            exit()
     elif opcion1 == "5":
         print("Gracias por usar el programa")
         exit()

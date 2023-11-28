@@ -371,10 +371,15 @@ y el cliente en clientes.csv
 Mi ejercicio Proxy consta de una interfaz que te da la opcion de registrarse o iniciar sesion, si te registras, tu usuario se guarda en una base de datos sqlite(tabla usuarios), y podras iniciar sesion, cuando inicies sesion, se autentifica tu usuario y contraseña mediante la clase Proxy, la cual accede a la base de datos durante 3 segundos(sleep(3)) y si no te autentifica no puedes realizar ninguna accion, y si se te autentifica, se te guarda en la tabla sesiones de la base de datos sqlite tu usuario y tu hora de tu ultimo inicio de sesion para tener un mejor control de quien entra y accede a mi carpeta principal que se guarda en un archivo.json.(si quieres probar el usuario facil es usuario:aa contraseña:aa
 
 Una vez que el proxy te da accesso a la carpeta, tienes la opcion de :
+
 [1.](#id8) Añadir Documento, enlace o carpeta
+
 [2.](#id9) Borrar Documento, enlace o carpeta
+
 [3.](#id10) Editar Documento, enlace o carpeta
+
 [4.](#id11) Acceder a una Carpeta/documento/enlace
+
 
 #### Añadir Documento, enlace o carpeta <a name="id8"></a>
 

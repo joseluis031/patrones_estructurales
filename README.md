@@ -380,6 +380,8 @@ Una vez que el proxy te da accesso a la carpeta, tienes la opcion de :
 
 [4.](#id11) Acceder a una Carpeta/documento/enlace
 
+[5.](#id12) UML
+
 
 #### Añadir Documento, enlace o carpeta <a name="id8"></a>
 
@@ -492,3 +494,5 @@ Enlace: ultimo enlace -> ultimo.com
 
 ```
 
+#### UML <a name="id12"></a>
+![image](https://github.com/joseluis031/patrones_estructurales/assets/91721888/d3e490be-9480-48bf-9208-a4966508a69a)

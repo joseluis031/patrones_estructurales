@@ -71,7 +71,7 @@ def buscar_id_usuario(nombre_usuario, contraseña):
     return None
 
 def buscar_pedidos(id_usuario):
-    archivo_csv_pedidos = 'Pizzeria/Datos/pedidos_cliente.csv'
+    archivo_csv_pedidos = 'Pizzeria/Datos/pedidos_menupers.csv'
 
     with open(archivo_csv_pedidos, mode='r') as file:
         reader = csv.reader(file)
@@ -83,7 +83,7 @@ def buscar_pedidos(id_usuario):
                 print(f"Elemento: {row[1]}, Precio: {row[2]}")
                 
 def buscar_combos_menu(id_usuario):
-    archivo_csv_pedidos = 'Pizzeria/Datos/combos_menu.csv'
+    archivo_csv_pedidos = 'Pizzeria/Datos/combos_menupredet.csv'
 
     with open(archivo_csv_pedidos, mode='r') as file:
         reader = csv.reader(file)
@@ -99,7 +99,7 @@ def buscar_combos_menu(id_usuario):
 import csv
 
 def buscar_pizza_personalizada(id_usuario):
-    with open('Pizzeria/Datos/pedidosnuevos.csv', mode='r', newline='') as file:
+    with open('Pizzeria/Datos/pedido_pizzapers.csv', mode='r', newline='') as file:
         reader = csv.reader(file)
         encontrado = False
         fila_anterior = None

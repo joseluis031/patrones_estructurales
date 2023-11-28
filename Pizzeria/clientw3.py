@@ -30,7 +30,7 @@ class Cliente:
             
     def guardar_pedido(self, pedido):
         # Nombre del archivo CSV para los pedidos
-        archivo_pedidos = 'Pizzeria/Datos/pedidos_cliente.csv'
+        archivo_pedidos = 'Pizzeria/Datos/pedidos_menupers.csv'
 
         # Crear o abrir el archivo en modo de escritura
         with open(archivo_pedidos, mode='a', newline='') as file:
@@ -45,7 +45,7 @@ class Cliente:
                 writer.writerow([self.id, item.operation(), item.precio()])
                 
     def guardar_combo_menu(self, pedido, tipo):
-        archivo_pedidos = 'Pizzeria/Datos/combos_menu.csv'
+        archivo_pedidos = 'Pizzeria/Datos/combos_menupredet.csv'
 
         with open(archivo_pedidos, mode='a', newline='') as file:
             writer = csv.writer(file)
@@ -76,7 +76,7 @@ class Cliente:
     
     
     def guardar_pizzapersonalizada(self):
-        with open('Pizzeria/Datos/pedidosnuevos.csv', mode='a', newline='') as file:
+        with open('Pizzeria/Datos/pedido_pizzapers.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
 
             # Crea una nueva fila con nombre, usuario y contraseña

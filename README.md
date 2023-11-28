@@ -161,7 +161,8 @@ Tenemos los siguientes combos:
 Elige el numero del combo que quieres: 3
 El precio total del combo maxi es: 132.6
 ```
-y si ya ha pedido un combo predefinido recientemente se vera asi:
+y si ya ha pedido un combo predefinido recientemente se vera asi, ya que mediante una funcion, 
+si se repite una bebida o postre... se muestra 1 vez el producto multiplicado por la veces que lo contiene el combo
 
 ```
 ¿Has hecho algún pedido anteriormente? (si/no): si

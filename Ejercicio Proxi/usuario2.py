@@ -10,53 +10,62 @@ class Usuario:
         self.usuario = usuario
         self.contraseña = contraseña
 
-    def guardar_en_csv(self, archivo_csv):
-        try:
-            with open(archivo_csv, mode='a', newline='') as file:
-                writer = csv.writer(file)
-                writer.writerow([self.usuario, self.contraseña])
-            print(f"Usuario '{self.usuario}' registrado correctamente")
-        except Exception as e:
-            print(f"Error al guardar en CSV: {e}")
+    def guardar_en_bd(self):
+        # Conectar a la base de datos
+        conn = sqlite3.connect('Ejercicio Proxi/usuarios.db')
+        cursor = conn.cursor()
+
+        # Insertar nuevo usuario
+        query = "INSERT INTO usuarios (usuario, contraseña) VALUES (?, ?)"
+        cursor.execute(query, (self.usuario, self.contraseña))
+
+        # Confirmar y cerrar la conexión
+        conn.commit()
+        conn.close()
 
     @staticmethod
-    def cargar_usuarios_desde_csv(archivo_csv):
-        usuarios = []
-        try:
-            with open(archivo_csv, mode='r') as file:
-                reader = csv.reader(file)
-                for row in reader:
-                    if row:
-                        usuario = Usuario(row[0], row[1])
-                        usuarios.append(usuario)
-            print("Usuarios cargados correctamente desde CSV.")
-        except Exception as e:
-            print(f"Error al cargar usuarios desde CSV: {e}")
+    def cargar_usuarios_desde_bd():
+        # Conectar a la base de datos
+        conn = sqlite3.connect('Ejercicio Proxi/usuarios.db')
+        cursor = conn.cursor()
+
+        # Obtener usuarios
+        query = "SELECT usuario, contraseña FROM usuarios"
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        # Cerrar la conexión
+        conn.close()
+
+        # Crear instancias de Usuario a partir de los resultados
+        usuarios = [Usuario(row[0], row[1]) for row in rows]
         return usuarios
+    
 
 
-# main.py
-
-# ... (código anterior)
 
 def registrar_usuario():
     nombre_usuario = input("Ingrese su nombre de usuario: ")
     contraseña = getpass.getpass("Ingrese su contraseña: ")
     nuevo_usuario = Usuario(nombre_usuario, contraseña)
-    nuevo_usuario.guardar_en_csv("Ejercicio Proxi/usuarios.csv")
+    nuevo_usuario.guardar_en_bd()
+    
+    print(f"Usuario '{nombre_usuario}' registrado correctamente")
+
 
 def iniciar_sesion():
     nombre_usuario_buscar = input("Ingrese su nombre de usuario: ")
     contraseña_buscar = getpass.getpass("Ingrese su contraseña: ")
 
     # Cargar usuarios desde el archivo CSV
-    usuarios_registrados = Usuario.cargar_usuarios_desde_csv("Ejercicio Proxi/usuarios.csv")
     
-    # Crear una instancia de Proxy con la lista de usuarios cargada
-    proxy = Proxy(carpeta_principal, usuarios_registrados)
-    # Autenticar al usuario mediante el Proxy
-    if proxy.check_access(nombre_usuario_buscar, contraseña_buscar):
+    # Crear una instancia de ProxyDB con la lista de usuarios cargada
+    proxydb = ProxyDB(carpeta_principal)
+    
+    # Autenticar al usuario mediante el ProxyDB
+    if proxydb.check_access(nombre_usuario_buscar, contraseña_buscar):
         print(f"Inicio de sesión exitoso para '{nombre_usuario_buscar}' ")
+        
         return True
     else:
         print(f"Inicio de sesión fallido para '{nombre_usuario_buscar}' o la contraseña no coincide")

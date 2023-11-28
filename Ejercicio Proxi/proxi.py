@@ -2,7 +2,8 @@ from abc import ABC, abstractmethod
 from typing import List
 from datetime import datetime
 import json
-
+import sqlite3
+from time import sleep
 
 class Component(ABC):
     @abstractmethod
@@ -71,7 +72,7 @@ class Enlace_Leaf(Component):
             "nombre": self.nombre,
             "link": self.link
         }
-
+'''
 class Proxy(Component):
     def __init__(self, real_subject, usuarios_registrados=None):
         self.real_subject = real_subject
@@ -90,7 +91,6 @@ class Proxy(Component):
     def check_access(self, nombre_usuario, contraseña) -> None:
         print("Proxy: Verificando el acceso antes de enviar una solicitud real...")
         #que pasen 3 segundos
-        from time import sleep
         sleep(1)
         
         if self.usuarios_registrados:
@@ -126,6 +126,75 @@ class Proxy(Component):
             'real_subject': self.real_subject.to_dict(),
             'access_log': self.access_log
         }
+        
+'''     
+class ProxyDB:
+    def __init__(self, real_subject):
+        self.real_subject = real_subject
+        self.conn = sqlite3.connect('Ejercicio Proxi/usuarios.db')
+        self.cursor = self.conn.cursor()
+
+    def check_access(self, nombre_usuario, contraseña) -> bool:
+        print("ProxyDB: Verificando el acceso antes de enviar una solicitud real...")
+        sleep(1)
+
+        # Tu lógica para verificar el acceso usando la base de datos
+        usuario_autenticado = self.verify_access_from_db(nombre_usuario, contraseña)
+
+        if usuario_autenticado:
+            print(f"ProxyDB: Usuario autenticado. Acceso concedido.")
+            self.usuario_autenticado = True
+            self.log_access(nombre_usuario)
+            self.guardar_hora_inicio_sesion(nombre_usuario)
+            
+            return True
+        else:
+            print("ProxyDB: Usuario no autenticado. Acceso denegado.")
+            return False
+
+    def verify_access_from_db(self, nombre_usuario, contraseña) -> bool:
+        # Conectar a la base de datos
+        conn = sqlite3.connect('Ejercicio Proxi/usuarios.db')
+        cursor = conn.cursor()
+
+        # Verificar si el usuario y la contraseña coinciden
+        query = "SELECT COUNT(*) FROM usuarios WHERE usuario = ? AND contraseña = ?"
+        cursor.execute(query, (nombre_usuario, contraseña))
+        count = cursor.fetchone()[0]
+
+        # Cerrar la conexión
+        conn.close()
+
+        # Si count es mayor que 0, el usuario está autenticado
+        return count > 0
+
+    def log_access(self, nombre_usuario):
+        print("Proxy: Registro de la hora de la solicitud:", end="")
+        print("El usuario {} accedió a la carpeta {} a las {}".format(
+            nombre_usuario, self.real_subject.nombre, datetime.now().strftime("%H:%M:%S")
+        ))
+        return True
+    
+    def guardar_hora_inicio_sesion(self, nombre_usuario):
+        # Conectar a la base de datos
+        conn = sqlite3.connect('Ejercicio Proxi/usuarios.db')
+        cursor = conn.cursor()
+        # Insertar nueva sesión
+        query = "INSERT INTO sesiones (usuario, hora_inicio_sesion) VALUES (?, ?)"
+        cursor.execute(query, (nombre_usuario, datetime.now().strftime("%H:%M:%S")))
+        
+
+        # Confirmar y cerrar la conexión
+        conn.commit()
+        conn.close()
+        
+    def to_dicta(self):
+        return {
+            'type': 'Proxy',
+            'real_subject': self.real_subject.to_dict(),
+            'access_log': self.access_log
+        }
+        
         
 def cargar_estructura_desde_json5(parent, json_data):
     for child_data in json_data.get("Contiene", []):

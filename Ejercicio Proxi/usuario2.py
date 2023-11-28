@@ -14,14 +14,19 @@ class Usuario:
         # Conectar a la base de datos
         conn = sqlite3.connect('Ejercicio Proxi/usuarios.db')
         cursor = conn.cursor()
+        try:
+            # Insertar nuevo usuario
+            query = "INSERT INTO usuarios (usuario, contraseña) VALUES (?, ?)"
+            cursor.execute(query, (self.usuario, self.contraseña))
+            conn.commit()
+            conn.close()
+            print(f"Usuario '{self.usuario}' registrado correctamente")
 
-        # Insertar nuevo usuario
-        query = "INSERT INTO usuarios (usuario, contraseña) VALUES (?, ?)"
-        cursor.execute(query, (self.usuario, self.contraseña))
+        except sqlite3.IntegrityError:
+            print("Ese usuario no esta disponible")
+            conn.close()
 
-        # Confirmar y cerrar la conexión
-        conn.commit()
-        conn.close()
+        
 
     @staticmethod
     def cargar_usuarios_desde_bd():
@@ -50,7 +55,6 @@ def registrar_usuario():
     nuevo_usuario = Usuario(nombre_usuario, contraseña)
     nuevo_usuario.guardar_en_bd()
     
-    print(f"Usuario '{nombre_usuario}' registrado correctamente")
 
 
 def iniciar_sesion():

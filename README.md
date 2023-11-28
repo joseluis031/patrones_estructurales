@@ -1,6 +1,8 @@
 # patrones_estructurales
 
 El link de este repositorio es el siguiente: [GitHub](https://github.com/joseluis031/patrones_estructurales.git)
+[Bajar al Readme Proxi](#id7)
+
 
 ## Pizzeria
 Mi pizzeria delizioso consta de una interfaz que pregunta al cliente si ha hecho algun pedido anteriormente o no, si la respuesta es si,
@@ -362,4 +364,4 @@ y el cliente en clientes.csv
 
 
 
-## Ejercicio Proxy
+## Ejercicio Proxy <a name="id7"></a>

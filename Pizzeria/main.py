@@ -5,8 +5,7 @@ from pedir import *
 
 
 
-if __name__ == "__main__":
-    
+def main():    
     pedido_anterior = input("¿Has hecho algún pedido anteriormente? (si/no): ")
     
     if pedido_anterior.lower() == "si":

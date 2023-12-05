@@ -4,12 +4,6 @@
   "Contiene": [
     {
       "tipo": "Documento",
-      "nombre": "Documento1",
-      "tipo_documento": "Texto",
-      "tamanio": 10
-    },
-    {
-      "tipo": "Documento",
       "nombre": "tr",
       "tipo_documento": "Texto",
       "tamanio": 32
@@ -149,6 +143,11 @@
           "nombre": "frio",
           "tipo_documento": "video",
           "tamanio": 4543
+        },
+        {
+          "tipo": "Enlace",
+          "nombre": "ultimo enlace",
+          "link": "ultimo.com"
         }
       ]
     },
@@ -160,9 +159,9 @@
     },
     {
       "tipo": "Documento",
-      "nombre": "balon de oro",
+      "nombre": "balon de oro messi",
       "tipo_documento": "imagen",
-      "tamanio": "35678"
+      "tamanio": 34456
     },
     {
       "tipo": "Documento",

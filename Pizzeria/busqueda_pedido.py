@@ -16,7 +16,7 @@ def buscar_pedido_anterior():
         id_usuario = buscar_id_usuario(nombre_usuario, contraseña)
 
         if id_usuario is not None:
-            print("¿fue personalizjjado? (si/no): ")
+            print("¿fue personalizado? (si/no): ")
             respuesta1 = input("Sí/No: ")
             if respuesta1.lower() == "no":
                 buscar_combos_menu(id_usuario)
